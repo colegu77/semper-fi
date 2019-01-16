@@ -1,0 +1,62 @@
+# depslib dependency file v1.0
+1461774037 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator5\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1461774037 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator5\lista.h
+
+1446671344 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator5\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1461774060 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator5\main_lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1461774037 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1461774037 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lista.h
+
+1462048279 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\main.c
+	<stdlib.h>
+
+1462048689 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\main_lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1461810038 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1461810038 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\lista.h
+
+1462084280 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\main.c
+	<stdlib.h>
+
+1462663694 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\main_lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1461802838 source:d:\laborator5\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1461802838 d:\laborator5\lista.h
+
+1462077080 source:d:\laborator5\main.c
+	<stdlib.h>
+
+1462656494 source:d:\laborator5\main_lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+

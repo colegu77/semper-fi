@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1463420042 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator8\arbore_rb.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore_rb.h"
+
+1463419557 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator8\arbore_rb.h
+
+1463419286 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator8\main.c
+	<stdlib.h>
+
+1463420932 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator8\main_arbore_rb.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore_rb.h"
+
+1463456044 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator8\arbore_rb.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore_rb.h"
+
+1463455558 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator8\arbore_rb.h
+
+1463455288 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator8\main.c
+	<stdlib.h>
+
+1463456934 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator8\main_arbore_rb.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore_rb.h"
+

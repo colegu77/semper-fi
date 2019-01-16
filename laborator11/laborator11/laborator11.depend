@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1464610983 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator11\laborator11\main.c
+	<stdlib.h>
+
+1464783099 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator11\laborator11\main_graf_bfd.c
+	<stdlib.h>
+	"graf_bfd.h"
+	<stdio.h>
+	<limits.h>
+
+1464783263 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator11\laborator11\graf_bfd.h
+
+1464784540 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator11\laborator11\graf_bfd.c
+	<stdlib.h>
+	"graf_bfd.h"
+	<stdio.h>
+	<limits.h>
+
+1464646984 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator11\laborator11\main.c
+	<stdlib.h>
+
+1464819100 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator11\laborator11\main_graf_bfd.c
+	<stdlib.h>
+	"graf_bfd.h"
+	<stdio.h>
+	<limits.h>
+
+1464819264 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator11\laborator11\graf_bfd.h
+
+1464822100 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator11\laborator11\graf_bfd.c
+	<stdlib.h>
+	"graf_bfd.h"
+	<stdio.h>
+	<limits.h>
+

@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1464007552 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator9\graf.c
+	<stdlib.h>
+	"graf.h"
+	<stdio.h>
+	<limits.h>
+
+1464007499 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator9\graf.h
+
+1463582436 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator9\main.c
+	<stdlib.h>
+
+1464007347 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator9\main_graf.c
+	<stdlib.h>
+	"graf.h"
+	<stdio.h>
+	<limits.h>
+
+1463618438 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator9\main.c
+	<stdlib.h>
+
+1464238392 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator9\main_graf.c
+	<stdlib.h>
+	"graf.h"
+	<stdio.h>
+	<limits.h>
+
+1464238532 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator9\graf.h
+

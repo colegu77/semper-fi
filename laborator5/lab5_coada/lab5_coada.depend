@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1462660066 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_coada\coada.c
+	<stdio.h>
+	<stdlib.h>
+	"coada.h"
+
+1462632793 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_coada\coada.h
+
+1462632794 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_coada\main.c
+	<stdlib.h>
+
+1462660100 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_coada\maincoada.c
+	<stdio.h>
+	<stdlib.h>
+	"coada.h"
+
+1497560056 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\lab5_coada\coada.c
+	<stdio.h>
+	<stdlib.h>
+	"coada.h"
+
+1462668794 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\lab5_coada\coada.h
+
+1462696102 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator5\lab5_coada\maincoada.c
+	<stdio.h>
+	<stdlib.h>
+	"coada.h"
+

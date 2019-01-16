@@ -1,0 +1,54 @@
+# depslib dependency file v1.0
+1461604973 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1462049253 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator4\main.c
+	<stdlib.h>
+	<math.h>
+
+1462059256 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator4\dame_recursiv.c
+	<stdlib.h>
+
+1462020385 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator3\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1462114715 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator4\problema_activitati.c
+	<stdio.h>
+	<stdlib.h>
+
+1462150746 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator4\problema_activitati.c
+	<stdio.h>
+	<stdlib.h>
+
+1497090264 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator4\dame_recursiv.c
+	<stdlib.h>
+
+1497090247 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator4\main.c
+	<stdlib.h>
+	<math.h>
+
+1497083066 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator4\dame_recursiv.c
+	<stdlib.h>
+
+1497083048 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator4\main.c
+	<stdlib.h>
+	<math.h>
+
+1497083494 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator4\problema_activitati.c
+	<stdio.h>
+	<stdlib.h>
+
+1497083066 source:g:\laborator4\dame_recursiv.c
+	<stdlib.h>
+
+1547212382 source:g:\laborator4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1547210228 source:g:\laborator4\problema_activitati.c
+	<stdlib.h>
+

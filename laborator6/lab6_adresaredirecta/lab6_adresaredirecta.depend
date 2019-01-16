@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1462904080 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator6\lab6_adresaredirecta\adresaredirecta.c
+	<stdio.h>
+	<stdlib.h>
+	"adresaredirecta.h"
+
+1462904080 c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator6\lab6_adresaredirecta\adresaredirecta.h
+
+1462904080 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator6\lab6_adresaredirecta\main.c
+	<stdlib.h>
+
+1462904080 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator6\lab6_adresaredirecta\main_adresaredirecta.c
+	<stdio.h>
+	<stdlib.h>
+	"adresaredirecta.h"
+

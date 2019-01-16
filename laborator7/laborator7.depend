@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1462988495 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator7\arbore.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore.h"
+
+1462988448 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator7\arbore.h
+
+1462988448 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator7\main.c
+	<stdlib.h>
+
+1462988517 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator7\main_arborebinardecautare.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore.h"
+
+1463376316 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator7\arbore.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore.h"
+
+1463376376 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator7\arbore.h
+
+1463024450 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator7\main.c
+	<stdlib.h>
+
+1463376316 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator7\main_arborebinardecautare.c
+	<stdio.h>
+	<stdlib.h>
+	"arbore.h"
+

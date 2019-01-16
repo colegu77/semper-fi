@@ -1,0 +1,72 @@
+# depslib dependency file v1.0
+1461173178 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator3\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1461504570 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	"array_io.h"
+
+1461173178 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator3\array_io.h
+
+1461532647 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator3\matrixchainmultiplication.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1462413446 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator3\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1497018907 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	"array_io.h"
+
+1497018741 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator3\array_io.h
+
+1497018913 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator3\matrixchainmultiplication.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1462406246 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator3\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1540904767 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	"array_io.h"
+
+1497011542 c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator3\array_io.h
+
+1497025124 source:c:\users\barsan ximena\desktop\lore\oana brisc\lorena\algoritmi laboratoare\algoritmi si structuri de date\laborator3\matrixchainmultiplication.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1547051444 source:g:\laborator3\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1547205970 source:g:\laborator3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	"array_io.h"
+
+1547048330 g:\laborator3\array_io.h
+
+1547205934 source:g:\laborator3\matrixchainmultiplication.c
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+

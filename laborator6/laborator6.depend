@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1461774037 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1461774037 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lista.h
+
+1462814421 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\main.c
+	<stdlib.h>
+
+1462814637 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1462814637 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\lista.h
+
+1462815635 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\mainpb2.c
+	<stdlib.h>
+	"tabeladispersie.h"
+	<stdio.h>
+
+1462814718 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\tabeladispersie.h
+	"lista.h"
+
+1462815285 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator6\tabeladispersie.c
+	<stdlib.h>
+	"tabeladispersie.h"
+	<stdio.h>
+
+1462850638 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator6\lista.c
+	<stdlib.h>
+	"lista.h"
+	<stdio.h>
+
+1462850638 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator6\lista.h
+
+1462851900 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator6\mainpb2.c
+	<stdlib.h>
+	"tabeladispersie.h"
+	<stdio.h>
+
+1462850720 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator6\tabeladispersie.h
+	"lista.h"
+
+1462851900 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator6\tabeladispersie.c
+	<stdlib.h>
+	"tabeladispersie.h"
+	<stdio.h>
+

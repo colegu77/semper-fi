@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1461447716 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator2\quicksort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1460986477 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator2\array_io.h
+
+1460986307 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1460986477 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator2\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1461448159 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator2\laborator2\heapsort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1461015278 source:g:\laborator2\laborator2\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1461015108 source:g:\laborator2\laborator2\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1547045066 source:g:\laborator2\laborator2\heapsort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1461015278 g:\laborator2\laborator2\array_io.h
+
+1547042172 source:g:\laborator2\laborator2\quicksort.c
+	<stdlib.h>
+	"array_io.h"
+

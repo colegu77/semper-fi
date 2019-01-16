@@ -1,0 +1,79 @@
+# depslib dependency file v1.0
+1460393742 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1460914771 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\insertie.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1460393688 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\array_io.h
+
+1460569619 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\mergesort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1460569394 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\selectionsort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1460914568 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator1\tema.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1460429744 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1460950772 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\insertie.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1460429690 c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\array_io.h
+
+1465604244 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\mergesort.c
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1465604246 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\tema.c
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1496917307 source:c:\users\oana\desktop\algoritmi andreea\algoritmi si structuri de date\laborator1\selectionsort.c
+	<stdio.h>
+	<stdlib.h>
+	"array_io.h"
+
+1460422544 source:g:\laborator1\array_io.c
+	<stdio.h>
+	<stdlib.h>
+
+1547039574 source:g:\laborator1\insertie.c
+	<stdlib.h>
+	"array_io.h"
+
+1460422490 g:\laborator1\array_io.h
+
+1465597044 source:g:\laborator1\mergesort.c
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+
+1496910270 source:g:\laborator1\selectionsort.c
+	<stdlib.h>
+	"array_io.h"
+
+1465597046 source:g:\laborator1\tema.c
+	<stdlib.h>
+	"array_io.h"
+	<limits.h>
+

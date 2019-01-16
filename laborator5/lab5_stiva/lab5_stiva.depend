@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1462628884 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_stiva\stiva.c
+	<stdlib.h>
+	"stiva.h"
+	<stdio.h>
+
+1462626596 c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_stiva\stiva.h
+
+1462626611 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_stiva\main.c
+	<stdlib.h>
+
+1462628884 source:c:\users\dianevelvet\desktop\facultate\algoritmi si structuri de date\laborator5\lab5_stiva\mainstiva.c
+	<stdio.h>
+	<stdlib.h>
+	"stiva.h"
+

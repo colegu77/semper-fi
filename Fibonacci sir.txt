@@ -1,0 +1,18 @@
+Sirul lui Fibonacci
+
+#include<stdio.h>
+int n,a,b,c;
+void main(void)
+{
+	printf("Introduceti valoare numarului n:");
+    scanf("%i", &n);
+    a=1;
+	printf("numarul este %d \n",a);
+	b=1;
+	while(c<n)
+	{c=a+b;
+     printf("numarul este %d \n",c);
+	 a=b;
+	 b=c;
+	}
+}

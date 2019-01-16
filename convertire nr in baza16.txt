@@ -1,0 +1,21 @@
+Convertire numar in baza 16
+
+
+#include<stdio.h>
+void main(void)
+{
+	int i,n10,indice16=0, rest16;
+	char n16[17];
+	scanf("%d",&n10);
+	while(n10)
+	{
+		rest16=n10%16;
+		if(rest16<10) n16[indice16]=rest16+'0';
+		else
+			n16[indice16]=rest16-10+'A';
+		indice16++;
+		n10/=16;
+	}
+	for(i=indice16-1;i>=0;i--) printf("%c",n16[i]);
+	putchar('\n');
+}

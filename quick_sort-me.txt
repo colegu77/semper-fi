@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include "sort.h"
+
+
+int partitionare (int sir_init[], int p, int r)
+{ int pivot,i,j,aux;
+	pivot=sir_init[r];
+  i=p-1;
+
+  for (j=p; j<=r-1; j++)
+		{ if (sir_init[j]<=pivot) 
+			{i=i+1;
+			aux=sir_init[i];
+			sir_init[i]=sir_init[j];
+			sir_init[j]=aux;}}
+  sir_init[r]=sir_init[i+1];
+  sir_init[i+1]=pivot;
+
+  return i+1;
+
+
+}
+
+int sortare(int sir_init[], int p, int r)
+{int q; 
+	 
+	q=0;
+	if (p<r) 
+			{q= partitionare(sir_init,p,r);
+		sortare(sir_init, p, q-1);
+
+		sortare(sir_init, q+1, r);
+	}
+return 0;
+}
+
+#include <stdio.h>
+#include <limits.h>
+#include "cit_afis.h"
+#include "sort.h"
+
+main () 
+{ int sir_init[10], n;
+
+printf("n="); scanf("%d",&n);
+
+citeste_sir(sir_init,n);
+
+sortare(sir_init,0,n-1);
+
+afiseaza_sir(sir_init,n);
+
+return 0;
+}
+

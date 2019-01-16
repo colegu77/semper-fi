@@ -1,0 +1,17 @@
+Descompunere numar in factori primi
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{int n,d=2,p;
+ printf("Introduceti nr:");
+ scanf("%i",&n);
+ do
+ {p=0;
+  while(!(n%d)) p++,n/=d;
+  if(p) printf("Div %d cu puterea %d \n",d,p);
+  d++;
+ }
+ while(n!=1);
+ getchar();
+}

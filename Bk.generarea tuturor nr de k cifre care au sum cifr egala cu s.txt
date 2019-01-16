@@ -1,0 +1,29 @@
+Backtracking generarea tuturor numerelor de k ciffre care au suma cifrelor egala cu s
+
+#include<stdio.h>
+#include<conio.h>
+int a[10], k, s;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=k;i++) printf("%d",a[i]);
+ putchar('\n');
+}
+void bkr(int i, int s1)
+{
+ int j,x;
+ if(i==1) x=1;
+ else x=0;
+ for(j=x;j<=9;j++) { a[i]=j;
+		     if(i<k) bkr(i+1,s1+a[i]);
+		     else if(s1+a[i]==s) tipareste(); }
+}
+void main(void)
+{
+ clrscr();
+ printf("dati nr de cif: ");
+ scanf("%d",&k);
+ printf("dati suma cif: ");
+ scanf("%d",&s);
+ bkr(1,0);
+}

@@ -1,0 +1,16 @@
+Palindrom
+
+#include<stdio.h>
+int rasturnat(int x)
+{int r=0,c;
+ while(x>0) {c=x%10;
+             r=r*10+c;
+			 x=x/10;}
+ return r;
+}
+main()
+{int n;
+ printf("n=");scanf("%d",&n);
+ if(n==rasturnat(n)) printf("palindrom");
+    else printf("nu e palindrom");
+}

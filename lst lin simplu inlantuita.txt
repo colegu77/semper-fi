@@ -1,0 +1,89 @@
+Lista liniara simplu inlantuita
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+typedef struct LISTA { int cheie;
+		       struct LISTA *urm; } lista;
+lista *prim, *p, *q, *r;
+void creare()
+{
+ prim=NULL;
+ p=(lista*)malloc(sizeof(lista));
+ scanf("%d",&p->cheie);
+ p->urm=NULL;
+ prim=p;
+}
+void inserare_sf()
+{
+ for(p=prim;p->urm;p=p->urm);
+ q=(lista*)malloc(sizeof(lista));
+ scanf("%d",&q->cheie);
+ p->urm=q;
+ q->urm=NULL;
+}
+void inserare_ina()
+{
+ p=(lista*)malloc(sizeof(lista));
+ printf("Inserare in capul listei val: ");
+ scanf("%d",&p->cheie);
+ p->urm=prim;
+ prim=p;
+}
+void inserare_dupaN()
+{
+ int key;
+ printf("Cheia dupa care se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;p=p->urm);
+ if(p!=NULL)
+   { q=(lista*)malloc(sizeof(lista));
+     printf("Noul elem: ");
+     scanf("%d",q->cheie);
+     q->urm=p->urm;
+     p->urm=q; }
+ else printf("Nu exista cheie specificata!\n");
+}
+void inserare_inaN()
+{
+ int key;
+ printf("Cheia inaintea careia se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;r=p,p=p->urm);
+ if(p!=NULL)
+    { q=(lista*)malloc(sizeof(lista));
+      printf("Noul elem ");
+      scanf("%d",q->cheie);
+      q->urm=p;
+      r->urm=q; }
+ else printf("Nu exista cheia cautata\n");
+}
+void sterge()
+{
+ int key;
+ printf("Nodul ce trebuie sters: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;r=p,p=p->urm);
+ if(p) if(prim!=p) { r->urm=p->urm;
+		      free(p); }
+	else { prim=p->urm;
+	       free(p); }
+ else printf("Nu exista cheia specificata!\n");
+}
+void afisare()
+{
+ for(p=prim;p;p=p->urm) printf("%d ",p->cheie);
+ printf("\n\n");
+}
+void main()
+{
+ int n,i;
+ clrscr();
+ printf("n= ");
+ scanf("%d",&n);
+ creaza();
+ for(i=1; i<n; i++) inserare_sf();
+ afisare();
+ sterge();
+ afisare();
+}

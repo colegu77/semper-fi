@@ -1,0 +1,18 @@
+De cate ori apar cifrele 0-9 intr-un nr
+
+#include<stdio.h>
+void main(void)
+{
+	long int n,i,a[10],r;
+	printf("Introduceti valoarea lui n:");
+	scanf("%d",&n);
+	for(i=0;i<=9;i++) a[i]=0;
+	while(n!=0)
+	{r=n%10;
+	 a[r]=a[r]+1;
+	 n=n/10;
+	}
+	for(i=0;i<=9;i++)
+	printf("Numarul %d apare de %d\n",i,a[i]);
+	
+}

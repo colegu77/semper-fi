@@ -1,0 +1,62 @@
+Cozi Un program care citeste 2 numare (n si b). Introduceti intr-o coada perechile distincte
+//de nr mai mici decat n care au cmmdc egal cu b
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct coada { int info;
+	       coada* urm; };
+typedef coada* nod;
+nod v, sf;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(coada));
+	  v->info=n;
+	  v->urm=0;
+	  sf=v; }
+ else { c=(nod)malloc(sizeof(coada));
+	sf->urm=c;
+	c->info=n;
+	c->urm=0;
+	sf=c; }
+}
+void pop()
+{
+ nod c;
+ if(v) { printf("Eliminam elem: %d",v->info);
+	 c=v;
+	 v=v->urm;
+	 free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ printf("Traversam coada");
+ if(!c) printf("Coada este vida!");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+int cmmdc(int a, int b)
+{
+ while(a!=b) if(a>b) a=a-b;
+	     else b=b-a;
+ return a;
+}
+void main(void)
+{
+ int n,b,i,j;
+ clrscr();
+ do { printf("Intrdodu elem (-1 pt extragere sau 0 pt iesire): ");
+      scanf("%d",&n);
+      if(n)
+       if(n!=(-1)) { printf("dati valoarea cmmdc-ul impus: ");
+		     scanf("%d",&b);
+		     for(i=1;i<n-1;i++)
+			 for(j=i+1;j<n;j++) if(cmmdc(i,j)==b) { push(i);
+								push(j); }
+		     tipareste(); }
+       else { pop();
+	      tipareste(); }
+      } while(n);
+}

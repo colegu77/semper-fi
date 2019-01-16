@@ -1,0 +1,42 @@
+Sortarea radix prin interschimbare
+#include<stdio.h>
+#include<conio.h>
+int n,a[100];
+unsigned bit(unsigned x, int k)
+{
+	return((x>>k)&1);
+}
+void radix_interschimbare(int s, int d, int b)
+{ int i,j,elem;
+  if((d>s)&&(b>=1))		
+  { i=s;j=d;b--;	//pornim cu i de la marginea stânga, cu j de la marginea dreapta
+		//decrementam b (pornim cu b de la 8*sizeof(int)=16 iar prima /decalare se face cu 	
+		//15 pozitii pentru a obtine bitul cel mai semnificativ; ultima decalare se face cu b=0 pozitii)
+    do
+    { while((bit(a[i],b)==0)&&(i<j)) i++;	//i va pastra indicele primului element (pornind din stânga)
+					// având bitul cautat 1 (fara a depasi j)
+      while((bit(a[j],b)==1)&&(i<j)) j--;	//j va pastra indicele primului element (pornind din dreapta)
+					// având bitul cautat 0 (fara a scadea sub i)
+      elem=a[i]; a[i]=a[j]; a[j]=elem;		//inversam cele doua elemente (a[i] cu a[j])
+    } while(!(j==i));			//repetam atât timp cât i diferit de j
+    if(bit(a[d],b)==0) j++; 		//daca toti bitii testati sunt 0 se reface lungimea partitiei
+    radix_interschimbare(s,j-1,b);		//aplicam Divide et Impera pentru partitia (s,j-1)
+    radix_interschimbare(j,d,b);		//aplicam Divide et Impera pentru partitia (j,d)
+  }					//se încheie if((d>s)&&(b>=1))
+}
+void main(void)
+{
+	int i;
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=0;i<n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+	radix_interschimbare(0,n-1,8*sizeof(int));
+	printf("Sirul sortat este: ");
+	for(i=0;i<n;i++)
+		printf("%d",a[i]);
+	getch();
+}
+	

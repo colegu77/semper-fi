@@ -1,0 +1,14 @@
+exercitare functie nr de elemente
+#include<stdio.h>
+	int strlen(char a[])
+{
+	int n;
+	for(n=0;a[n];n++);
+	return(n);
+}
+void main(void)
+{ char a[30];
+printf("introduceti sirul:"); scanf("%s",a);
+printf("\n Lungimea sirului este:");
+printf("%d\n",strlen(a));
+}

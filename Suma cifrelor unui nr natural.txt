@@ -1,0 +1,15 @@
+Suma cifrelor unui nr natural
+
+#include<stdio.h>
+void main(void)
+{
+	long int n,s=0,r;
+	printf("Introduceti valoarea lui n:");
+	scanf("%i",&n);
+	do
+	{r=n%10;
+	 s=s+r;
+	 n/=10;
+	}
+	while(n!=0); printf("Suma cifrelor din numar este %d \n",s);
+}

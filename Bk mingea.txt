@@ -1,0 +1,50 @@
+Backtracking mingea
+
+#include<stdio.h>
+#include<conio.h>
+int a[8]={1,1,0,-1,-1,-1,0,1}, b[8]={0,1,1,1,0,-1,-1,-1};
+int tablou[10][10], drum[10][10], m, n;
+void tipareste()
+{
+ int p,r;
+ for(p=0;p<m;p++)
+    { for(r=0;r<n; r++) printf("%3d",drum[p][r]);
+      putchar('\n'); }
+ putchar('\n');
+ getch();
+}
+void minge(int i, int j)
+{
+ int i1, j1, d;
+ if((i==0)||(i==m-1)||(j==0)||(j==n-1)) { tipareste();
+					  drum[i][j]=0; }
+ else for(d=0;d<8;d++) { i1=i+a[d];
+			 j1=j+b[d];
+			 if((i1<m)&&(j1<n)&&(i1>=0)&&(j1>=0)&&(tablou[i1][j1]<tablou[i][j])&&(!drum[i1][j1]))
+			   { drum[i1][j1]=1;
+			     minge(i1,j1);
+			     drum[i1][j1]=0; }
+			 }
+ drum[i][j]=0;
+}
+void main(void)
+{
+ int i,j,xi,yi;
+ clrscr();
+ printf("introdu nr de lin: ");
+ scanf("%d",&m);
+ printf("introdu nr de col: ");
+ scanf("%d",&n);
+ printf("introdu cotele: \n");
+ for(i=0;i<m;i++)
+    for(j=0;j<n;j++)
+       { drum[i][j]=0;
+	 printf("tabloul[%d][%d]= ",i,j);
+	 scanf("%d",&tablou[i][j]); }
+ printf("introdu lin de pornire: ");
+ scanf("%d",&xi);
+ printf("introdu col de pornire: ");
+ scanf("%d",&yi);
+ drum[xi][yi]=1;
+ minge(xi,yi);
+}

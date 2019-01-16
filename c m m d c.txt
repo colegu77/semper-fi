@@ -1,0 +1,20 @@
+Cel mai mic divizor comun
+
+#include<stdio.h>
+int a,b,d,i,r;
+void main(void)
+{
+	printf("Introduceti valorea nr a=");
+    scanf("%i", &a);
+	printf("Introduceti valoarea nr b=");
+	scanf("%i", &b);
+	d=a;
+	i=b;
+	while(i!=0)
+	{r=d%i;
+     d=i;
+	 i=r;
+	}
+	printf("...........\n");
+	printf("C.M.M.D.C (%ld,%ld)=%ld\n",a,b,d);
+}

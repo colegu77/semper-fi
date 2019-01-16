@@ -1,0 +1,27 @@
+Interclasarea a 2 siruri
+
+#include<stdio.h>
+void main(void)
+{
+	int m,n,i,j,k,a[21],b[21],c[40];
+	printf("Introduceti dimensiunea I sir: "); scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i); //a+i este acelas lucru cu &
+	}
+	printf("Introduceti elementele sirului II: "); scanf("%d",&m);
+	for(j=0;j<m;j++)
+	{
+		printf("b[%d]= ",j); scanf("%d",b+j);
+	}
+	a[n]=b[m-1]+1;
+	b[m]=a[n-1]+1;
+	for(i=0,j=0,k=0;k<m+n;k++)
+		if(a[i]<=b[j])
+			c[k]=a[i++];
+		else
+			c[k]=b[j++];
+		printf("Sirul concatenat este: ");
+		for(k=0;k<m+n;k++)
+			printf("%d ",c[k]);
+}

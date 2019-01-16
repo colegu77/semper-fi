@@ -1,0 +1,30 @@
+Cele mai multe caractere
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+char s[20][100], cuvant[100];
+int n,i, max;
+printf("Introduceti numarul de siruri:"); scanf("%d", &n);
+gets(s[0]);
+for(i=0; i<n; i++)
+{
+	printf("Introduceti sirul s[%d]:", i); gets(s[i]);
+}
+
+max = strlen(s[0]);
+strcpy(cuvant, s[0]);
+for (i=0; i<n; i++)
+{
+	if(strlen(s[i])>max)
+	{
+		max = strlen(s[i]);
+		strcpy(cuvant,s[i]);
+	}
+}
+printf("Numarul maxim din sir este: %d si propozitia este :%s\n", max,cuvant);
+
+
+	return 0;
+}    

@@ -1,0 +1,42 @@
+Verificare graf conex si afisare componente
+#include<stdio.h>
+#include<conio.h>
+int n,m,a[20][20],viz[20],nrc=0;
+void viziteaza(int nod)
+{
+	int i;
+	viz[nod]=nrc;
+	for(i=1;i<=n;i++)
+		if(a[nod][i]==1&&viz[i]==0) viziteaza(i);
+}
+
+void main()
+{
+	int nod,x,y,i,j;
+	printf("Introduceti numarul de noduri n= "); scanf("%d",&n);
+	printf("Introduceti numarul de muchii m= "); scanf("%d",&m);
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+			for(i=1;i<=m;i++)
+			{
+				printf("De la nodul: "); scanf("%d",&x);
+				printf("La nodul: "); scanf("%d",&y);
+				a[x][y]=a[y][x]=1;
+			}
+		for(nod=1;nod<=n;nod++)
+			if(viz[nod]==0)
+			{
+				nrc++;
+				viziteaza(nod);
+			}
+			if(nrc==1) printf("Graful este conex!\n");
+			else printf("Graful nu este conex!\n");
+			printf("Componentele conexe sunt: \n");
+			for(i=1;i<=nrc;i++)
+			{
+				printf("Componenta %d: ",i);
+				for(j=i;j<=n;j++)
+					if(viz[j]==i) printf("%d",j);
+			}
+			getch();
+}

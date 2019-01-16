@@ -1,0 +1,34 @@
+Fibonacci fara sir
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+
+void main()
+{int n,f1,f2,f3;
+
+	printf("Introd n: ");
+	scanf("%d",&n);
+
+	printf("Sirul Fibonacci este:\n");
+
+	f1=1;
+	f2=1;
+printf("%d ",f1);
+printf("%d ",f2);
+do
+{
+
+f3=f2+f1;
+f1=f2;
+f2=f3;
+if(f3>n) exit(1);
+printf("%d ",f2);
+}
+while(f3<=n);
+getch();
+
+
+}

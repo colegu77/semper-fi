@@ -1,0 +1,22 @@
+Se determina daca trei numere a, b, c 
+reale pot reprezenta laturile unui triunghi si sa se calculeze aria sa. 
+
+#include<stdio.h>
+#include<math.h>
+float a, b, c, s, p;
+
+int validare_laturi(float a, float b, float c)
+{
+	return((a>0)&&(b>0)&&(c>0)&&(a+b>c)&&(a+c>b)&&(b+c>a));
+}
+void main(void)
+{
+	printf("Introduceti laturile triunghiului: ");
+	scanf("%f %f %f", &a, &b, &c);
+	if (validare_laturi(a,b,c))
+	{
+		p=(a+b+c)/2;
+		s=sqrt(p*(p-a)*(p-b)*(p-c));
+		printf("Aria este %6.2f\n",s);
+	}
+}

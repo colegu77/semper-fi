@@ -1,0 +1,22 @@
+Determina daca un an este bisect sau nu
+
+
+#include<stdio.h>
+#include<conio.h>
+
+void main(void)
+{
+	int n;
+	printf("Dati anul: ");
+	scanf("%d",&n);
+
+	
+	if((!(n%100))&&(!(n%400)))
+		printf("Anul este bisect! \n");
+	else 
+	   	    if(!(n%4))
+		     	printf("Anul este bisect! \n");
+			else
+				printf("Anul nu este bisect! \n");
+	getch();
+}

@@ -1,0 +1,145 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista.h"
+
+void main()
+{ t_lista L;
+  t_nod_lista *x;
+  int s, key;
+
+  makenull(&L);
+
+  s=0;
+
+  while (s!=5)
+	{printf("1-SEARCH\n");
+	printf("2-INSEART\n");
+	printf("3-DELETE\n");
+	printf("4-PRINT\n");
+	printf("5-FREE\n");
+
+	printf("Introduceti optiunea\n"); scanf ("%d", &s);
+	switch (s)
+	{ case '1': printf("Introduceti elementul cautat"); scanf("%d", &key);
+				x=list_search(L,key);
+				if (x!=NULL) printf("Adresa elementului este %d",x);
+				else printf("Elementul nu a fost gasit");
+				break;
+
+
+	  case '2': printf("Introduceti elementul pe care doriti sa il inserati");
+				scanf("%d", &key);
+				x=(t_nod_lista*) malloc(sizeof(t_nod_lista));
+				x->cheie=key;
+				list_insert(&L,x);
+				break;
+
+	  case '3': printf("Introduceti elementul pe care doriti sa il stergeti");
+				scanf("%d", &key);
+				x=list_search(L,key);
+				if (x!=NULL) list_delete(&L,x);
+				else printf("Elementul nu a fost gasit");
+				break;
+
+	  case '4': list_print(L);
+				break;
+
+	 }
+
+	}
+	list_free(&L);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista.h"
+
+
+void makenull(t_lista *L)
+{ L->head=(t_nod_lista*) malloc(sizeof(t_nod_lista));
+  L->head->next=NULL;
+  L->head->prev=NULL;
+}
+
+
+t_nod_lista* list_search(t_lista L,int key)
+{ t_nod_lista* x;
+ 
+ x=L.head;
+ while ((x!=NULL)&&(x->cheie!=key))
+		x=x->next;
+
+return x;
+}
+
+void list_insert(t_lista *L, t_nod_lista *x)
+{
+  if (x==NULL) return;
+
+  x->next = L->head->next;
+
+  if (L->head->next!=NULL)
+		L->head->next->prev = x;
+
+  L->head->next = x;
+  x->prev = L->head;
+}
+
+void list_delete(t_lista *L, t_nod_lista *x)
+{ if (x->prev != NULL)
+       x->prev->next = x->next;
+  else
+	   L->head = x->next;
+  
+  if (x->next != NULL)
+		x->next->prev = x->prev;
+}
+
+void list_print(t_lista L)
+{
+    t_nod_lista *x = L.head->next;
+    
+	if (x == NULL)
+		printf("lista vida\n");
+	while (x)
+		{
+			printf("%d, ", x->cheie);
+			x = x->next;
+		}
+}
+
+void list_free(t_lista *L)
+{  t_nod_lista *x= L->head->next;
+	
+	while (x)
+		{
+			list_delete(L, x);
+			free(x);
+			x = L->head->next;
+		}
+	free (L->head);
+}
+
+
+#ifndef _lista
+#define _lista
+
+typedef struct nod_lista
+	{	int cheie;
+		struct nod_lista *next,*prev;
+} t_nod_lista;
+
+typedef struct{
+	 t_nod_lista *head;	
+} t_lista;
+
+
+void makenull(t_lista *L);
+t_nod_lista* list_search(t_lista L,int key);
+void list_insert(t_lista *L, t_nod_lista *x);
+void list_delete(t_lista *L, t_nod_lista *x);
+void list_free(t_lista *L);
+void list_print(t_lista L);
+
+#endif
+	

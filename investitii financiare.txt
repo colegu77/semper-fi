@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <limits.h>
+
+int partition(int inv[],int val[],int risc[],int p,int r)
+{
+	int x,i,j,aux,temp;
+	x=val[r]-risc[r];
+	i=p-1;
+	for(j=p;j<=r-1;j++)
+	{
+		if(val[j]-risc[j]>=x)
+		{
+			i++;
+
+			aux=val[i];
+			val[i]=val[j];
+			val[j]=aux;
+
+			aux=inv[i];
+			inv[i]=inv[j];
+			inv[j]=aux;
+
+			aux=risc[i];
+			risc[i]=risc[j];
+			risc[j]=aux;
+		}
+	}
+	temp=val[i+1];
+	val[i+1]=val[r];
+	val[r]=temp;
+
+	temp=inv[i+1];
+	inv[i+1]=inv[r];
+	inv[r]=temp;
+
+	temp=risc[i+1];
+	risc[i+1]=risc[r];
+	risc[r]=temp;
+	return i+1;
+}
+
+void sorteaza(int inv[],int val[],int risc[],int p,int r)
+{
+	int q;
+	if(p<r)
+	{
+		q=partition(inv,val,risc,p,r);
+		sorteaza(inv,val,risc,p,q-1);
+		sorteaza(inv,val,risc,q+1,r);
+	}
+	return;
+}
+int maxim(int q,int p)
+{
+	if(q>p) return q;
+	else return p;
+}
+int min(int q,int p)
+{
+	if(q>p) return p;
+	else return q;
+}
+
+int solutie(int inv[],int val[],int risc[],int rez[],int n)
+{
+	int i,q,j,r[100],p=0;
+	r[0]=0;
+	for(j=1;j<=n;j++)
+	{
+		q=INT_MIN;
+		for(i=1;i<=j;i++)
+		{
+
+			if(q<val[i]+r[j-i])
+			{
+				q=val[i]+r[j-i];
+				rez[j]=inv[i];
+				p=p+val[i]-risc[i];
+			}
+		}
+		r[j]=q;
+
+	}
+	return p;
+}
+void main()
+{
+	int i,n,inv[100],val[100],risc[100],rez[100],profitmax;
+	printf("introduceti numarul investitiilor:");
+	scanf("%d",&n);
+
+	printf("introduceti valoarea fiecarei investitii si riscul acesteia(intre 1 si 10):");
+	for(i=1;i<=n;i++)
+	{
+		inv[i]=i;
+
+		printf("val[%d]=",i);
+		scanf("%d",&val[i]);
+
+		printf("risc[%d]=",i);
+		scanf("%d",&risc[i]);
+	}
+
+	sorteaza(inv,val,risc,1,n);
+
+	profitmax=solutie(inv,val,risc,rez,n);
+
+	printf("profitul maxim obtinut este:%d",profitmax);
+	printf("\ncombinatia de investitii este:");
+	for(i=1;i<=n;i++) printf("%d ",rez[i]);
+}
+

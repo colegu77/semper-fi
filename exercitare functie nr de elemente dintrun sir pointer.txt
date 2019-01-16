@@ -1,0 +1,17 @@
+exercitare functie nr de elemente dintrun sir pointer
+
+#include<stdio.h>
+int strlen(char*a)
+{
+	char*p;
+	p=a;
+	while(*p)p++;
+	return(p-a);
+}
+void main(void)
+{
+	char a[30];
+	printf("introduceti sirul:"); scanf("%s",a);
+	printf("\n Lungimea sirului este:");
+	printf("%d\n",strlen(a));
+}

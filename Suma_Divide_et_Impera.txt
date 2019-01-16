@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<conio.h>
+int a[20];
+
+int divide(int ls, int ld)
+{int mijloc, d1, d2;
+if(ls!=ld)
+{mijloc=(ls+ld)/2;
+d1=divide(ls,mijloc);
+d2=divide(mijloc,1,ld);
+return(d1+d2);
+}
+else return(a[ls]);
+}
+
+void main (void)
+{int I,n;
+printf("introd nr de elemente ale sirului:");
+scanf("%d",&n);
+
+for(I=0;I<n;I++)
+{printf("a[%d]=");
+scanf("%d",a+I);
+}
+printf("Suma elem este:%d\n",divide(0,n-1));
+getch();
+}

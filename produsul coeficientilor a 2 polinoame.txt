@@ -1,0 +1,34 @@
+se citesc coeficientii a doua polinoame de gradul m respectiv n. sa se calculeze
+coeficientii produsului celor doua polinoame. 
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int i,j,m,n,a[30],b[30],c[60];
+	printf("Introduceti gradul primului polinom: ");
+	scanf("%d",&m);
+
+	printf("Introduceti gradul celui de al doilea polinom: ");
+	scanf("%d",&n);
+
+	printf("Introduceti coeficientii primului polinom sub forma am*xm+...+a1*x+a0\n");
+	for(i=m; i>=0;i--)
+	{
+		printf("a[%d]=",i);
+		scanf("%d",a+i);
+	}
+	printf("Introduceti coeficientii celui de al doilea polinom sub forma bm*xm+...+b1*x+b0\n");
+	for(i=n; i>=0;i--)
+	{
+		printf("b[%d]=",i);
+		scanf("%d",b+i);
+	}
+	for(i=0;i<=m+n;i++) c[i]=0;
+	for(i=0;i<=m;i++)
+		for(j=0;j<=n;j++) c[i+j]+=a[i]*b[i];
+		printf("Coeficientii polinomului produs sunt: \n");
+		for(i=m+n;i>=0;i--) printf("c[%d]=%d\n",i,c[i]);
+		putchar('\n');
+		getch();
+}

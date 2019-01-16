@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct nod
+{
+	int apar;
+	char key;
+	struct nod *next;
+}tip_nod;
+
+typedef struct 
+{
+	tip_nod *head;
+}tip_head;
+
+tip_nod* initializeaza_nod(char k)
+{
+	tip_nod *x;
+	x=(tip_nod*)malloc(sizeof(tip_nod));
+	x->apar=1;
+	x->key=k;
+	x->next=NULL;
+	return x;
+}
+int verifica(tip_head *H,tip_nod *x)
+{
+	int ok=1;
+	tip_nod *y;
+	y=H->head;
+	while(y!=NULL)
+	{
+		if(y->key==x->key)
+		{
+			y->apar++;
+			ok=0;
+			break;
+		}
+		y=y->next;
+	}
+	return ok;
+}
+
+
+void insert_nod(tip_head *H,tip_nod *x)
+{
+	int ok;
+	tip_nod *elem;
+	ok=verifica(H,x);
+	if(ok)
+	{
+		elem=(tip_nod*)malloc(sizeof(tip_nod));
+		elem->apar=H->head->apar;
+		elem->key=H->head->key;
+		elem->next=H->head->next;
+		H->head=x;
+		H->head->next=elem;
+	}
+	return;
+}
+
+void printeaza(tip_head *H)
+{
+	tip_nod *x;
+	printf("elementele listei sunt:\n");
+	x=H->head;
+	while(x!=NULL)
+	{
+		printf("Caracterul %c cu codul ascii %d si %d apariti.\n",x->key,x->key,x->apar);
+		x=x->next;
+	}
+	return;
+}
+
+
+void main()
+{
+	int i,n;
+	char s[100];
+	tip_head *H;
+	tip_nod *x;
+	H=(tip_head*)malloc(sizeof(tip_head));
+	H->head=(tip_nod*)malloc(sizeof(tip_nod));
+	H->head->next=NULL;
+	printf("introduceti sirul de caractere:");
+	gets(s);
+	H->head->key=s[0];
+	H->head->apar=1;
+	for(i=1;i<strlen(s);i++)
+	{
+		x=initializeaza_nod(s[i]);
+		insert_nod(H,x);
+	}
+
+	printeaza(H);
+}

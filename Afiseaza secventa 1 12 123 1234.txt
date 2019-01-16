@@ -1,0 +1,11 @@
+Afiseaza secventa 1 12 123 1234 
+
+#include<stdio.h>
+void main(void)
+{
+	int n,i,j;
+	printf("Introduceti valoarea lui n:");
+	scanf("%i",&n);
+	for(i=2;i<=n;i++)
+		for(j=1;j<=i;j++) printf("%d",j);
+}

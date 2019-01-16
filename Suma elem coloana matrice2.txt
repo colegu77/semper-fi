@@ -1,0 +1,26 @@
+Suma elem coloana matrice2
+
+#include <stdio.h>
+#include <conio.h>
+int a[20][20],b[60],i,j,n,m;
+void main()
+{
+	printf("Introduceti numarul de linii:\n");
+	scanf("%d", &n);
+	printf("Introduceti numarul de coloane:\n");
+	scanf("%d", &m);
+	for(i=0;i<=m-1;i++)
+	for(j=0;j<=n-1;j++)
+	{
+		printf("a[%d][%d]=", i, j);
+		scanf("%d", &a[i][j]);
+	}
+	for(i=0;i<=m-1;i++)
+		b[i]=0;
+	for(i=0;i<=m-1;i++)
+	for(j=0;j<=n-1;j++)
+		b[i]=b[i]+a[j][i];
+	for(i=0;i<=m-1;i++)
+	printf("suma elementelor de pe coloana este:%d\n", b[i]);
+	getch();
+}

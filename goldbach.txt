@@ -1,0 +1,53 @@
+Conjectura lui Goldbach
+
+
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+
+int daca_prim(int n)
+{
+int  d=2;
+
+
+	do
+	{
+		if((!(n%d))&&(n!=2))
+		{
+			return(0);
+			d=n;
+		}
+		d++;
+	}
+
+	while (d<=(sqrt(n)+1));
+
+}
+void main()
+{
+	int n, i,a,b,s;
+	printf("Introduceti val lui n: ");
+	scanf("%d",&n);
+if(!(n%2))
+{
+	s=n;
+	for(i=0;n;i++)
+	{ a=n-1;
+	b=s-a;
+	n-=1;
+	if((daca_prim(a))&&(daca_prim(b)))
+	printf("Numerele %d si %d sunt prime, iar adunate dau %d. \n",a,b,s);
+	}
+
+	for(i=0;i<=n;i++)
+	{
+	if (daca_prim(i))
+		printf("%d ",i);
+
+	
+	}
+}
+else
+printf("Conjectura lui Goldbach este respectata doar in cazul numerelor pare!");
+	putchar('\n');
+}

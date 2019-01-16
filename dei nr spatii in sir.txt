@@ -1,0 +1,20 @@
+Divide et impera nr de spatii dintr-un sir
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+char a[10];
+int spatii(int st, int dr)
+{
+ int m;
+ if(st==dr)
+   if(a[st]==' ') return 1;
+   else return 0;
+ else { m=(st+dr)/2;
+	return spatii(st,m)+ spatii(m+1,dr); }
+}
+void main(void)
+{
+ clrscr();
+ gets(a);
+ printf("nr de spatii din sir: %d",spatii(0,strlen(a)-1));
+}

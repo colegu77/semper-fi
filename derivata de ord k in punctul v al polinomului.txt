@@ -1,0 +1,24 @@
+Derivata de ordinal K in punctual V al unui polinom N
+
+#include<stdio.h>
+main()
+{int n,k,v,derivata,a[10],i,val=0,putere=1;
+ printf("n=");scanf("%d",&n);
+ for(i=0;i<=n;i++)
+ {printf("a[%d]=",i);scanf("%d",&a[i]);}
+ printf("k=");scanf("%d",&k);
+ printf("v=");scanf("%d",&v);
+ for(derivata=1;derivata<=k;derivata++)
+ {for(i=0;i<=n;i++)
+     a[i]=a[i]*(n-i);
+  n--;
+ }
+ for(i=0;i<=n;i++)
+	  printf("%d ",a[i]);
+ printf("\n");
+ for(i=n;i>=0;i--)
+ {val=val+(a[i]*putere);
+  putere=putere*v;
+ }
+ printf("valoarea polinomului=%d",val);
+}

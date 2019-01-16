@@ -1,0 +1,16 @@
+Rezolvarea ecuatiei de gradul 1
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{float a,b;
+ printf("Introduceti coeficientul a=");
+ scanf("%f",&a);
+ printf("Introduceti coeficientul b=");
+ scanf("%f",&b);
+ if(!a)
+	 if(!b) printf("Ecuatie nedeterminata!\n");
+	 else printf("Ecuatie imposibila!\n");
+ else printf("Ecuatie de gr 1 cu solutia %f\n",-b/a);
+ getch();
+}

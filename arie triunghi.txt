@@ -1,0 +1,14 @@
+Calculeaza aria triunghiului
+
+#include<stdio.h>
+#include<math.h>
+
+void main(void)
+{ 
+	float a,b,c,p,aria;
+printf("introduceti laturile triunghiului:");
+scanf("%f %f %f", &a, &b, &c); 
+p=(a+b+c)/2;
+aria=sqrt(p*(p-a)*(p-b)*(p-c));
+printf("aria triunghiului este %f\n",aria);
+}

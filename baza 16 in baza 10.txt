@@ -1,0 +1,30 @@
+Converteste un numar in baza 16 intr-un numar in baza 10
+
+
+#include<iostream.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+void main(void)
+{
+	int n10=0, i, inmultitor=1;
+	char n16[17];
+	printf("Introduceti numarul in baza 16: ");
+	scanf("%s",n16);
+	for (i=strlen(n16)-1; i>=0;i--)
+	{
+		if ((n16[i]>='0')&&(n16[i]<='9'))
+			n10+=(n16[i]-'0')*inmultitor;
+
+		else
+if ((n16[i]>='A')&&(n16[i]<='F'))
+n10+=(n16[i]-'A'+10)*inmultitor;
+else
+{
+	printf("Sirul citit nu e un numar in baza 16\n");
+	exit(1);
+}
+inmultitor*=16;
+	}
+	printf("Numarul in baza 10 este: %d\n",n10);
+}

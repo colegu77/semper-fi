@@ -1,0 +1,68 @@
+Depune (la sfarsit) si extrage (la inceput) elemente dintr-o coada
+#include<stdio.h>
+#include<stdlib.h>
+struct queue
+{ int info;
+  queue* urm;
+};
+typedef queue* nod;
+
+nod v, sf;	//v este un pointer ce contine adresa vârfului cozii (adresa 			//elementului care urmeaza sa fie extras) (extragerea se face
+			// de la început); sf este un pointer care contine adresa
+			// sfârsitului cozii (adresa elementului dupa care se poate
+			// adauga un nou element în coada) (adaugarea se face la
+			// sfârsit)
+int n;
+void push(int n)	//functia de adaugare a unui element în coada (la sfârsitul listei)
+{ nod c;
+   if(!v)
+  { v=(nod)malloc(sizeof(queue));
+     v->info=n;
+     v->urm=0;
+     sf=v;
+    }
+  else
+  { c=(nod)malloc(sizeof(queue));
+     sf->urm=c;
+     c->info=n;
+     c->urm=0;
+     sf=c;
+  }
+ }
+void pop(void)		//functia de extragere a unui element din coada (de la 
+				//începutul listei)
+{ nod c;
+  if(v)
+  { printf("Am extras elementul %d\n",v->info);
+     c=v;
+     v=v->urm;
+     free(c);
+   }
+ }
+
+void traversare()		//functia de traversare a cozii
+{ nod c=v;
+  printf("Traversam coada: ");
+  if (!c) printf("Coada este goala!");
+  while (c)
+  { printf("%d ",c->info);
+     c=c->urm;
+   }
+  printf("\n\n");
+ }
+void main()
+{ do
+  { printf("Introduceti elementul (-1 pentru extragere, 0 pentru iesire): ");
+    scanf("%d",&n);
+    if(n)
+     if (n!=(-1))
+     { push(n);
+        traversare();
+     }
+     else
+     { pop();
+        traversare();
+     }
+  }
+  while (n);
+}

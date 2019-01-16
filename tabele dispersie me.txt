@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "hash_table.h"
+#include "lista.h"
+
+main () 
+{ int x,n,k;
+  t_lista T[100];
+
+printf("Lungimea tabelei="); scanf("%d",&n);
+
+hash_init(T,n);
+
+printf("Dati nr pana la citirea lui 0\n");
+printf("x="); scanf("%d",&x);
+
+while (x!=0) 
+	{k=hash_insert(T,n,x);
+	 printf("Introdus pe pozitia %d\n",k);
+	 printf("x="); scanf("%d",&x);
+	}
+
+hash_print(T,n);
+
+printf("Cautare element:");
+printf("x="); scanf("%d", &x);
+
+k=hash_search(T,n,x);
+
+if (k>-1)
+	printf("Element gasit pe pozitia %d", k);
+else 
+	printf("Elementul nu a fost gasit");
+
+
+printf("Stergere element:");
+printf("x="); scanf("%d", &x);
+
+k= hash_delete(T,n,x);
+
+if(k>-1)
+	{printf("Element sters pe pozitia %d", &k);
+	 hash_print(T,n);}
+else  
+	printf("Elementul nu a fost gasit");
+
+
+return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "hash_table.h"
+#include "lista.h"
+
+void hash_init (t_lista T[], int n)
+{ int i;
+	for (i=0; i<n; i++ )
+		{makenull(&T[i]);}
+}
+
+int hash_prim(int n, int k )
+{ return k%n;
+}
+
+
+int hash_probef(int k, int i, int n)
+{ return (hash_prim(n,k)+i)%n;
+}
+
+
+int hash_insert(t_lista T[], int n, int k)
+{ t_nod_lista *m;
+   int x;
+  x=hash_prim(n,k);
+  m=(t_nod_lista*) malloc (sizeof(t_nod_lista));
+  m->cheie=k;
+  list_insert(&T[x],m);
+  return x;
+}
+
+
+void hash_print(t_lista T[], int n)
+{ int i=0;
+  for (i=0; i<n; i++)
+	 { if (T[i].head->next!=NULL)
+		{printf("T[%d]",i);
+		list_print(T[i]);}
+	}
+	 
+}
+
+
+int hash_search (t_lista T[], int n, int x)
+{ t_nod_lista *m;
+int k;
+  
+  k=hash_prim(n,x);
+  m=list_search(T[k],x);
+	if (n)
+	{	printf("elementul %d pe pozitia %d ", m->cheie, k );
+		return k;
+	}
+   else 
+   { printf("elementul %d nu a fost gasit", k);
+   return -1;
+   }
+}
+
+int hash_delete(t_lista T[], int n, int x)
+{ int k;
+ t_nod_lista *m;
+
+	k=hash_prim(n,x);
+	m=list_search(T[k],x);
+
+  if (n)
+	{list_delete(&T[k],m);
+     printf("elementul %d a fost sters de pe pozitia",x, k);
+	 }
+  else
+  { printf("elementul %d nu a fost gasit", k);
+	 return -1;
+  }
+ 
+}
+

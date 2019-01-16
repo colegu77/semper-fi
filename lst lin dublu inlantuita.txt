@@ -1,0 +1,138 @@
+Lista liniara dublu inaltuita
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+typedef struct LISTAD { int cheie;
+			struct LISTAD *pred, *suc; } listad;
+listad *prim, *p, *q;
+void creaza()
+{
+ prim=NULL;
+ p=(listad*)malloc(sizeof(listad));
+ printf("Dati elem: ");
+ scanf("%d",&p->cheie);
+ p->pred=NULL;
+ p->suc=NULL;
+ prim=p;
+}
+void inser_ina()
+{
+ p=(listad*)malloc(sizeof(listad));
+ printf("Dati elem: ");
+ scanf("%d",&p->cheie);
+ p->pred=NULL;
+ p->suc=prim;
+ prim->pred=p;
+ prim=p;
+}
+void inser_inaN()
+{
+ int key;
+ printf("Dati cheia inaintea careia se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p&&p->cheie!=key;p=p->suc);
+ if(p) if(p==prim) { q=(listad*)malloc(sizeof(listad));
+		     printf("Dati elem: ");
+		     scanf("%d",&q->cheie);
+		     q->pred=NULL;
+		     q->suc=prim;
+		     prim->pred=q;
+		     prim=q;
+		     printf("Elem a fost inserat ca prim elem in lista!\n"); }
+       else { q=(listad*)malloc(sizeof(listad));
+	      printf("Dati elem: ");
+	      scanf("%d",&q->cheie);
+	      q->pred=p->pred;
+	      q->suc=p;
+	      p->pred->suc=q;
+	      printf("Elementul a fost inserat in lista!\n"); }
+ else printf("Cheia cautata nu a fost gasita!\n");
+}
+void inser_dupaN()
+{
+ int key;
+ printf("Dati cheia dupa care se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p&&p->cheie!=key;p=p->suc);
+ if(p) { q=(listad*)malloc(sizeof(listad));
+	 printf("Dati elem: ");
+	 scanf("%d",&q->cheie);
+	 q->suc=p->suc;
+	 q->pred=p;
+	 if(p->suc) p->suc->pred=q;
+	 p->suc=q;
+	 printf("Elementul a fost inserat!\n"); }
+ else printf("Elementul cautat nu afost gasit!\n");
+}
+void cautaN()
+{
+ int key;
+ printf("Dati cheia cautata: ");
+ scanf("%d",&key);
+ for(p=prim;p&&p->cheie!=key;p=p->suc);
+ if(p) printf("Elementul a fost gasit!\n");
+ else printf("Valoarea cautata nu a fost gasita!\n");
+}
+void sterge()
+{
+ if(prim->suc==NULL) { free(prim);
+		       printf("Elementul cap de lista a fost sters!\n");
+		       printf("Lista vida!");
+		       prim=NULL; }
+ else { p=prim;
+	prim=prim->suc;
+	free(p);
+	printf("Elementul cap de lista a fost sters!\n"); }
+}
+void stergeN()
+{
+ int key;
+ printf("Dati cheia pt stergere: ");
+ scanf("%d",&key);
+ for(p=prim;p&&p->cheie!=key;p=p->suc);
+ if(p) { if(p==prim) { p=prim;
+		       p=prim->suc;
+		       free(p);
+		       printf("Elemetul este cap de lista!\n");
+		       printf("Capul de lista a fost sters!\n"); }
+	 else if(p==prim) { p->pred->suc=p->suc;
+			    if(p->suc) p->suc->pred=p->pred;
+			    free(p);
+			    printf("Elementul a fost sters!\n"); } }
+ else printf("Valoarea cautata nu a fost gasita!\n");
+}
+void sterge_tot()
+{
+ p=prim;
+ prim=prim->suc;
+ free(p);
+ printf("Lista este vida!\n");
+}
+void scrie()
+{
+ p=prim;
+ while(p) { printf("%d ",p->cheie);
+	    p=p->suc; }
+ printf("\n\n");
+}
+void main()
+{
+ int n,i;
+ clrscr();
+ printf("Dati nr de elem din lista: ");
+ scanf("%d",&n);
+ creaza();
+ for(i=1;i<n;i++) inser_ina();
+ scrie();
+ inser_inaN();
+ scrie();
+ inser_dupaN();
+ scrie();
+ cautaN();
+ sterge();
+ scrie();
+ stergeN();
+ scrie();
+ sterge_tot();
+ getch();
+}

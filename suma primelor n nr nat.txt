@@ -1,0 +1,11 @@
+Calculul sumei primelor n numere naturale 
+
+#include <stdio.h>
+int n, s;
+void main(void)
+{
+	printf("Introduceti valoarea lui n: ");
+	scanf("%i",&n);
+	for(s=0; n>0; n--) s+=n;
+	printf("Suma este: %d\n", s);
+}

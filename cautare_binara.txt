@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int a[10],n,key;
+
+void caut(int i,int j)
+{if(key==a[(i+j)/2]) printf("Val a fost gasita la indicele %d\n",(i+j)/2);
+ else
+  if(i<j)
+   if(n<a[(i+j)/2] caut(i,(i+j)/2-1);
+    else caut((i+j)/2+1,j);
+}
+
+void main(void)
+{ int i;
+printf("n="); scanf("%d",&n);
+for(i=0;i<n;i++)
+{printf("a[%d]=",i);
+ scanf("%d",&a[i]);
+}
+printf("Introduceti valoarea cautata:"); scanf("%d",&key);
+caut(0,n);
+}

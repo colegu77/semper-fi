@@ -1,0 +1,18 @@
+Numar aparitie cifra c in n
+
+#include <stdio.h>
+void main(void)
+{
+	int n,cifra,nraparitii=0;
+	printf("Introduceti numarul: ");
+	scanf("%d",&n);
+	printf("Introduceti cifra pe care o cautati: ");
+	scanf("%d",&cifra);
+	do
+	{
+		if(n%10==cifra) nraparitii++;
+		n=n/10;
+	}while(n>0);
+
+	printf("Cifra %d apare in numar de %d ori.",cifra,nraparitii);
+}

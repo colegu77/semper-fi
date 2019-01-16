@@ -1,0 +1,17 @@
+De cate ori apare o cifra citita intr-un nr
+
+#include<stdio.h>
+void main(void)
+{int n,k,a,r;
+ printf("Numarul este=");
+ scanf("%i",&n);
+ printf("Cifra cautata este=");
+ scanf("%i", &a);
+ k=0;
+ do
+ {r=n%10;
+  if(r==a) k++;
+  n=n/10;
+ }
+ while(n!=0); printf("Numarul %d apare de %d ori \n",a,k);
+}

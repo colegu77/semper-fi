@@ -1,0 +1,16 @@
+Reprezentarea unui numar in binar
+
+#include<stdio.h>
+
+void main(void)
+{
+void bin(int);
+int a=10;
+bin(a);
+a>>=1;
+bin(a);
+}
+void bin(int i);
+{ int j;
+for(j=8*sizeof(i)-1;j>=0;j--)printf("%d",i>>j&1)
+}

@@ -1,0 +1,19 @@
+Afisare linii matrice 
+
+#include <stdio.h>
+#include<conio.h>
+main()
+{int a[10][10],i,j,n,m;
+ printf("n=");scanf("%d",&n);
+ printf("m=");scanf("%d",&m);
+ for(i=1;i<=n;i++)
+ {for(j=1;j<=m;j++)
+ {printf("a[%d][%d]=",i,j);scanf("%d",&a[i][j]);}
+  }
+ for(i=1;i<=n;i++)
+     {printf("linia %d este",i);
+      for(j=1;j<=m;j++)
+         printf("%d ",a[i][j]);
+	  printf("\n");
+      }
+}

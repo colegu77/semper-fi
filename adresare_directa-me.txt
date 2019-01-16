@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "hash_table.h"
+
+
+main () 
+{ int x,n,k;
+  int t[100];
+
+printf("Lungimea tabelei="); scanf("%d",&n);
+
+hash_init(t,n);
+
+printf("Dati nr pana la citirea lui 0\n");
+printf("x="); scanf("%d",&x);
+
+while (x!=0) 
+	{k=hash_insert(t,n,x);
+	 printf("Introdus pe pozitia %d\n",k);
+	 printf("x="); scanf("%d",&x);
+	}
+
+hash_print(t,n);
+
+printf("Cautare element:");
+printf("x="); scanf("%d", &x);
+
+k=hash_search(t,n,x);
+
+if (k>-1)
+	printf("Element gasit pe pozitia %d", k);
+else 
+	printf("Elementul nu a fost gasit");
+
+
+printf("Stergere element:");
+printf("x="); scanf("%d", &x);
+
+k= hash_delete(t,n,x);
+
+if(k>-1)
+	{printf("Element sters pe pozitia %d", &k);
+	 hash_print(t,n);}
+else  
+	printf("Elementul nu a fost gasit");
+
+
+return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "hash_table.h"
+
+void hash_init (int t[], int n)
+{ int i;
+	for (i=0; i<n; i++ )
+		{t[i]=-1;}
+}
+
+int hash_prim(int n, int k )
+{ return k%n;
+}
+
+
+int hash_probef(int k, int i, int n)
+{ return (hash_prim(n,k)+i)%n;
+}
+
+
+int hash_insert(int t[], int n, int k)
+{ int j,i;
+ i=0;
+
+  do 
+  { j=hash_probef(k, i, n);
+	if (t[j]==-1)
+		{ t[j]=k;
+		return j;
+		}
+	else i++;
+
+  }while(i!=n);
+
+  return -1;
+}
+
+
+void hash_print(int t[], int n)
+{ int i=0;
+  for (i=0; i<n; i++)
+	  printf("%d", t[i]);
+}
+
+
+int hash_search (int t[], int n, int k)
+{ int j, i=0;
+  
+  do
+  { j=hash_probef(k,i,n);
+	if (t[j]==k)
+	{	return j;}
+	
+	i++;
+  }while (i!=n&&t[j]!=-1);
+   return -1;
+}
+
+int hash_delete(int t[], int n, int k)
+{ int j;
+	j=hash_search(t,n,k);
+ 
+  if (j>-1)
+	{t[j]=-1;
+	 return j;
+	 }
+  else 
+	  return -1;
+
+}

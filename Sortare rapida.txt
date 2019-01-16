@@ -1,0 +1,46 @@
+Sortare rapida
+#include<stdio.h>
+#include<conio.h>
+#include<values.h>
+void qs(int a[],int l, int r)
+{
+	int v,i,j,elem;
+	if(r>1)
+	{
+		v=a[r];
+		i=l-1;
+		j=r;
+		for(;;)
+		{
+			while(a[++i]<v);
+			while(a[--j]>v);
+			if(i>=j) break;
+			elem=a[i];
+			a[i]=a[r];
+			a[r]=elem;
+		}
+		elem=a[i];
+		a[i]=a[r];
+		a[r]=elem;
+		
+		qs(a,l,i-1);
+		qs(a,i+1,r);
+	}
+	
+}
+void main(void)
+{
+	int n,a[100],i;
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=1;i<=n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+	a[0]=-MAXINT
+	qs(a,1,n);
+	printf("Sirul sortat este: ");
+	for(i=1;i<=n;i++)
+		printf("%d",a[i]);
+	getch();
+}

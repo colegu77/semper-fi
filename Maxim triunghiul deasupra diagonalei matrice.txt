@@ -1,0 +1,22 @@
+Maxim triunghiul deasupra diagonalei matrice
+
+#include <stdio.h> 
+#include <conio.h >
+int a[10][10],i,j,m,max;
+void main()
+{
+clrscr();
+printf("dati m"); scanf("%d",&m);
+for (i=0;i<m;i++)
+  for (j=0;j<m;j++)
+  {
+  printf("\n dati a[%d][%d]=",i,j);
+  scanf("%d",&a[i][j]);
+  }
+max=a[0][1];
+for (i=0;i<(m-1)/2;i++)
+  for (j=i+1;j<m-1-i;j++)
+  if (a[i][j]>max) max=a[i][j];
+  printf("maximul este= %d",max);
+getch();
+}

@@ -1,0 +1,59 @@
+Stiva
+#include<stdio.h>
+#include<stdlib.h>
+#define max 100
+
+
+static int stiva[max];
+static int next=0;
+
+//inserare elemnent in stiva//
+int push(int x)
+{
+	if (next<max)
+	{
+		stiva[next++]=x;
+		return (0);
+	}
+	else return (1);
+}
+int pop(void)
+{
+	if (next>0)
+		return (stiva[next--]);
+}
+int top (void)
+{
+	if (next > 0)
+		return (stiva[next-1]);
+}
+
+void clear (void)
+{
+	next=0;
+}
+int full (void)
+{
+		return (next==max);
+}
+int emplty (void)
+{
+	return (next==0);
+}
+void main (void)
+{
+int n,k,j;
+
+printf("dati valori pt n,k,j");
+scanf("%d\n",&k);
+scanf("%d\n",&j);
+scanf("%d\n",&n);
+push (n);
+push (k);
+printf ("stiva are %d lemente \n",next);
+j=pop();
+printf("elementul scos din stiva este : %d",j);
+j=top();
+printf ("elementu din varful liste este : %d",j);
+printf ("stiva are %d elemente \n",next);
+}

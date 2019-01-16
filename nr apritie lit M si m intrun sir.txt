@@ -1,0 +1,15 @@
+Determina numarul de aparitii al fiecarei litere mici sau mari intr-un sir de caractere
+
+#include<stdio.h>
+#include<ctype.h>
+void main (void)
+{
+	int a[26],i;
+	char ch;
+	for(i=0;i<26;a[i++]=0);
+	while((ch=getchar())!='\n')
+	 if(isalpha(ch)) a[toupper(ch)-'A']++;
+        for(i=0;i<26;i++)
+	 if(a[i])
+	  printf("Literele %c si %c apar de%d ori \n",i+'a',i+'A',a[i]);
+}

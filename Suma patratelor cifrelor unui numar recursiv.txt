@@ -1,0 +1,16 @@
+Suma patratelor cifrelor unui numar recursiv
+#include<stdio.h>
+#include<conio.h>
+int suma_patr(int n)
+{
+ if(n==0) return 0;
+ else return (n%10)*(n%10)+ suma_patr(n/10);
+}
+void main(void)
+{
+ int n;
+ clrscr();
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("suma patratelor cifrelor lui %d este %d",n,suma_patr(n));
+}

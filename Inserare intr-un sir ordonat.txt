@@ -1,0 +1,19 @@
+Inserare intr-un sir ordonat
+
+#include <stdio.h>
+main()
+{int a[10],i,n,nr,j;
+ printf("n=");scanf("%d",&n);
+ for(i=0;i<n;i++)
+	{printf("a[%d]=",i);scanf("%d",&a[i]);}
+ printf("nr=");scanf("%d",&nr);
+ i=0;
+ while ((nr>a[i])&&(i<n)) i++;
+ if(i<n) {for(j=n-1;j>=i;j--)
+			 a[j+1]=a[j];
+	      a[i]=nr;
+ }
+ else a[n]=nr;
+ for(i=0;i<=n;i++)
+	printf("%d ",a[i]);
+}

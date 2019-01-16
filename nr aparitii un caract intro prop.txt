@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+void main(void)
+{
+
+	char s[256],c;
+	int i,j,l;
+	j=0;
+	int strlen(char s[]);
+
+printf("Introduceti sirul: ");
+	gets(s);
+	printf("Introduceti sirul cautat: ");
+	c=getchar();
+	l=strlen(s);
+	for (i=1;i<=l;i++)
+	if(s[i-1]==c)j++;
+	printf("Caracterul %c a fost gasit in sir de %d ori.\n",c,j);
+}
+int strlen(char s[])
+{
+	int n;
+	for(n=0; s[n]; n++);
+	return n;
+}

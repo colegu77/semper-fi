@@ -1,0 +1,16 @@
+2 la puterea n
+
+#include <stdio.h>
+void main(void)
+{
+	int i,p=1;
+	int n;
+	printf("n= ");
+	scanf("%d",&n);
+	for (i=1;i<=n;i++)
+		p=p*2;
+	if (n==0) 
+		printf("2 la puterea 0 este 1\n");
+	else
+		printf("2 la puterea %d este %d\n",n,p);
+}

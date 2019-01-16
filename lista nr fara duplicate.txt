@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct nod
+{
+	int key;
+	struct nod *next;
+}tip_nod;
+
+typedef struct 
+{
+	tip_nod *head;
+}tip_head;
+
+tip_nod* initializeaza_nod(int k)
+{
+	tip_nod *elem;
+	elem=(tip_nod*)malloc(sizeof(tip_nod));
+	elem->key=k;
+	elem->next=NULL;
+	return elem;
+}
+
+int verifica(tip_head *L, tip_nod *x)
+{
+	int bun=1;
+	tip_nod *elem;
+	elem=L->head;
+	while(elem!=NULL)
+	{
+		if(elem->key==x->key) 
+		{
+			bun=0;
+			break;
+		}
+		elem=elem->next;
+	}
+	return bun;
+}
+
+void insereaza(tip_head *L, tip_nod *x)
+{
+	int bun;
+	tip_nod *elem,*k;
+	bun=verifica(L,x);
+	if(bun==1)
+	{
+		elem=L->head;
+		while(elem->next!=NULL)
+		{
+			elem=elem->next;
+		}
+		elem->next=x;
+	}
+	return;
+}
+
+void printeaza(tip_head *L)
+{
+	tip_nod *elem;
+	elem=L->head;
+	printf("\nelementele listei sunt:");
+	while(elem!=NULL)
+	{
+		printf("%d ",elem->key);
+		elem=elem->next;
+	}
+	return;
+}
+
+
+void main()
+{
+	int i,v[200],n;
+	tip_head *L;
+	tip_nod *x;
+	
+	L=(tip_head*)malloc(sizeof(tip_head));
+	L->head=(tip_nod*)malloc(sizeof(tip_nod));
+	L->head->next=NULL;
+	
+	printf("introduceti valoarea lui n:");
+	scanf("%d",&n);
+
+	printf("introduceti cele n elemente intregi:");
+	for(i=1;i<=n;i++)
+	{
+		printf("v[%d]=",i);
+		scanf("%d",&v[i]);
+	}
+	
+	L->head->key=v[1];
+
+	for(i=2;i<=n;i++)
+	{
+		x=initializeaza_nod(v[i]);
+		insereaza(L,x);
+	}
+
+	printeaza(L);
+}

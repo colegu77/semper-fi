@@ -1,0 +1,28 @@
+Verifica daca un numar e palindrom sau nu
+
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int n, multiplicator=1, nrc,s,i,ult,a,b=0;
+
+	printf("Dati n: ");
+	scanf("%d",&n);
+s=a=n;
+	for (nrc=0; n;nrc++) n/=10;
+
+for(i=1;i<nrc;i++) multiplicator*=10;
+for(i=0;i<nrc;i++)
+{
+	ult=s%10;
+	b+=ult*multiplicator;
+	s/=10;
+	multiplicator/=10;
+}
+if(a==b)
+printf("Numarul este palindrom!\n");
+else
+printf("Numarul nu este palindrom!\n");
+getchar();
+}

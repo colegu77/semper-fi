@@ -1,0 +1,42 @@
+Sortare prin interclasare
+#include<stdio.h>
+#include<conio.h>
+void merge(int a[],int l,int m,int r)
+{
+	int b[100],i=1,j=m+1,k=1,ind;
+	while((i<=m)&&(j<=r))
+	{
+		if(a[i]<=a[j]) b[k]=a[i++];
+		else b[k]=a[j++];
+		k++;
+	}
+	if(i>m) for(ind=j;ind<=r;ind++,k++) b[k]=a[ind];
+	else for(ind=i;ind<=m;ind++,k++) b[k]=a[ind];
+	for(ind=l;ind<=r;ind++) a[ind]=b[ind];
+}
+void merge_sort(int a[], int l,int r)
+{
+	int m;
+	if(l<r)
+	{
+		m=(l+r)/2;
+		merge_sort(a,1,m);
+		merge_sort(a,m+1,r);
+		merge(a,1,m,r);
+	}
+}
+void main(void)
+{
+	int n,a[100],i;
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=0;i<n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+merge_sort(a,0,n-1);
+	printf("Sirul sortat este: ");
+	for(i=0;i<n;i++)
+		printf("%d",a[i]);
+	getch();
+}

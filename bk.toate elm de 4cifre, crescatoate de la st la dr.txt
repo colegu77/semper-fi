@@ -1,0 +1,23 @@
+Backtracking Toate elem de 4 cifre, cif in ord strict crescatoare de la stanga la dreapta
+
+#include<stdio.h>
+#include<conio.h>
+int a[10];
+void tipareste()
+{
+ printf("%d %d %d %d",a[1],a[2],a[3],a[4]);
+ putchar('\n');
+}
+void bkr(int i)
+{
+ int j;
+ for(j=a[i-1]+1;j<=5+i;j++) { a[i]=j;
+			      if(i==4) tipareste();
+			      else bkr(i+1); }
+}
+void main(void)
+{
+ clrscr();
+ a[0]=0;
+ bkr(1);
+}

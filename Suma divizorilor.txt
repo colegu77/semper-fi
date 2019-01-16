@@ -1,0 +1,17 @@
+Suma divizorilor
+
+#include<stdio.h>
+#include<conio.h>
+int suma_divi(int n, int i)
+{
+ if(i==n) return n;
+ else if(n%i==0) return i + suma_divi(n,i+1);
+      else return suma_divi(n,i+1);
+}
+void main(void)
+{
+ int n;
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("suma divizorilor lui %d este %d ",n,suma_divi(n,1));
+}

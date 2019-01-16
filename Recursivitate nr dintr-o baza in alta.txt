@@ -1,0 +1,18 @@
+Recursivitate nr dintr-o baza in alta
+#include<stdio.h>
+#include<conio.h>
+int baza (int n, int b)
+{
+ if(n==0) return 0;
+ else return (n%b)+10*baza(n/b,b);
+}
+void main(void)
+{
+ int n, b;
+ clrscr();
+ printf("dati nr: \n");
+ scanf("%d",&n);
+ printf("dati baza: \n");
+ scanf("%d",&b);
+ printf("numarul %d in baza %d este %d",n,b,baza(n,b));
+}

@@ -1,0 +1,287 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+typedef struct nod_lista 
+{
+	enum {white, gray,black} color;
+	int d,f;
+	int key;
+	struct nod_lista *prev,*next;
+}t_nod_lista;
+typedef struct
+{
+	t_nod_lista *head;
+}t_lista;
+typedef struct
+{
+	t_nod_lista *src,*dest;
+	int weight;
+}t_edge;
+void MAKENULL(t_lista *L)
+{	
+	L->head=(t_nod_lista*)malloc(sizeof(t_nod_lista));
+	L->head->next=NULL;
+	L->head->prev=NULL;
+}
+t_nod_lista* LIST_SEARCH(t_lista L, int k)
+{
+	t_nod_lista *x=L.head;
+	
+	while((x!=NULL)&&(x->key!=k))
+		x=x->next;
+	return x;
+}
+void LIST_DELETE(t_lista *L,t_nod_lista *x)
+{
+	if (x==NULL) return;
+	if(x->prev!=NULL) x->prev->next=x->next;
+	else L->head=x->next;
+	if(x->next!=NULL) x->next->prev=x->prev;
+}
+
+void LIST_FREE(t_lista *L)
+{
+	t_nod_lista* x=L->head->next;
+	while(x)
+	{
+		LIST_DELETE(L,x);
+		free(x);
+		x=L->head->next;
+	}
+	
+}
+void LIST_INSERT(t_lista *L,t_nod_lista *x)
+{
+	if(x==NULL) return;
+	x->next=L->head->next;
+	if(L->head->next!=NULL)
+		L->head->next->prev=x;
+	L->head->next=x;
+	x->prev=L->head;
+}
+void LIST_PRINT(t_lista L)
+{
+	t_nod_lista *x;
+	x=L.head->next;
+	if(x==NULL)
+		printf("Lista vida!\n");
+	for(;x;x=x->next) printf("%3d",x->key);
+}
+
+
+
+
+
+
+
+t_edge insert_vecini(t_lista g[],int n,int ns, t_edge edge[], int *k)
+{
+	t_nod_lista *nod;
+	t_edge e;
+	int w,nv;
+	
+	printf("Nod sursa %d\n",ns);
+	g[ns].head->key=ns;
+	printf("Dati vecinii nodului sursa:\n");
+	do
+	{
+		printf("Vecin cu %d: ",ns);
+		scanf("%d",&nv);
+		if((nv>0) && (nv<=n)&&(nv!=ns))
+		{
+			nod=(t_nod_lista*)malloc(sizeof(t_nod_lista));
+			nod->key=nv;
+			LIST_INSERT(&g[ns],nod);
+			printf("Introduceti weight pt arcul %d-%d: ",ns,nv);
+			scanf("%d",&w);
+			e.weight=w;
+			e.src=g[ns].head;
+			e.dest=nod;
+			(*k)++;
+			edge[*k]=e;
+		}
+	}
+		while(nv>0);
+		return e;
+}
+void init_lista(t_lista g[],int n)
+{
+	int i;
+	for(i=1;i<=n;i++)
+		MAKENULL(&g[i]);
+}
+void print_lista(t_lista g[],int n)
+{
+	t_nod_lista *nod;
+	int i;
+	for(i=1;i<=n;i++)
+	{
+		nod=g[i].head->next;
+		printf("\n%d ",i);
+		while(nod!=NULL)
+		{
+			printf("%d",nod->key);
+			nod=nod->next;
+		}
+		printf("\n");
+	}
+}
+
+
+
+
+void initialize_single_source(t_lista g[],t_nod_lista *s,int n)
+{
+	int i;
+	t_nod_lista *v;
+	for(i=1;i<=n;i++)
+	{	v=g[i].head;
+		v->d=INT_MAX;
+		v->prev=NULL;
+	}
+	s->d=0;
+		
+}
+void relax(t_nod_lista *u, t_nod_lista*v,int w)
+{
+if((v->d)>(u->d+w))
+{
+	v->d=u->d+w;
+	printf("Nod nou %d:\n",v->key);
+	v->prev=u;
+}
+
+}
+int bellman_ford(t_lista g[],t_edge w[],int s, int n,int r)
+{
+	int i,j;
+	t_nod_lista *ns;
+	ns=g[s].head;
+	initialize_single_source(g,ns,n);
+	for(i=1;i<=n;i++)
+		for(j=1;j<=r;j++)
+		relax(g[w[j].src->key].head,g[w[j].dest->key].head,w[j].weight);
+	for(i=1;i<=r;i++)
+		if((g[w[i].dest->key].head->d)>(g[w[i].src->key].head->d+w[i].weight))
+			return 0;
+	return 1;
+}
+void print_path(t_lista g[],t_nod_lista *s, t_nod_lista *v)
+{
+	if(v==s)
+		printf("%d",s->key);
+	else
+		if(v->prev==NULL)
+			printf("Nu exista cale!");
+		else
+		{
+			print_path(g,s,v->prev);
+			printf("%d ",v->key);
+		}
+}
+t_nod_lista * extract_min(t_nod_lista *q[],int n)
+{
+	int i,j,min=INT_MAX;
+	t_nod_lista *u;
+	for(i=1;i<=n;i++)
+	
+		if(q[i]->d<min)
+		{
+			min=q[i]->d;
+			u=q[i];
+			j=i;
+		}
+	
+	for(i=j;i<n;i++)
+			q[i]=q[i+1];
+	return u;
+	
+
+}
+int get_weight (t_edge w[], t_nod_lista *u,t_nod_lista*v, int nr_arce)
+{
+	int i;
+	for(i=1;i<=nr_arce;i++)
+		if((w[i].src->key==u->key)&&(w[i].dest->key==v->key))
+			return w[i].weight;
+		return 0;
+}
+void relax_d(t_nod_lista *u, t_nod_lista*v,int w,t_nod_lista *q[], int n)
+{
+	int i;
+if((v->d)>(u->d+w))//distanta sin nodul sursa>suma din nodul destinatie si 
+{
+	v->d=u->d+w;
+	for(i=1;i<=n;i++)
+		if(q[i]->key==v->key)
+			q[i]->d=u->d+w;
+	printf("Nod nou %d:\n",v->key);
+	v->prev=u;
+}
+}
+
+void dijkstra(t_lista g[],t_edge w[],int s,int n,int nr_arce)//ss-sirul solutiilor, l-nr noduri
+{
+	t_nod_lista *ss[100],*q[100],*u,*v,*ns;
+	int i, weight=0,l=0;
+	ns=g[s].head;
+	initialize_single_source(g,ns,n);
+	for(i=1;i<=n;i++)
+		q[i]=g[i].head;
+	while(n>0) //cat tim mai am noduri in coada
+	{
+		u=extract_min(q,n);//returneaza nodul cu d minim
+		n--;
+		l++;
+		ss[l]=u;
+		v=g[u->key].head;
+		while(v!=NULL)
+		{
+			weight=get_weight(w,u,v,nr_arce);
+			relax_d(g[u->key].head,g[v->key].head,weight,q,n);
+			v=v->next;
+		}
+	}
+	printf("Dijkstra: ");
+	for(i=1;i<=l;i++)
+		printf("%d",ss[i]->key);
+}
+int main(void)
+{
+	t_lista g[100];
+	int k=0,n,i,s;
+	
+	t_edge edges[100];
+	printf("Nr noduri=");
+	scanf("%d",&n);
+	init_lista(g,n);
+	
+	for(i=1;i<=n;i++)
+	{
+		insert_vecini(g,n,i,edges,&k);
+	}
+	printf("Arcele:");
+	for(i=1;i<=k;i++)
+		printf("%d -%d (%d)\n:",edges[i].src->key,edges[i].dest->key,edges[i].weight);
+	printf("Nod pornire:");
+	scanf("%d",&s);
+	i=bellman_ford(g,edges,s,n,k);
+	//printf("%d",i);
+	print_path(g,g[s].head,g[n].head);
+	dijkstra(g,edges,s,n,k);
+	return 0;	
+
+}
+
+
+
+
+
+
+
+
+				  
+
+
+
+

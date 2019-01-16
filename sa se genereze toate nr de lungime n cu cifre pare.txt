@@ -1,0 +1,28 @@
+sa se genereze toate nr de lungime n formate numai cu cifre pare
+
+#include<stdio.h>
+#include<conio.h>
+
+int n, x[10];
+
+void afis()
+{ int i;
+  for(i=1;i<=n;i++)
+	  printf("%d",x[i]);
+      putchar('\n');
+}
+void cifre(int i)
+{ int j;
+for(j=0;j<=8;j=j+2) { x[i]=j;
+                      if(i==n) afis();
+					  else cifre(i+1);
+}
+}
+
+void main()
+{ printf("n=...");
+  scanf("%d",&n);
+
+  cifre(1);
+  getch();
+}

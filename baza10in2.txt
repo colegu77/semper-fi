@@ -1,0 +1,17 @@
+Converteste din Baza zece in baza 2
+#include<stdio.h>
+void main(void)
+{
+	int i,n10,indice2=0,rest2;
+	char n2[30];
+	printf("Introduceti numarul in baz 10:"); scanf("%d",&n10);
+	while(n10)
+	{
+		rest2=n10%2;
+		if(rest2<2) n2[indice2]=rest2+'0';
+		indice2++;
+		n10/=2;
+	}
+	for(i=indice2-1;i>=0;i--) printf("%c",n2[i]);
+	printf("\n");
+}

@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+typedef struct nod_arb 
+{ int nr;				
+   struct nod_arb *stg, *dr;
+} NOD_ARB;
+NOD_ARB *rad;
+void preordine( NOD_ARB *p)
+{  if (p) 
+    { printf("%d ",p->nr);
+       preordine(p->stg);
+       preordine(p->dr);
+}
+
+void inordine( NOD_ARB *p)
+{  if (p) 
+    { inordine(p->stg);
+       printf("%d ",p->nr);
+       inordine(p->dr);
+}
+
+void postordine( NOD_ARB *p)
+{  if (p) 
+    { postordine(p->stg);
+       postordine(p->dr);
+       printf("%d ",p->nr);
+}
+
+NOD_ARB *creare(int nr_noduri)
+{ NOD_ARB *p;
+   int inf,nr_stg,nr_dr;
+   if(nr_noduri= =0) return(0);
+   else
+   { nr_stg=nr_noduri/2;
+      nr_dr=nr_noduri-nr_stg-1;
+      p=(NOD_ARB*)malloc(sizeof(NOD_ARB));
+      printf("Introd informatia:");
+      scanf("%d",&(p->nr));
+      p->stg=creare(nr_stg);
+      p->dr=creare(nr_dr);
+    }
+    return(p);
+}
+void main(void)
+{ int total_noduri;
+  printf("Introduceti numarul total de noduri:");
+  scanf("%d",&total_noduri);
+  rad=creare(total_noduri);
+  printf("Traversare in preordine:");
+  preordine(rad);
+  putchar('\n');
+  printf("Traversare in inordine:");
+  inordine(rad);
+  putchar(‘\n’);
+  printf("Traversare in postordine:");
+  postordine(rad);
+  putchar('\n');
+  getch();
+}
+

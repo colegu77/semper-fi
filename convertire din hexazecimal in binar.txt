@@ -1,0 +1,33 @@
+Convertire din hexadecimal in binar
+
+#include <math.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+#define FirstDigit 48
+
+void BinToHex(char* BinData, char* HexData)
+{
+   long int Number = 0;
+   int BinLength = strlen(BinData);
+
+   for(int i=0; i<BinLength; i++)
+   {
+      Number += ((BinData[BinLength - i - 1] - FirstDigit) * pow(2, i));
+   }
+
+   ltoa(Number, HexData, 16);
+}
+
+int main()
+{
+   char* BinBuffer = "11110101";
+   char HexBuffer[256];
+
+   BinToHex(BinBuffer, HexBuffer);
+   printf("Bin: %s\nHex: %s", BinBuffer, HexBuffer);
+   getch();
+   return 0;
+}

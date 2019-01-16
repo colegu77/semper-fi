@@ -1,0 +1,52 @@
+Parcurgerea in adancime a unui graf neorientat
+#include<stdio.h>
+#include<conio.h>
+int a[20][20],n;
+void parc_adancime()
+{
+	int s[40],varf,k,nod,urm[20],viz[20],in;
+	printf("Introduceti nodul initial de pornire="); scanf("%d",&in);
+	for(nod=1;nod<=n;nod++)
+	{
+		urm[nod]=0;
+		viz[nod]=0;
+	}
+	varf=1;
+	s[varf]=in;
+	viz[in]=1;
+	printf("%d",in);
+	while(varf>=1)
+	{
+		nod=s[varf];
+		k=urm[nod]+1;
+		while((k<=n)&&((a[nod][k]==0)||((a[nod][k]==1)&&(viz[k]==1))))
+		{
+			k++;
+			urm[nod]=k;
+		}
+		if(k==n+1) varf--;
+		else
+		{
+			varf++;
+			s[varf]=k;
+			viz[k]=1;
+			printf("%d",s[varf]);
+		}
+	}
+}
+void main()
+{
+	int x,y,i,j,m;
+	printf("Introduceti numarul de noduri n= "); scanf("%d",&n);
+	printf("Introduceti numarul de muchii m= "); scanf("%d",&m);
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+			for(i=1;i<=m;i++)
+			{
+				printf("De la nodul: "); scanf("%d",&x);
+				printf("La nodul: "); scanf("%d",&y);
+				a[x][y]=a[y][x]=1;
+			}
+			parc_adancime();
+			getch();
+}

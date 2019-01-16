@@ -1,0 +1,22 @@
+Cel mai mic divizor comun & cel mai mic multiplu comun
+#include<stdio.h>
+int cmmdc(int a,int b)
+
+{
+	if(a>b) 
+		return cmmdc(a-b,b);
+   else 
+	   if(b>a) 
+		 return cmmdc(a,b-a);
+          else return a;
+}
+main()
+{
+	int a,b;
+ printf("a=");
+ scanf("%d",&a);
+ printf("b=");
+ scanf("%d",&b);
+ printf("cmmdc=%d",cmmdc(a,b));
+ printf("cmmmc=%d",a*b/cmmdc(a,b));
+}}

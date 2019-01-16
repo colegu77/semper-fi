@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<conio.h>
+int n;
+
+void scrie(char a, char b)
+{printf("Muta discul de pe %c pe %c\n",a,b);
+}
+
+void muta(int n, char a, char b, char c)
+{if(n==1)
+	{scrie(a,b);
+	return;
+}
+else
+{muta(n-1,a,c,b);
+ scrie(a,b);
+ muta(n-1,c,b,a);
+}
+}
+
+void main(void)
+{
+printf("Introd nr de turnuri:");
+scanf("%d",&n);
+muta(n,'S','M','D');
+getch();
+}

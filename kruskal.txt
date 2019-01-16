@@ -1,0 +1,185 @@
+#include<stdio.h>
+#include<limits.h>
+#include<stdlib.h>
+typedef struct nod_lista
+{
+	int d,f,cheie;
+	struct nod_lista *next, *prev;
+}t_nod_lista;
+typedef struct
+{
+	t_nod_lista *head;
+}t_lista;
+typedef struct
+{
+	t_nod_lista *src,*dest;
+	int weight;
+}t_edge;
+t_lista g[100];
+t_edge edges[100];
+t_edge a[100];
+void makenull(t_lista *l)  
+{
+	l->head=(t_nod_lista *)malloc(sizeof(t_nod_lista));
+	l->head->next=NULL;
+	l->head->prev=NULL;
+}
+
+void init_lista(t_lista g[], int n)
+{
+	int i;
+	for(i=1;i<=n;i++)
+		makenull(&g[i]);
+}
+void list_insert(t_lista *g, t_nod_lista *x)
+{
+	if (x==NULL) 
+		return;
+	x->next=g->head->next;
+	if(g->head->next!=NULL)
+		g->head->next->prev=x;
+	g->head->next=x;
+	x->prev=g->head;
+}
+void insert_vecini(t_lista g[], int n, int ns, t_edge edges[], int *k)
+{
+	t_nod_lista *nod;
+	t_edge e;
+	int nv=-1;
+	int w;
+	printf("Nod sursa %d: \n",ns);
+	g[ns].head->cheie=ns;
+	printf("Dati vecinii nodului sursa:\n ");
+	while(nv!=0)
+	{
+		printf("Vecin cu %d: ",ns);
+		scanf("%d",&nv);
+		if(nv>0 && nv<=n && nv!=ns)
+		{
+			nod=(t_nod_lista *)malloc(sizeof(t_nod_lista));
+			nod->cheie=nv;
+			list_insert(&g[ns],nod);
+			printf("Introduceti weight pt arcul %d-%d: ",ns,nv);
+			scanf("%d",&w);
+			e.weight=w;
+			e.src=g[ns].head;
+			e.dest=nod;
+			(*k)++;
+			edges[*k]=e;
+		}
+	}
+	
+}
+void print_lista(t_lista g[], int n)
+{
+	t_nod_lista *nod;
+	int i;
+	for(i=1;i<=n;i++)
+	{
+		nod=g[i].head->next;
+		printf("\n%d: ",i);
+		while(nod!=NULL)
+		{
+			printf("%3d",nod->cheie);
+			nod=nod->next;
+		}
+	}
+}
+int partition(t_edge *g, int p, int r)
+{
+	int i,j,x;
+	t_edge aux;
+	x=g[r].weight;
+	i=p-1;
+	for(j=p;j<=r-1;j++)
+	{
+		if(g[j].weight<=x)
+		{
+			i++;
+			aux=g[i];
+			g[i]=g[j];
+			g[j]=aux;
+		}
+	}
+	aux=g[i+1];
+	g[i+1]=g[r];
+	g[r]=aux;
+	return i+1;
+
+}
+void quicksort(t_edge *g, int p, int r)
+{
+	int q=0;
+	if(p<r)
+	{
+		q=partition(g,p,r);
+		quicksort(g,p,q-1);
+		quicksort(g,q+1,r);
+	}
+}
+void make_set(t_nod_lista *x)
+{
+	x->prev=x;
+	x->d=0;
+}
+t_nod_lista *find_set(t_nod_lista *x)
+{
+	if(x!=x->prev)
+		x->prev=find_set(x->prev);
+	return x->prev;
+}
+void link(t_nod_lista *x, t_nod_lista *y)
+{
+	if(x->d>y->d)
+		y->prev=x;
+	else
+	{
+		x->prev=y;
+		if(x->d==y->d)
+			y->d=y->d+1;
+	}
+
+}
+void uniune(t_nod_lista *x, t_nod_lista *y)
+{
+	link(find_set(x),find_set(y));
+}
+void mst_kruskal(t_lista g[], t_edge edges[] ,int n)
+{
+	int i;
+	int nrel=0;
+	for(i=1;i<=n;i++)
+		make_set(g[i].head);
+	quicksort(edges,1,n);
+	for(i=1;i<=n;i++)
+	{
+		if(find_set(edges[i].dest)!=find_set(edges[i].src))
+		{
+			a[nrel++]=edges[i];
+			uniune(edges[i].src,edges[i].dest);
+		}
+	}
+	for(i=1;i<=nrel;i++)
+		printf("%3d",a[i]);
+
+}
+void main(void)
+{
+	int n,i;
+
+	t_edge arc;
+	int k=0;
+	printf("dati numarul de noduri: ");
+	scanf("%d",&n);
+	init_lista(g,n);
+	for(i=1;i<=n;i++)
+	{
+		insert_vecini(g,n,i,edges,&k);
+		//k++;
+		//edges[k]=arc;
+	}
+	printf("Lista adiacenta: ");
+	print_lista(g,n);
+	printf("\nKruskal:\n");
+	mst_kruskal(g,edges,n);
+}

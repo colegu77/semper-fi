@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<conio.h>
+int n, np=0,a[20];
+
+FILE*fisier;
+void scrie(void)
+{int i;
+np++;
+for(i=0;i<n;i++) fprintf(fisier,"%d",a[i]);
+fprintf(fisier,"\n");
+}
+
+void perm(int k)
+{int i, tmp;
+if(k==1) scrie();
+
+else
+for(i=1;i<=k;i++)
+{tmp=a[k];a[k]=a[i];a[i]=tmp;
+perm(k-1);
+tmp=a[k];a[k]=a[i];a[i]=tmp;
+}
+}
+
+void main (void)
+{ int j;
+fisier=fopen("perm.txt","w+");
+printf("Introd valoarea lui n:");
+scanf("%d",&n);
+for(j=1;j<=n;j++) a[j]=j;
+perm(n);
+fprintf(fisier,"Avem %d permutari\n",np);
+fclose(fisier);
+}

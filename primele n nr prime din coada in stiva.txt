@@ -1,0 +1,79 @@
+Cozi //Primele n nr prime se introduc intr-o coada, din coada in stiva
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct CS { int info;
+	    CS* urm; };
+typedef CS* nod;
+nod vc, vs, sf;
+void pushc(int n)
+{
+ nod c;
+ if(!vc) { vc=(nod)malloc(sizeof(CS));
+	   vc->info=n;
+	   vc->urm=0;
+	   sf=vc; }
+ else { c=(nod)malloc(sizeof(CS));
+	sf->urm=c;
+	c->info=n;
+	c->urm=0;
+	sf=c; }
+}
+void popc()
+{
+ nod c;
+ if(vc) { printf("Am extras elem: %d\n",vc->info);
+	  printf("Am adaugat elem: %d la stiva \n",vc->info);
+	  vc=vc->urm;
+	  free(c); }
+}
+void tiparestec()
+{
+ nod c=vc;
+ printf("Traversam coada: ");
+ if(!c) printf("Coada este vida!");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+void pushs(int n)
+{
+ nod c;
+ if(!vs) { vs=(nod)malloc(sizeof(CS));
+	   vs->info=n;
+	   vs->urm=0; }
+ else { c=(nod)malloc(sizeof(CS));
+	c->info=n;
+	c->urm=vs; }
+}
+void pops()
+{
+ nod c;
+ if(!vs) printf("Stiva este goala!");
+ else { printf("Elimin elem: %d\n",vs->info);
+	c=vs;
+	vs=vs->urm;
+	free(c); }
+}
+void tiparestes()
+{
+ nod c=vs;
+ printf("Traversam stiva: ");
+ if(!c) printf("Stiva este vida!\n");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+void main(void)
+{
+ int n,a[20],i,j;
+ clrscr();
+ do { printf("Introduceti elem: (-1 pt elim sau 0 pt iesire) ");
+      scanf("%d",&n);
+      if(n)
+	 if(n!=(-1)) { pushc(n);
+		       tiparestec(); }
+	  else { popc();
+		 tiparestec(); }
+      } while(n);
+}

@@ -1,0 +1,21 @@
+Divide et impera Suma elem unui sir
+#include<stdio.h>
+#include<conio.h>
+int a[10],n,i;
+int suma(int st, int dr)
+{
+ int m;
+ if(st==dr) return a[st];
+ else { m=(st+dr)/2;
+	return suma(st,m) + suma(m+1,dr); }
+}
+void main(void)
+{
+ clrscr();
+ printf("dati dimensiunea sirului: ");
+ scanf("%d",&n);
+ printf("intro elem: \n");
+ for(i=0;i<n;i++) { printf("a[%d]= ",i);
+		    scanf("%d",a+i); }
+ printf("suma elem este: %d",suma(0,n-1));
+}

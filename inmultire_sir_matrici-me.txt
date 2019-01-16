@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include "matrice.h"
+#include "tablou.h"
+
+main()
+{ int s[100][100],a[100],n; 
+
+printf ("n="); scanf("%d", &n);
+citeste_tablou(a, n);
+matrix_chain_order(a,n);
+print_optimal_parens(1,n-1);
+
+
+}
+
+#include <stdio.h>
+#include <limits.h>
+#include "matrice.h"
+
+int s[100][100];
+
+print_optimal_parens(int i, int j)
+{ 
+	if (i==j) printf("a%d", i);
+	else {printf("(");
+		  print_optimal_parens(i,s[i][j]);
+		  print_optimal_parens(s[i][j]+1, j);
+		  printf(")");}
+
+}
+
+
+matrix_chain_order(int p[], int n)
+{ int m[100][100], i,j,k,t,q;	
+
+n=n-1;
+for (i=1; i<=n; i++)
+	m[i][i]=0;
+
+for (t=2; t<=n; t++)
+
+	{for (i=1; i<n-t+1; i++)
+			{j=i+t-1;
+			 m[i][j]=INT_MIN;
+
+			 for (k=i;k<=j-1;k++)
+				{q=m[i][k]+m[k+1][j]+p[i-1]*p[k]*p[j];
+				if (q<m[i][j]) 
+					{m[i][j]=q;
+					 s[i][j]=k; 
+					}
+
+			 }
+			}
+  
+	}
+}
+
+
+#include <stdio.h>
+#include "tablou.h"
+
+int citeste_tablou(int a[], int n)
+{  int i;
+	for (i=0; i<n; i++)
+	{printf ("Elementul a[%d]", i); 
+	scanf ("%d",a[i]);}
+
+}
+

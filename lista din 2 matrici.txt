@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct nod
+{
+	int key;
+	struct nod *next;
+}tip_nod;
+
+typedef struct
+{
+	tip_nod *head;
+}tip_head;
+
+tip_nod* initializeaza_nod(int k)
+{
+	tip_nod *elem;
+	elem=(tip_nod*)malloc(sizeof(tip_nod));
+	elem->next=NULL;
+	elem->key=k;
+	return elem;
+}
+void insert_nod(tip_head *L,tip_nod *x)
+{
+	tip_nod *elem;
+	if(L->head==NULL) L->head=x;
+	else
+	{
+		elem=L->head;
+		L->head=x;
+		L->head->next=elem;
+	}
+	return;
+}
+
+void uneste(tip_head *UNIT,tip_head *L,tip_head *M)
+{
+	tip_nod *elem;
+	elem=L->head;
+	UNIT->head=L->head;
+	while(elem->next!=NULL)
+	{
+		elem=elem->next;
+	}
+	elem->next=M->head;
+	return;
+}
+
+void init_lista(tip_head *T,int x[100][100],int m,int n)
+{
+	tip_nod *y;
+	int i,j;
+	for(i=1;i<=m;i++)
+	{
+		if(i==1) j=2;
+		else j=1;
+		for(j;j<=n;j++)
+		{
+			y=initializeaza_nod(x[i][j]);
+			insert_nod(T,y);
+		}
+	}
+	return;
+}
+void print_list(tip_head *T)
+{
+	tip_nod *elem;
+	elem=T->head;
+	printf("\nelementele listei mari sunt:");
+	while(elem!=NULL)
+	{
+		printf("%d ",elem->key);
+		elem=elem->next;
+	}
+	return;
+}
+void main()
+{
+	int i,j,m,n,a[100][100],b[100][100];
+	tip_head *L,*M,*UNIT;
+	L=(tip_head*)malloc(sizeof(tip_head));
+	L->head=(tip_nod*)malloc(sizeof(tip_nod));
+	M=(tip_head*)malloc(sizeof(tip_head));
+	M->head=(tip_nod*)malloc(sizeof(tip_nod));
+	UNIT=(tip_head*)malloc(sizeof(tip_head));
+	UNIT->head=(tip_nod*)malloc(sizeof(tip_nod));
+
+	printf("introduceti valoarea lui m:");
+	scanf("%d",&m);
+	printf("introduceti valoarea lui n:");
+	scanf("%d",&n);
+	printf("introduceti elementele primei matrici:\n");
+	for(i=1;i<=m;i++)
+		for(j=1;j<=n;j++)
+		{
+			printf("a[%d][%d]=",i,j);
+			scanf("%d",&a[i][j]);
+		}
+	printf("introduceti elementele celei de-a doua matrici:\n");
+	for(i=1;i<=m;i++)
+		for(j=1;j<=n;j++)
+		{
+			printf("b[%d][%d]=",i,j);
+			scanf("%d",&b[i][j]);
+		}
+	L->head->key=a[1][1];
+	L->head->next=NULL;
+	M->head->key=b[1][1];
+	M->head->next=NULL;
+	
+	init_lista(L,a,m,n);
+	init_lista(M,b,m,n);
+	
+	uneste(UNIT,L,M);
+	
+	print_list(UNIT);
+}
+
+	

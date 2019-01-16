@@ -1,0 +1,29 @@
+Calculeaza valoarea polinomului in punctul v
+
+
+#include<stdio.h>
+void main (void)
+{
+int n,i,p,put,val,a[20];
+printf("dati gradul polinomului:");
+scanf("%d",&n);
+printf("dati coeficientii polinomului");
+for (i=n;i>=0;i--) 
+{
+	printf("a[%d]=",i);
+	scanf("%d",a+i);
+}
+printf("dati punctul:");
+scanf("%d",&p);
+
+val=0;
+put=1;
+i=n;
+do
+{ val+=a[i]*put;
+  i--;
+  put*=p;
+}
+while (i>=0);
+printf("valoarea polinomului este %.2d\n",val);
+}

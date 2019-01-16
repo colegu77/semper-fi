@@ -1,0 +1,38 @@
+Suma cf div cu 3, nr cifre mai mici k 3, prod cifrelor imp, el cifra 5
+#include<stdio.h>
+#include<conio.h>
+int suma(int n)
+{
+ if(n==0) return 0;
+ else if((n%10)%3==0) return (n%10) + suma(n/10);
+      else return suma(n/10);
+}
+int mic3(int n)
+{
+ if(n==0) return 0;
+ else if((n%10)<3) return 1+ mic3(n/10);
+      else return mic3(n/10);
+}
+int prod(int n)
+{
+ if(n==0) return 1;
+ else if((n%10)%2!=0) return n%10 * prod(n/10);
+      else return prod(n/10);
+}
+int elimin(int n)
+{
+ if(n==0) return 0;
+ else if (n%10==5) return elimin(n/10);
+      else return n%10 + 10 * elimin(n/10);
+}
+void main(void)
+{
+ int n;
+ clrscr();
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("suma cifrelor lui %d divizibile cu 3 este: %d\n",n,suma(n));
+ printf("numarul cifrelor mai mici ca 3 din %d este: %d\n",n,mic3(n));
+ printf("produsul cifrelor imparele a lui %d este: %d\n",n,prod(n));
+ printf("dupa eliminarea cifrei 5 din %d este: %d",n,elimin(n));
+}

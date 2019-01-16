@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<conio.h>
+int a[10][10], rez[10][10],n;
+
+void scrie(void)
+{int i,j;
+for(i=0;i<n;i++)
+{for(j=0;j<n;j++) printf("%4d", rez[i][j]);
+putchar('\n');
+}
+putchar('\n');
+getch();
+}
+
+void labirint(int x, int y)
+{if((x==0)||(x==n-1)||(y==0)||(y==n-1))
+{rez[x][y]=1;
+scrie();
+}
+else
+{if((x+1<n)&&(rez[x+1][y]==0)&&(a[x+1][y]==1))
+{rez[x+1][y]=1;
+labirint(x+1,y);
+rez[x+1][y]=0;
+}
+if((y-1>=0)&&(rez[x][y-1]==0)&&(a[x][y-1]==1))
+{rez[x][y-1]=1;
+labirint(x,y-1);
+rez[x][y-1]=0;
+}
+if((x-1>=0)&&(rez[x-1][y]==0)&&(a[x-1][y]==1))
+{rez[x-1][y]=1;
+labirint(x-1,y);
+rez[x-1][y]=0;
+}
+if((y+1<n)&&(rez[x][y+1]==0)&&(a[x][y+1]==1))
+{rez[x][y+1]=1;
+labirint(x,y+1);
+rez[x][y+1]=0;
+}
+}
+}
+
+void main(void)
+{int i,j,xi,yi;
+printf("Dim matricii:");
+scanf("%d",&n);
+printf("Introd valorile matricii labirint\n");
+for(i=0;i<n;i++)
+for(j=0;j<n;j++)
+{ printf("a[%d][%d]=",i,j);
+  scanf("%d",&a[i][j]);
+  rez[i][j]=0;
+}
+
+printf("Linia de pornire:");
+scanf("%d",&xi);
+printf("Coloana de pornire:");
+scanf("%d",&yi);
+rez[xi][yi]=1;
+labirint(xi,yi);
+}

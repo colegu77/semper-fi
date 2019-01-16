@@ -1,0 +1,52 @@
+Cozi //Divizori unui nr
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct coada { int info;
+	       coada* urm; };
+typedef coada* nod;
+nod v, sf;
+int n;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(coada));
+	  v->info=n;
+	  v->urm=0;
+	  sf=v; }
+ else { c=(nod)malloc(sizeof(coada));
+	sf->urm=c;
+	c->info=n;
+	c->urm=0;
+	sf=c; }
+}
+void pop()
+{
+ nod c;
+ if(v) { printf("Am extras elem: %d\n",v->info);
+	 c=v;
+	 v=v->urm;
+	 free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ printf("Traversam coada: ");
+ if(!c) printf("Coada este vida!\n");
+ while (c) { printf("%d ",c->info);
+	     c=c->urm; }
+ printf("\n\n");
+}
+void main(void)
+{
+ int i;
+ clrscr();
+ do { printf("Introduceti elem: (-1 pt eleminare si 0 pt iesire) ");
+      scanf("%d",&n);
+      if(n)
+	 { if(n!=(-1)) { for(i=1; i<=n; i++) if(n%i==0) push(i);
+			 tipareste(); }
+	   else { pop();
+		  tipareste(); } }
+     } while(n);
+}

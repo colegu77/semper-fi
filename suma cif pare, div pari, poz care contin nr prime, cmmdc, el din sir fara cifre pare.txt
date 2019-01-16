@@ -1,0 +1,61 @@
+suma cif pare, div pari, poz care contin nr prime, cmmdc, el din sir fara cifre pare
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+int suma_pcif(int x)
+{
+ if(x<10) if(x%2==0) return x;
+	  else return 0;
+ else if((x%10)%2==0)return (x%10) + suma_pcif(x/10);
+      else return suma_pcif(x/10);
+}
+int prop(int x, int j)
+{
+ if(j>=x) return 0;
+ else if(x%j==0) return 1 + prop(x,j+1);
+      else return prop(x,j+1);
+}
+int prim(int x, int i)
+{
+ if (i>sqrt(x)) return 1;
+ else if(x%i==0) return 0;
+      else return prim(x,i+1);
+}
+int cmmdc(int x, int y)
+{
+ if(x==y) return x;
+ else if(x>y) return cmmdc(x-y,y);
+      else return cmmdc(x,y-x);
+}
+int nu(int x)
+{
+ if(x==0) return 0;
+ else if((x%10)%2!=0) return nu(x/10)*10+x%10;
+      else return nu(x/10);
+}
+
+void main(void)
+{
+ int a[50], i, n, m;
+ clrscr();
+ printf("dati dimensiunea sirului: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++) { printf("a[%d]= ",i);
+		    scanf("%d",a+i); }
+ printf("suma cifrelor pare pt fiecare elem: ");
+ for(i=0;i<n;i++) printf("%d ",suma_pcif(a[i]));
+ printf("\n");
+ printf("nrumarul de divizori pari a fiecarui elem: ");
+ for(i=0;i<n; i++) printf("%d ",prop(a[i],2));
+ printf("\n");
+ printf("pozitiile din sir care detin elem prime: ");
+ for(i=0;i<n;i++) if(prim(a[i],2)==1) printf("%d ",i);
+ printf("\n");
+ printf("cmmdc-ul elem din sir: ");
+ m=cmmdc(a[0],a[1]);
+ for(i=2;i<n;i++) m=cmmdc(m,a[i]);
+ printf("%d ",m);
+ printf("\n");
+ printf("elem din sir fara cifrele pare: ");
+ for(i=0;i<n;i++) printf("%d ",nu(a[i]));
+ 

@@ -1,0 +1,125 @@
+Impl arbore binar cautare
+#include<stdio.h>
+#include<stdlib.h>
+#define max(x,y) ((x<y)?(y):(x))
+struct Btree
+  { int Data;
+    Btree *left,*right;
+  };
+typedef struct Btree arbore;
+  
+int init()  //functia de initializare a arborelui binar de cautare
+{
+  return(NULL);
+} 
+arbore* inserare(arbore *bt,int n)	//functia de inserare a unui nod în arborele 
+					//binar de cautare
+{ if (!bt)
+  { bt=(arbore*)malloc(sizeof(arbore));
+    if (!bt) return(0);
+    bt->left=bt->right=0;
+    bt->Data=n;
+    return(bt);
+  }
+  else
+    if (bt->Data< n) bt->right=inserare(bt->right,n);
+    else bt->left=inserare(bt->left,n);
+  return(bt);
+}
+arbore* constructie()	//functia de constructie a arborelui binar
+				//de cautare
+{ int n;
+  arbore *p=NULL;
+  printf("n=");
+  scanf("%d",&n);
+  while (n>0)
+  { p=inserare(p,n);
+    printf("n=");
+    scanf("%d",&n);
+  }
+  return(p);
+}
+arbore* cautare(arbore *bt,int q)  	//functia de cautare într-un arbore 
+					//binar de cautare
+{ if (!bt) return(NULL);
+  if (bt->Data==q) return(bt);
+  else
+    if (bt->Data< q) return(cautare(bt->right,q));
+	else return(cautare(bt->left,q));
+}
+void preordine(arbore *bt)		//functia de parcurgere în preordine
+{ if (bt)
+  { printf("%d ",bt->Data);
+    preordine(bt->left);
+    preordine(bt->right);
+  }
+}
+ 
+void inordine(arbore *bt)		//functia de parcurgere în inordine
+{ if (bt)
+  { inordine(bt->left);
+    printf("%d ",bt->Data);
+    inordine(bt->right);
+  }
+}
+
+void postordine(arbore *bt)		//functia de parcurgere în postordine
+{ if (bt)
+  { postordine(bt->left);
+    postordine(bt->right);
+    printf("%d ",bt->Data);
+  }
+}
+int nivele(arbore *bt)		//functia care returneaza numarul de niveluri
+{  if (!bt) return(0);
+   else return(1+max(nivele(bt->left),nivele(bt->right)));
+}
+
+int nod(arbore *bt)  		//functia care returneaza numarul tuturor nodurilor
+{ if (!bt) return(0);
+  else return(1+nod(bt->left)+nod(bt->right));
+}
+
+int frunze(arbore *bt) 		//functia care returneaza numarul de frunze
+{ if (!bt)   return(0);
+  if ((!bt->right)&&(!bt->left)) return(1);
+  return(frunze(bt->left)+frunze(bt->right));
+}
+
+void distrugere(arbore *bt)		//functia de eliberare a memoriei
+{ if (bt)
+  { if (bt->left) distrugere(bt->left);
+    if (bt->right) distrugere(bt->right);
+    delete(bt);
+  }
+}void main()
+{ int v;
+  arbore *bt=NULL;
+  init();
+  printf("Vom crea arborele pana la introducerea unui nr negativ sau 0:\n");
+  bt=constructie();
+  printf(" Introduceti valoarea care sa se insereze in arbore:");
+  scanf("%d",&v);
+  if (cautare(bt,v)) printf("Elementul exista in arbore!");
+  else inserare(bt,v);
+  if (bt)
+  { printf("\n Afisare in inordine:");
+    inordine(bt);
+  }
+  else printf("Arborele este gol!\n");
+  if (bt)
+  { printf("\n Afisare in preordine:");
+    preordine(bt);
+  }
+  else printf("Arborele este gol!\n");
+  if (bt)
+  { printf("\n Afisare in postordine:");
+    postordine(bt);
+  }
+  else printf("Arborele este gol!\n");
+  printf("\n Numarul de niveluri este: %d",nivele(bt));
+  printf("\n Numarul de noduri este: %d",nod(bt));
+  printf("\n Numarul de frunze este: %d\n",frunze(bt));
+  distrugere(bt);
+  printf("Am eliberat memoria!\n");
+}

@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include "activity.h"
+
+int greedy_activity_selector(int s[], int f[], int a[], int n)
+{ int k,m,i; 
+
+i=0; 
+k=0;
+
+for (m=1; m<n; m++)
+		{if (s[m]>f[i]) 
+				{	a[k]=m;
+				k++;
+				i=m;}
+		}
+
+return k;
+}
+
+
+#include <stdio.h>
+#include "activity.h"
+#include "cit_afis.h"
+
+main () 
+{ int solutie[100], f[100], s[100], n, length;
+
+printf("Numar activitati:"); scanf("%d",&n);
+
+printf("Inceput activitati:\n");
+citeste_sir(s,n);
+printf("Sfarsit activitati:\n");
+citeste_sir(f,n);
+
+length=greedy_activity_selector(s,f,solutie, n);
+
+printf("Solutia este:");
+afiseaza_sir(solutie,length);
+
+
+return 0;
+}
+
+#include <stdio.h>
+#include "cit_afis.h"
+
+
+int citeste_sir(int s[],int n)
+{  int i;
+     for (i=0; i<n; i++)
+			{printf ("s[%d]=", i); 
+			 scanf("%d", &s[i]);
+			}
+return 1;
+}
+
+
+int afiseaza_sir(int solutie[], int length)
+{ int i;
+	for (i=0; i<length; i++)
+		{printf ("%d ",solutie[i]);
+		}
+
+return 1;
+}
+

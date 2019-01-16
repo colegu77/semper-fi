@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include "sort.h"
+#include <limits.h>
+
+int sorteaza_sir(int sir_init[], int p,int q,  int r)
+{ 
+int n1,n2,i,k,j,sir1[100],sir2[100];
+
+n1=q-p+1;
+n2=r-q;
+
+for (i=1; i<=n1; i++)
+     sir1[i]=sir_init[p+i-1];
+
+for (j=1; j<=n2; j++)
+	{ sir2[j]=sir_init[q+j];}
+
+
+
+sir1[n1+1]= INT_MAX;
+sir2[n2+1]= INT_MAX;
+
+i=1;
+j=1;
+
+
+for( k=p; k<=r; k++)
+	{ if (sir1[i]<=sir2[j])
+			{sir_init[k]=sir1[i];
+			i++;}
+	  else {sir_init[k]=sir2[j];
+			j++;}
+	}
+return 0;
+}
+
+
+int sortare(int sir_init[], int p, int r)
+{int q; 
+	
+	if (p<r) 
+			{ q=(p+r)/2;
+
+				if (p-r<=4) { sortare_ins(sir_init,p,r);	}
+				else 	{q=(p+r)/2;
+					     sortare(sir_init, p, q);
+				         sortare(sir_init, q+1, r);
+				     	 sorteaza_sir(sir_init, p, q, r);
+			}
+		
+			}
+	
+return 0;
+}
+
+
+
+int sortare_ins(int sir_init[], int p, int r)
+{ int i,j,key;
+
+for (j=p; j<=r; j++)
+		{i=j-1;
+		key=sir_init[j];
+			 while ((key<sir_init[i])&&(i>=0))
+					{ sir_init[i+1]=sir_init[i];
+					  sir_init[i]=key;
+						i--; }
+
+		sir_init[i+1]=key;
+		}
+return 0;
+  
+}

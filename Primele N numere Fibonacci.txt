@@ -1,0 +1,13 @@
+Primele N numere Fibonacci
+
+#include<stdio.h>
+main()
+{int n,a=1,b=1,c,nr=1;
+ printf("n=");scanf("%d",&n);
+ printf("%d ",a);
+ do {printf("%d ",b);
+     nr++;
+     c=a+b;
+	 a=b;
+     b=c;} while(nr<n);
+}

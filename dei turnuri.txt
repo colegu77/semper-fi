@@ -1,0 +1,24 @@
+Divide et impera turnurile din hanoi
+#include<stdio.h>
+#include<conio.h>
+int n;
+void tipareste(char a, char b)
+{
+ printf("Muta discul pe %c pe %c\n",a,b);
+}
+void muta(int n, char a, char b, char c)
+{
+  if(n==1) { tipareste(a,b);
+	     return; }
+  else { muta(n-1,a,c,b);
+	 tipareste(a,b);
+	 muta(n-1,c,b,a); }
+}
+void main(void)
+{
+ clrscr();
+ printf("introdiceti nr de turnuri: ");
+ scanf("%d",&n);
+ muta(n,'S','M','D');
+ getch();
+}

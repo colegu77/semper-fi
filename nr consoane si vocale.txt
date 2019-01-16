@@ -1,0 +1,32 @@
+Numaram consoanele si vocalele dintr-o propozitie
+
+
+# include <stdio.h>
+# include <string.h>
+int main()
+{
+	int c,v,i;
+	char sir[30];
+
+	printf("introd sirul "); gets(sir);
+	v=0;c=0;
+	for (i=0; sir[i]; i++)
+		if ((sir[i]>='a' && sir [i]<='z') || (sir[i]>='A' && sir[i]<='Z'))
+		{
+			if (sir[i]=='a'|| sir[i]=='e'|| 
+				sir[i]=='i'||sir[i]=='o'||
+				sir[i]=='u'||sir[i]=='A'||
+				sir[i]=='E'||sir[i]=='I'||
+				sir[i]=='O'||sir[i]=='U')
+			{
+				v++;
+			}
+			else 
+			{
+				c++;
+			}
+		}
+printf("sirul contine %d vocale si %d consoane\n", v,c);
+
+	   return 0;
+}

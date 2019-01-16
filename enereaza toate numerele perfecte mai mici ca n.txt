@@ -1,0 +1,26 @@
+Genereaza toate numerele perfecte mai mici ca n
+
+#include<stdio.h>
+#include<conio.h>
+
+int suma_divizori (int n)
+{
+	int suma=0, i;
+	for (i=1;i<n; i++)
+		if (!(n%i)) suma+=i;
+		return (suma);
+}
+void main(void)
+{
+	int n;
+
+printf("Dati n: ");
+scanf("%d",&n);
+
+if(n==suma_divizori(n))
+   printf(" Numarul este perfect. ");
+else
+printf(" Numarul nu este perfect. ");
+putchar('\n');
+
+}

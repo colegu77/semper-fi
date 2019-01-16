@@ -1,0 +1,18 @@
+Cifrele commune a 2 nr
+#include <stdio.h>
+main()
+{int n,i=-1,gasit,a[10],p,k,j=-1,b[10],m;
+ printf("n=");scanf("%d",&n);
+ printf("m=");scanf("%d",&m);
+ while(n!=0) {i++;
+		      a[i]=n%10;
+		      n=n/10;}
+ while(m!=0) {j++;
+		      b[j]=m%10;
+		      m=m/10;}
+ for(k=0;k<=i;k++) {gasit=0;
+		            for(p=0;p<=j;p++)
+	                   if(a[k]==b[p]) gasit=1;
+		            if(gasit==1)printf("%d",a[k]);
+ }
+}

@@ -1,0 +1,50 @@
+#include <stdio.h>
+void met_simpla(int a[], int n)
+{
+	int i;
+	for(i=n;i>=1;i--)
+	{
+		printf("%d ",a[i]);
+	}
+	return;
+}
+
+
+void devide(int a[],int p,int r)
+{
+	int q;
+	if(p<r) 
+	{
+		q=(p+r)/2;	
+		devide(a,q+1,r);
+		printf("%d ",a[q+1]);
+		devide(a,p,q);
+
+	}
+	
+}
+void main()
+{
+	int i,n,v[100];
+	printf("introduceti numarul de elemente :");
+	scanf("%d",&n);
+	printf("introduceti elementele:");
+	for(i=1;i<=n;i++)
+	{
+		printf("v[%d]=",i);
+		scanf("%d",&v[i]);
+	}
+	printf("Afisare prin metoda divide and impera:");
+	devide(v,0,n);
+	
+	printf("\n");
+	
+	printf("Afisare printr-o metoda simpla:");
+	met_simpla(v,n);
+	
+	printf("\n");
+
+	
+}
+	
+		

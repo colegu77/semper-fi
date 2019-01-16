@@ -1,0 +1,34 @@
+Citire siruri si ordonare crescatoare
+
+# include <stdio.h>
+#include<string.h>
+int main()
+{
+	char a[20][100], cuv[100];
+	int i,j,n,aux;
+	printf("Numarul de siruri este:");scanf("%d",&n);
+	gets(a[0]);
+	for(i=0; i<n; i++)
+	{
+		printf("a[%d]= ",i);gets(a[i]);
+	}
+	
+	for(i=0;i<n;i++)
+		for (j=i+1;j<n;j++)
+			if (strcmp(a[i], a[j]) == 1)
+			{
+
+				strcpy(cuv,a[i]);
+				strcpy(a[i], a[j]);
+				strcpy(a[j], cuv);
+				
+			}
+	printf("sirul ordonat cresc e:");
+	for (i=0;i<n;i++)
+	{
+		printf("%s ",a[i]);
+	
+	}
+	printf("\n");
+	return 0;
+}

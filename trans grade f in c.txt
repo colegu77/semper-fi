@@ -1,0 +1,18 @@
+Transformare grade Fahrenheit in Celsius
+
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+
+    {
+       
+        float fahr, celsius;
+    printf("Dati temperatura in Fahrenheit: ");
+    scanf("%f",&fahr);
+
+         celsius = (5.0 / 9.0) * (fahr - 32.0);
+         printf("Temperatura Fahrenheit %4.0f este echivalentul %6.1f Celsius\n", fahr, celsius);
+        
+        getch();
+    }

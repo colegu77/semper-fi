@@ -1,0 +1,33 @@
+Sortare prin insertie directa
+#include<stdio.h>
+#include<conio.h>
+void insertie(int a[],int n)
+{
+	int i,j,elem;
+	for(i=1;i<n;i++)
+	{
+		elem=a[i];
+		j=i-1;
+			while((j>=0)&&(elem<=a[j]))
+			{
+				a[j+1]=a[j];
+				j--;
+			}
+			a[j+1]=elem;
+	}
+}
+void main(void)
+{
+	int n,a[100],i;
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=0;i<n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+	insertie(a,n);
+	printf("Sirul sortat este: ");
+	for(i=0;i<n;i++)
+		printf("%d",a[i]);
+	getch();
+}

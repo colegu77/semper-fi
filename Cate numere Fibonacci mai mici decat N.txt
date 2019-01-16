@@ -1,0 +1,12 @@
+Cate numere Fibonacci mai mici decat N
+
+#include<stdio.h>
+main()
+{int n,a=1,b=1,c,nr=1;
+ printf("n=");scanf("%d",&n);
+ do {nr++;
+     c=a+b;
+	 a=b;
+     b=c;} while(c<n);
+ printf("sunt %d nr fibonacci mai mici decat %d",nr,n);
+}

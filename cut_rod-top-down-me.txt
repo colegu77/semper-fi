@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include "cit_afis.h"
+#include "sort.h"
+
+
+main () 
+{ int a[10], n;
+
+
+printf("n="); scanf("%d",&n);
+
+citeste_sir(a,n);
+
+sorteaza_sir(a,n);
+
+afiseaza_sir(a,n);
+
+return 0;
+}
+
+#include <stdio.h>
+#include <limits.h>
+#include "cut.h"
+
+
+
+int max(int a, int b)
+{	if (a>b) return a;
+	else return b;
+}
+
+
+int memoized_cut_rod_aux(int p[], int n, int r[])
+{  int i,q; 
+	if (r[n]>=0) return r[n];
+
+	if (n=0) q=0;
+	else  { q=INT_MIN;
+			for (i=1; i<=n; i++)
+				q=max(q, p[i]+ memoized_cut_rod_aux(p, n-i,r));
+			}
+	r[n]=q;
+	return q;
+}
+
+
+
+int memoized_cut_rod(int p[], int n)
+
+{  int q,i, r[100];
+	
+for (i=0; i<=n; i++)
+	r[i]= INT_MIN;
+
+
+ q=memoized_cut_rod_aux(p,n,r);
+
+ for(i=0; i<n; i++)
+	{ printf("%d %d", i, r[i]);}
+
+return q;
+}
+

@@ -1,0 +1,72 @@
+void tipareste_solutie(int X[], int N, int nr_sol)
+{
+    int i,j;
+	printf("\n\n Solutia #%d:\n",nr_sol);
+
+	for(i=1;i<=N;i++)
+	{
+		for(j=1;j<=N;j++)
+		{
+			if(X[i]==j)
+				printf("%c\t",12);
+			else
+			   printf(".\t");
+		}
+        printf("\n");
+	}
+}
+
+int seataca(int X[], int k)
+{
+    int i;
+    for(i=1;i<k;i++)
+        if(X[i]==X[k] || abs(X[i]-X[k])==k-i)
+            return 1;
+
+    return 0;
+}
+
+int dame(int X[], int N, int *nr_sol)
+{
+    int i, k=1;
+    for(i=1;i<=N;i++)
+        X[i]=0;
+
+    while(k>0)
+    {
+		if(k>N)
+		{
+			*nr_sol=*nr_sol+1;
+          		tipareste_solutie(X,N,*nr_sol);
+          		k--;
+		}
+        	else
+		{
+			X[k]++;
+			if(X[k]<=N)
+            		{
+				if(!seataca(X,k))
+                		k++;
+			}
+            		else
+            		{
+				X[k]=0;
+				k--;
+            		}
+		}
+	}
+	return 0;
+}
+
+
+void main()
+{
+	int n,x[100];
+	int nr_sol=0;
+    
+	printf("Numarul de dame:");
+    	scanf("%d",&n);
+
+	dame(x,n,&nr_sol);
+
+}

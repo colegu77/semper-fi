@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int verifica(int a[400][400], int k, int x[])
+{
+	int j,ok=1;
+	for(j=1;j<=k-1;j++)
+					if(x[j]==x[k] && a[j][k]==1) ok=0;
+	return ok;
+}
+
+void print_sol(int x[],int m)
+{
+	int i;
+	for(i=1;i<=m;i++)
+				printf("%d ",x[i]);
+	printf("\n");
+	return;
+}
+
+void coloreaza(int a[400][400],int m)
+{
+	int i,y=0,k=1,ok=1;
+	int x[100];
+	for(i=1;i<=m;i++) x[i]=0;
+	printf("Se va afisa culoarea fiecarui nod memorata cu cifre de la 1 la 4:\n");
+	while(k>0)
+	{
+		if(k>m)
+		{
+			y++;
+			printf("solutia %d este:",y);
+			print_sol(x,m);
+			k=k-1;
+		}
+		else
+		{
+			x[k]++;
+			if(x[k]<=4)
+			{
+				ok=verifica(a,k,x);
+				if(ok==1) k=k+1;
+			}
+			else
+			{
+				x[k]=0;
+				k--;
+			}
+		}
+	}
+
+}
+
+			
+
+void main()
+{
+	int i,j,m,a[400][400],k;
+	printf("introduceti numarul de noduri:");
+	scanf("%d",&m);
+
+	for(i=1;i<=m;i++)
+		for(j=1;j<=m;j++)
+			a[i][j]=0;
+
+	printf("introduceti vecinii fiecarui nod pana la tastarea cifrei 0:");
+	
+	
+	for(i=1;i<=m;i++)
+	{
+		printf("\nVecinii lu %d sunt:",i);
+		scanf("%d",&k);
+		while(k!=0)
+		{
+			a[i][k]=1;
+			a[k][i]=1;
+			scanf("%d",&k);
+		}
+	}
+
+	printf("matricea de adiacenta este:\n");
+	for(i=1;i<=m;i++)
+	{
+		for(j=1;j<=m;j++)
+				printf("%d ",a[i][j]);
+		printf("\n");
+	}
+
+	printf("\n\n");
+
+
+	coloreaza(a,m);
+
+}

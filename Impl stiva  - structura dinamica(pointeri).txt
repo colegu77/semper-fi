@@ -1,0 +1,65 @@
+Impl stiva  - structura dinamica(pointeri)	
+#include<stdio.h>
+#include<stdlib.h>
+struct stack
+  {
+   int info;
+   stack* urm;
+  };
+typedef stack* nod;
+nod v;		//v contine vârful stivei (adresa ultimului nod introdus), respectiv 			//0 daca stiva este vida
+int n;
+
+void push(int n)	//functia de adaugare in stiva
+{ nod c; 		//c pointer ce contine adresa noului nod introdus
+  if(!v)
+  { v=(nod)malloc(sizeof(stack));
+    v->info=n;
+    v->urm=0;
+  }
+  else
+  { c=(nod)malloc(sizeof(stack));
+    c->info=n;
+    c->urm=v;  	//legam noul vârf al stivei de urmatorul element (fostul vârf)
+    v=c;       		//v va indica în continuare noul vârf al stivei
+  }
+}
+void pop(void) 	//functia de extragere a unui element din stiva
+{
+  nod c;  		//c va retine adresa nodului extras
+  if(!v) printf("Stiva este vida\n");
+  else
+  { c=v;
+    printf("Am extras elementul: %d\n",c->info);
+    v=v->urm; 	//noul vârf al stivei
+    free(c);
+  }
+ }
+
+void traversare(void)  	//functia de afisare a stivei
+{ nod c=v; 		//pointerul c este initializat cu adresa vârfului stivei
+  printf("Traversam stiva: ");
+  if (!c) printf("Stiva este goala!\n");
+  while (c) 		//atât timp cât c este diferit de 0 deci nu am ajuns la
+				// ultimul element al stivei
+    {  
+     printf("%d ",c->info);     
+     c=c->urm;  		//continuam cu urmatorul element al stivei
+    }
+  printf("\n\n");
+ }
+void main(void)
+{ do
+  { printf("Introduceti elementul (-1 pentru extragere element, 0 pentru iesire):");
+    scanf("%d",&n);
+    if(n)
+      if (n!=(-1))
+      { push(n);
+         traversare();
+      }
+      else
+      { pop();
+         traversare();
+      }
+  } while (n); //iesim cand n=0
+ }

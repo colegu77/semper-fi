@@ -1,0 +1,41 @@
+Suma elemente max de pe linie matrice
+
+#include<stdio.h>
+void main(void)
+{
+	int a[20][20],m,n,i,j,k,max[20],suma=0;
+	printf("Introduceti numarul de linii ale matricii: "); scanf("%d",&n);
+	printf("Introduceti numarul de coloane ale matricii: "); scanf("%d",&m);
+	printf("Introduceti elementele matrcicii:\n");
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			printf("a[%d][%d]= ",i,j); scanf("%d",&a[i][j]);
+		}
+	}
+		
+		for(i=0;i<n;i++)
+		{
+			max[i]=a[0][0];
+			for(j=0;j<m;j++)
+			for(k=j+1;k<m;k++)
+			{
+				if(a[i][j]<a[i][k])
+				{
+					max[i]=a[i][k];
+				}
+				else
+				{
+					max[i]=a[i][j];
+				}
+			}
+		}
+			printf("Suma cifrelor maxime de pe linii este: ");
+			for(i=0;i<n;i++)
+			{
+				suma+=max[i];
+			}
+			printf("%d\n",suma);
+
+}

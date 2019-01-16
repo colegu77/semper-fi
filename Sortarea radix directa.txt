@@ -1,0 +1,42 @@
+Sortarea radix directa
+#include<stdio.h>
+#include<conio.h>
+void straight_radix_sort(int a[],int b[], int n)
+{ int k,trecere,count[2];
+  unsigned int BitMask=1;	//pornim cu bitul masca având valoarea 1 
+				//reprezentat ca 0...001 (8*sizeof(int) pozitii)
+  for (trecere=0;trecere<8*sizeof(int);trecere++ )
+  {   count[0]=count[1]=0;	//la fiecare început de trecere, initializam cu 0
+				//numarul de aparitii pentru bitul 0 si 1
+      for (k=1;k<=n;k++)		//pentru fiecare element, în functie de valoarea bitului corespunzator
+				// trecerii (0 sau 1), vom incrementa pozitia corespunzatoare din sirul ce
+				//contine numarul de aparitii
+	if (a[k] & BitMask) count[1]++;
+	else count[0]++;
+      count[1]=count[1]+count[0];
+      for (k=n;k>=1;k--)		 //fiecare element va fi plasat la pozitia corespunzatoare, în functie de
+				// valoarea 0 sau 1 a bitului corespunzator trecerii dupa care
+				// decrementam în sirul de aparitii valoarea corespunzatoare
+	 if (a[k] & BitMask) b[count[1]]=a[k], count[1]--;	
+	 else b[count[0]]=a[k], count[0]--;
+      for (k=1;k<=n;k++) a[k]=b[k];	//mutam elementele din sirul provizoriu b în a decalam la stânga cu o
+      BitMask<<=1;		//pozitie pentru a duce valoarea 1 cu o pozitie la stânga si a putea 
+				//obtine masca pentru aflarea urmatorului bit (spre stânga)
+   }				//se închide ciclul for
+}
+
+void main(void)
+{
+	int i,n,a[100],b[100];
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=1;i<=n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+	straight_radix_sort(a,b,n);
+	printf("Sirul sortat este: ");
+	for(i=1;i<=n;i++)
+		printf("%d ",a[i]);
+	getch();
+}

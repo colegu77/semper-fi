@@ -1,0 +1,294 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista_inl.h"
+
+
+void makenull(t_lista *L)
+{ L->head=(t_nod_lista*) malloc(sizeof(t_nod_lista));
+  L->head->next=NULL;
+  L->head->prev=NULL;
+}
+
+
+t_nod_lista* list_search(t_lista L,int key)
+{ t_nod_lista* x;
+ 
+ x=L.head;
+ while ((x!=NULL)&&(x->cheie!=key))
+		x=x->next;
+
+return x;
+}
+
+void list_insert(t_lista *L, t_nod_lista *x)
+{
+  if (x==NULL) return;
+
+  x->next = L->head->next;
+
+  if (L->head->next!=NULL)
+		L->head->next->prev = x;
+
+  L->head->next = x;
+  x->prev = L->head;
+}
+
+void list_delete(t_lista *L, t_nod_lista *x)
+{ if (x->prev != NULL)
+       x->prev->next = x->next;
+  else
+	   L->head = x->next;
+  
+  if (x->next != NULL)
+		x->next->prev = x->prev;
+}
+
+void list_print(t_lista L)
+{
+    t_nod_lista *x = L.head->next;
+    
+	if (x == NULL)
+		printf("lista vida\n");
+	while (x)
+		{
+			printf("%d, ", x->cheie);
+			x = x->next;
+		}
+}
+
+void list_free(t_lista *L)
+{  t_nod_lista *x= L->head->next;
+	
+	while (x)
+		{
+			list_delete(L, x);
+			free(x);
+			x = L->head->next;
+		}
+	free (L->head);
+}
+
+
+
+
+
+
+#include <stdio.h>
+#include "lista.h"
+#include <stdlib.h>
+#include <limits.h>
+#include "inl.h"
+
+main()
+{ t_lista G[100];
+  t_lista topology;
+  int i,n1,n2,s,n;
+  
+
+  printf("Nr. noduri:"); scanf("%d",&n);
+  init_lista(G,n);
+
+  for (i=1; i<=n; i++)
+	  insert_vecini (G,n,i);
+
+  printf("Lista adiacenta:");
+  print_lista(&G,n);
+
+  printf("Parcurgeri in latime:");
+  printf("Nod start:");
+  scanf ("%d", &s);
+  bfs(&G,s,n);
+
+  printf("Calea cea mai scurta");
+  printf("Nod start:");
+  scanf("%d",&n1);
+
+  printf("Nod final:");
+  scanf("%d",&n2);
+
+  print_path(G,n1,n2);
+  printf("Parcurgere in adancime:");
+  dfs(&G, n);
+
+  printf("Sortare topologica");
+  topology=top_sort(G,n);
+  list_print(topology);
+
+}
+
+#include <stdio.h>
+#include "lista.h"
+#include <stdlib.h>
+#include <limits.h>
+#include "inl.h"
+
+
+void print_path(t_lista G[], t_nod_lista *s, t_nod_lista *v, int n)
+{
+ if  (v==s)
+	 printf("%d", s->cheie);
+ else if (v->prev==NULL)
+	printf("Nu exista cale");
+ else 
+	{ print_path(G,s,v->prev,n);
+	printf("%d", v->cheie);}
+}
+
+
+void dfs(t_lista G[], int n)
+{  int i,time;
+	t_nod_lista *u;
+	for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		 u->color=white;
+		 u->prev=NULL;
+		}
+	time=0;
+
+	for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		 if u->color=white
+				 dfs_visit(G,u,time);
+		}
+}
+
+
+void dfs_visit(t_lista G[], t_nod_lista *u, int time,int n)
+{ int i;
+	t_nod_lista *v;
+	time++;
+  u->d=time;
+  u->color=gray;
+  for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		 if (v->color=white)
+				{v->prev =u;
+				dfs_visit(G,v,time,n);
+				}
+			
+		}
+  u->color=black;
+  time++;
+  u->f=time;
+}
+
+
+int top_sort(t_lista G[], int n)
+{ t_lista *topo;
+	int i, time;
+  t_nod_lista *u;
+  for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		  u->color=white;
+		  u->prev=NULL;
+		  u->u->next;
+
+		}
+  time=0;
+  for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		  if (u->color= white)
+				dfs_visit_top(G,u,time,topo);
+		 u=u->next;
+		}
+  return topo;
+}
+
+
+void bfs(t_lista G[],int s,int n) //parcurgere latime
+{  t_nod_lista *Q[100];
+   t_nod_lista *u;
+   int i;
+	for (i=1; i<=n; i++)
+		{ u=G[i].head;
+			if (u!=s)
+				{u->color=white;
+				u->d=INT_MAX;
+				u->prev=NULL;
+				u->u->next;
+				}
+		}
+
+s->color=gray;
+s->d=0;
+s->prev=NULL;
+enqueue(G,s);
+
+while (Q!=0)
+	{ u=dequeue(Q);
+	  for (i=1; i<=n; i++)
+		{ v=G[i].head;
+		  if (v->color==white)
+				{ v->color=gray;
+				  v->d=v->d+1;
+                  enqueue(Q,v);
+				  v->v->next;
+				}
+		}
+	  u->color=black;
+
+	}
+
+}
+
+void dfs_visit_top(t_lista G[], int i, int time, int topo, int n)
+{ time++;
+  u->d=time;
+  u->color=gray;
+  for (i=1; i<=n; i++)
+		{ u=G[i].head;
+		 if (v->color=white)
+			  {	v->prev=u;
+				dfs_visit_top(G,v, time, topo);
+				}
+		}
+  u->color=black;
+  time++;
+  u->f=time;
+  list_insert(topo,u);
+
+}
+
+
+void init_lista(t_lista G[], int n)
+{ int i;
+	for (i=1; i<=n; i++)
+		makenull(&G[i]);
+}
+
+
+void print_lista(t_lista G[],int n)
+{  int i;
+   t_nod_lista *nod;
+   for (i=1; i<=n; i++)
+		{nod = G[i].head->next;
+		printf("%d:", i);
+		while (nod!=NULL)
+			{ printf("%d", nod->cheie);
+			  nod =nod->next;
+			}
+		printf("\n");
+		}
+}
+
+
+
+void insert_vecini(t_lista G[], int ns)
+{ int nv=1;
+  t_nod_lista *nod;
+
+  printf("Nod surasa %d",ns);
+  G[ns].head->cheie=ns;
+
+  printf("Dati vecinii nodului sursa:");
+  do 
+  { printf("Vecin cu %d", ns);
+	scanf("%d", &nv);
+	if (nv>0&&nv<=n&&nv!=ns)
+			{nod=(t_nod_lista*) malloc (sizeof (t_nod_lista));
+	         nod->cheie=nv;
+			list_insert(&G[ns],nod);
+			}
+
+  }while (nv>0);
+}

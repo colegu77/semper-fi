@@ -1,0 +1,83 @@
+#include <stdio.h>
+int partition(int v[],int p, int r)
+{
+	int i,j,x,aux;
+	x=v[r];
+	i=p-1;
+	for(j=p;j<=r-1;j++)
+	{
+		if(v[j]>=x)
+		{
+			i++;
+			aux=v[i];
+			v[i]=v[j];
+			v[j]=aux;
+		}
+	}
+	aux=v[i+1];
+	v[i+1]=v[r];
+	v[r]=aux;
+	
+	return i+1;
+}
+
+void sorteaza(int v[],int p,int r)
+{
+	int q;
+	if(p<r)
+	{
+		q=partition(v,p,r);
+		sorteaza(v,p,q-1);
+		sorteaza(v,q+1,r);
+	}
+}
+
+void creaza_matrice(int v[],int s[100][100],int n)
+{
+	int i,j,k=1,m;
+	m=n*n;
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+		{	
+			s[i][j]=v[k];
+			k++;
+		}
+}
+
+void print_matr(int s[100][100],int n)
+{
+	int i,j;
+	printf("Soldatii sunt:\n");
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+			printf("%d ",s[i][j]);
+		printf("\n");
+	}
+}
+
+
+
+void main()
+{
+	int n,m,i,j,s[100][100],v[1000];
+
+	printf("introduceti valoarea lui n:");
+	scanf("%d",&n);
+
+	m=n*n;
+
+	printf("introduceti inaltimile soldatilor in centimetri\n:");
+	for(i=1;i<=m;i++)
+	{
+		printf("v[%d]=",i);
+		scanf("%d",&v[i]);
+	}
+
+	sorteaza(v,1,m);
+
+	creaza_matrice(v,s,n);
+
+	print_matr(s,n);
+
+}

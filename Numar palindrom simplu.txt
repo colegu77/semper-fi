@@ -1,0 +1,23 @@
+Numar palindrom simplu
+
+#include<stdio.h>
+#include<conio.h>
+void main (void)
+{
+	int copie,oglindit,c,n;
+	oglindit=0;
+	printf("Introduceti valoarea lui n:");
+	scanf("%d", &n);
+	copie=n;
+	while(n!=0)
+		{
+			c=n%10;
+			oglindit=oglindit*10+c;
+			n=n/10;
+		}
+if(copie==oglindit) 
+	printf("numarul este palindrom");
+else
+	printf ("numarul nu este palindrom");
+getch();
+}

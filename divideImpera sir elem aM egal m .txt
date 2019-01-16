@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+int partition(int a[], int p,int r)
+{
+	int i,aux,j,x;
+	x=a[r];
+	i=p-1;
+	for(j=p;j<=r-1;j++)
+	{
+		if(a[j]<=x)
+		{
+			i++;
+			aux=a[i];
+			a[i]=a[j];
+			a[j]=aux;
+		}
+	}
+	aux=a[i+1];
+	a[i+1]=a[r];
+	a[r]=aux;
+	return i+1;
+}
+
+
+void sortare(int a[],int p, int r)
+{
+	int q;
+	if(p<r)
+	{
+		q=partition(a,p,r);
+		sortare(a,p,q-1);
+		sortare(a,q+1,r);
+	}
+	return;
+}
+
+void cauta (int a[], int p,int r,int *x)
+{
+	int q;
+	
+	
+	if(p<r)
+	{	
+		q=(p+r)/2;
+		cauta(a,p,q,x);	
+		cauta(a,q+1,r,x);
+		if(a[q]==q) *x=q;
+	}
+	
+}
+
+void main()
+{
+	int i,n,a[200],x;
+	printf("introduceti numarul de elemente din sir:");
+	scanf("%d",&n);
+
+	printf("introduceti elementele sirului:");
+	for(i=1;i<=n;i++)
+	{
+		printf("a[%d]=",i);
+		scanf("%d",&a[i]);
+	}
+	sortare(a,1,n);
+	for(i=1;i<=n;i++) printf("%d ",a[i]);
+	printf("\n");
+
+	cauta(a,1,n+1,&x);
+	if(x==0) printf("Nu este nici un element care sa indeplineasca conditia!\n");
+	else printf("elementul este %d.",x);
+}
+

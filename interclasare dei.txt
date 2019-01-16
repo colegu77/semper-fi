@@ -1,0 +1,21 @@
+Divide et impera interclasare
+#include<stdio.h>
+#include<conio.h>
+void merge(int a[], int l, int r)
+{
+ int m;
+ if(l<r) { m=(l+r)/2;
+	   merge(a,l,m);
+	   merge(a,m+1,r);
+	   sortare(a,l,m,r); }
+}
+
+void main(void)
+{
+ clrscr();
+ printf("dimen sirului: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++) { printf("a[%d]= ",i);
+		    scanf("%d",a+i); }
+ inter(0,n/2,n);
+}

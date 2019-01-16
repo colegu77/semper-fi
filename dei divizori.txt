@@ -1,0 +1,60 @@
+Divide et impera divizori
+//a) produsul elem impare din sir
+//b) se cit o val k, afiseaza mesj daca se gaseste in sir
+//c) elem divizibile cu 3
+//d) suma divizorilor nr al n-lea din sir
+#include<stdio.h>
+#include<conio.h>
+int a[10],n,i,k;
+int prod(int st, int dr)
+{
+ int m;
+ if(st==dr)
+   if(a[st]%2!=0) return a[st];
+   else return 1;
+ else { m=(st+dr)/2;
+	return prod(st,m)*prod(m+1,dr); }
+}
+int verif(int st, int dr, int k)
+{
+ int m;
+ if(st==dr)
+    if(a[st]==k) return 1;
+    else return 0;
+  else { m=(st+dr)/2;
+	 if(k<=a[st]) return verif(st,m,k);
+	 else return verif(m+1,dr,k); }
+ }
+void divi(int st, int dr)
+{
+ int m;
+ if(st==dr)
+   if(a[st]%3==0) printf("%d ",a[st]);
+ else { m=(st+dr)/2;
+	divi(st,m);
+	divi(m+1,dr); }
+}
+int suma(int st, int dr)
+{
+ int m;
+ if(st==dr)
+    if(a[n-1]%st==0) return st;
+    else return 0;
+ else { m=(st+dr)/2;
+	return suma(st,m)+suma(m+1,dr); }
+}
+void main(void)
+{
+ clrscr();
+ printf("introdu dimensiunea sirului: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++) { printf("a[%d]= ",i);
+		    scanf("%d",a+i); }
+ divi(0,n-1);
+ printf("produsul elem impare: %d\n",prod(0,n-1));
+ printf("dati valoarea cautata: ");
+ scanf("%d",&k);
+ if(verif(0,n-1,k)==1) printf("valoarea %d se afla in sir \n",k);
+ else printf("valoarea %d nu se afla in sir \n",k);
+ printf("suma divizorilor ultimului elem: %d",suma(1,n));
+}

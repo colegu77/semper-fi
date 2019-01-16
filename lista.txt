@@ -1,0 +1,35 @@
+LISTA
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+typedef struct LISTA { int cheie;
+		       struct LISTA *urm; } lista;
+lista *prim, *p, *q;
+void creaza()
+{
+ prim=NULL;
+ p=(lista*)malloc(sizeof(lista));
+ scanf("%d",&p->cheie);
+ p->urm=NULL;
+ prim=p;
+}
+void adauga()
+{
+ p=(lista*)malloc(sizeof(lista));
+ printf("Inserare in capul listei valoarea: ");
+ scanf("%d",&p->cheie);
+ p->urm=prim;
+ prim=p;
+}
+void tipareste()
+{
+ for(p=prim;p;p=p->urm) printf("%d\n",p->cheie);
+ putchar('\n');
+}
+void main(void)
+{
+ clrscr();
+ creaza();
+ tipareste();
+}

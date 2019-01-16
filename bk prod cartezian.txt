@@ -1,0 +1,23 @@
+Backtracking produs cartezian 
+#include<stdio.h>
+#include<conio.h>
+int a[100],n;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=n;i++) printf("%d",a[i]);
+ putchar('\n');
+}
+void cartezian(int i)
+{
+ int j;
+ for(j=1;j<=n;j++) { a[i]=j;
+		     if (i==n) tipareste();
+		     else cartezian(i+1); }
+}
+void main(void)
+{
+ printf("dati nr: ");
+ scanf("%d",&n);
+ cartezian(1);
+}

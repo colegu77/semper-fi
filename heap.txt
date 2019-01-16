@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include "cit_afis.h"
+#include "sort.h"
+
+
+main () 
+{ int a[10], n;
+
+
+printf("n="); scanf("%d",&n);
+
+citeste_sir(a,n);
+
+sorteaza_sir(a,n);
+
+afiseaza_sir(a,n);
+
+return 0;
+}
+
+#include <stdio.h>
+#include "sort.h"
+
+int heapsize;
+
+
+left(int i)
+{return 2*i+1;}
+
+right(int i)
+{return 2*i+2;}
+
+
+
+max_heapify(int a[], int i)
+
+{	int l,r,aux,largest;
+
+  l=left(i);
+  r=right(i);
+
+  if ((l<=heapsize)&&(a[l]>a[i]))  largest=l;
+  else largest=i;
+
+
+  if ((r<=heapsize)&&(a[r]>a[largest]))  largest=r;
+  
+		
+  if (largest!=i)
+  {		aux=a[i];
+	  a[i]=a[largest];
+	  a[largest]=aux;
+	  max_heapify(a, largest);}
+  
+}
+
+
+
+build_max_heap(int a[], int n)
+{ int i;
+	
+	heapsize=n-1;
+	for (i=n/2; i>=0; i--)
+		max_heapify(a,i);
+
+}
+
+
+sorteaza_sir(int a[], int n)
+{ int i, aux;
+
+	build_max_heap(a,n);
+
+	for (i=n-1; i>0; i--)
+	{	
+		aux= a[0];
+		a[0]=a[i];
+		a[i]=aux;
+		
+		heapsize=heapsize-1;
+		
+		max_heapify(a,0);
+
+	}
+}
+
+
+
+
+  

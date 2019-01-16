@@ -1,0 +1,13 @@
+Generare secventa 1223334444
+
+#include<stdio.h>
+void main(void)
+{
+	int n,i,j;
+	printf("Introduceti valoarea lui n:");
+    scanf("%i",&n);
+	for(i=1;i<=n;i++)
+	{for(j=1;j<=i;j++)  
+	 printf("%d",i);
+	}
+}

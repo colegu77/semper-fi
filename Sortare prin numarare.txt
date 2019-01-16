@@ -1,0 +1,46 @@
+Sortare prin numarare
+
+#include<stdio.h>
+#include<conio.h>
+#define N 100
+int a[N],count[N],n,vmin,vmax;
+int count_sort(void)
+{	int i,indice;
+	for(i=0;i<vmax-vmin+1;i++) count[i]=0;
+	for(i=0;i<n;i++)
+	{	if((a[i]<vmin)||(a[i]>vmax)) return(0);
+		count[a[i]-vmin]++;
+	}
+	indice=0;
+	for(i=0;i<vmax-vmin+1;i++)
+		while(count[i])
+		{	a[indice]=i+vmin;
+			indice++;
+			count[i]--;
+		}
+	return(1);
+}
+
+void main(void)
+{	int i,k;
+	printf("Introd vmin:");
+	scanf("%d",&vmin);
+	printf("Introd vmax:");
+	scanf("%d",&vmax);
+	printf("Introd nr de elemente ale sirului:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{	printf("a[%d]=",i);
+		scanf("%d",&a[i]);
+	}
+	k=count_sort();
+	if(k)
+	{
+	printf("Sirul sortat este:");
+	for(i=0;i<n;i++)printf("%d",a[i]);
+	putchar('\n');
+	}
+	else 
+	printf("Sirul nu respecta conditiile\n");
+	getch();
+}	

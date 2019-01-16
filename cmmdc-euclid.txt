@@ -1,0 +1,15 @@
+Cel mai mic divizor comun – Euclid
+#include <stdio.h>
+int euclid(int a, int b)     
+{int c;  
+ while (b!=0) {c=a%b;  
+               a=b;  
+               b=c;}  
+ return a;
+}
+main()
+{int a,b;
+ printf("a=");scanf("%d",&a);
+ printf("b=");scanf("%d",&b);
+ printf("cmmdc=%d",euclid(a,b));
+}

@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include "stiva.h"
+
+main ()
+{ t_stack s;
+  int e;
+
+  e=-1;
+  init_stack(&s,20);
+
+  while (e!=0)
+  { printf("Elementul de inserat:");
+	scanf ("%d", &e);
+	push(&s,e);
+	print_stack(s);
+
+  }
+		
+
+while (!stack_empty(s))
+{ pop(&s);
+  print_stack(s);
+}
+
+free_stack(&s);
+
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "stiva.h"
+
+void init_stack (t_stack *s,int n)
+{ s->data= (int *) malloc(n * sizeof(int));
+  s->top=0;
+}
+
+
+int stack_empty(t_stack s)
+{ if (s.top==0) return 1;
+  else return 0;
+}
+
+
+void push (t_stack *s, int e)
+{ s->top=s->top+1;
+  s->data[s->top]=e;
+}
+
+
+void print_stack(t_stack s)
+{ int i;
+	for (i=0;i<=s.top;i++)
+		printf("%d",s.data[i]);
+}
+
+
+int pop(t_stack *s)
+{ int e;
+  if (stack_empty(*s))
+  {printf ("Empty stack");
+	 return -1;}
+  else 
+  { e=s->data[s->top];
+	s->data[s->top]=0;
+	s->top=s->top-1;
+	return e;
+  }
+}
+
+
+void free_stack(t_stack *s)
+{ free(s->data);
+  s->data=NULL;
+  s->top=-1;
+}
+
+#ifndef _stack
+#define _stack
+
+typedef struct stack
+{ int top;
+  int *data;
+} t_stack;
+
+
+void init_stack(t_stack *s,int n);
+void push(t_stack *s,int e);
+void print_stack(t_stack s);
+int stack_empty(t_stack s);
+int pop(t_stack *s);
+void free_stack(t_stack *s);
+#endif 

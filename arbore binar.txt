@@ -1,0 +1,65 @@
+Impl arbore binar
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+typedef struct_nod_arb
+{
+	int nr;
+	struct_nod_arb *stg, *dr;
+}
+NOD_ARB;
+NOD_ARB*rad;
+void preordine(NOD_ARB *p)
+{
+	if(p)
+	{
+		printf("%d",p->nr);
+		preordine(p->stg);
+		preordine(p->dr);
+	}
+void inordine(NOD_ARB *p)
+{
+	if(p)
+	{
+		inordine(p->stg);
+		printf("%d",p->nr);
+		inordine(p->dr);
+	}
+	void postordine(NOD_ARB *p)
+	{
+		if(p)
+		{
+			postordine(p->stg);
+			postordine(p->dr);
+			printf("%d",p->nr);
+		}
+		NOD_ARB *creare()
+		{
+			NOD_ARB *p;
+			int inf;
+			printf("Introduceti informatia: "); scanf("%d",&inf);
+			if(inf==0) return(0);
+			else
+			{
+				p=(NOD_ARB *)malloc(sizeof(NOD_ARB));
+				p->inf=nr;
+				p->stg=creare();
+				p->dr=creare();
+			}
+			return(p);
+		}
+		void main(void)
+		{
+			rad=creare();
+			printf("Traversare in preordine: ");
+			preordine(rad);
+			putchar('\n');
+			printf("Traversare in inordine: ");
+			inordine(rad);
+			putchar('\n');
+			printf("Traversare in postordine: ");
+			postordine(rad);
+			putchar('\n');
+			getch();
+		}
+}

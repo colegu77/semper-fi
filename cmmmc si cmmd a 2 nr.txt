@@ -1,0 +1,23 @@
+Cel mai mic multimplu comun si cel mai mare divizor comun a doua numere
+
+
+#include <stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int a,b,r,c,x,y;
+	printf("Dati cele doua numere: ");
+	scanf("%d %d",&a,&b);
+	x=a;
+	y=b;
+	while(b)
+	{
+		r=a % b;
+		a=b;
+		b=r;
+	}
+	printf("cmmdc= %d\n",a);
+	c=x*y/a;
+	printf("cmmmc= %d",c);
+	putchar('\n');
+}

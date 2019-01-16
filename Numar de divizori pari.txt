@@ -1,0 +1,19 @@
+Numar de divizori pari
+
+#include<stdio.h>
+#include<conio.h>
+int pari(int n, int i)
+{
+ if(i>n) return 0;
+ else if((n%i==0)&&(i%2==0)) { printf("divizor par: %d\n",i);
+			       return 1 + pari(n,i+1); }
+      else return pari(n,i+1);
+}
+void main(void)
+{
+ int n;
+ clrscr();
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("numarul de divizori pari a lui %d este %d ",n,pari(n,1));
+}

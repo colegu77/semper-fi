@@ -1,0 +1,43 @@
+Parcurgerea in latime a unui graf neorientat
+#include<stdio.h>
+#include<conio.h>
+int a[20][20],n;
+void parc_latime()
+{
+	int c[20],p,u,v,viz[20],in,nod,ind;
+	printf("Dati nodul de pornire pentru parcurgere: "); scanf("%d",&in);
+	for(nod=1;nod<=n;nod++) viz[nod]=0;
+	p=1;
+	u=1;
+	c[1]=in;
+	viz[in]=1;
+	while(p<=u)
+	{
+		v=c[p];
+		for(nod=1;nod<=n;nod++)
+			if((a[v][nod]==1)&&(viz[nod]==0))
+			{
+				u++;
+				c[u]=nod;
+				viz[nod]=1;
+			}
+			p++;
+	}
+	for(ind=1;ind<=n;ind++) printf("%d ",c[ind]);
+}
+void main()
+{
+	int x,y,i,j,m;
+	printf("Introduceti numarul de noduri n= "); scanf("%d",&n);
+	printf("Introduceti numarul de muchii m= "); scanf("%d",&m);
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+			for(i=1;i<=m;i++)
+			{
+				printf("De la nodul: "); scanf("%d",&x);
+				printf("La nodul: "); scanf("%d",&y);
+				a[x][y]=a[y][x]=1;
+			}
+			parc_latime();
+			getch();
+}

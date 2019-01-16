@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include "coada.h"
+#include <stdlib.h>
+
+main ()
+
+{ t_queue s;
+  int e=-1;
+
+  init_queue(&s,20);
+  while (e!=0)
+		{printf("Elementul este "); scanf("%d", &e);
+		 enqueue(&s, e);
+	     print_queue(s);
+		}
+
+  while (!queue_empty(s))
+		 {dequeue(&s);
+		  print_queue(s);
+		}
+  free_queue(&s);
+}
+
+
+#include <stdio.h>
+#include "coada.h"
+#include <stdlib.h>
+
+void init_queue(t_queue *s, int n)
+{ s->data=(int*) malloc(n* sizeof(int));
+  s->head=0;
+  s->tail=0;
+  s->lenght=0;
+}
+
+
+
+void free_queue(t_queue *s)
+{ free(s->data);
+  s->data=NULL;
+  s->head=-1;
+  s->tail=-1;
+}
+
+
+
+void enqueue(t_queue *s, int e)
+{ s->data[s->tail]=e;
+  s->lenght=s->lenght+1;
+  if (s->tail==s->lenght) 
+	  s->tail=1;
+  else 
+	  s->tail=s->tail+1;
+}
+
+
+
+void print_queue(t_queue s)
+{ int i;
+	for (i=s.head; i<(s.head+s.lenght-1); i++)
+		printf ("%d", s.data[i]);
+}
+
+
+
+int dequeue (t_queue *s)
+{ int e;
+  
+  e=s->data[s->head];
+  s->lenght++;
+  if (s->head==s->lenght)
+	  s->head=1;
+  else 
+	  s->head++;
+  return e;
+	}
+
+#ifndef _coada
+#define _coada
+
+typedef struct queue
+{ int tail;
+  int head;
+  int lenght;
+  int *data;
+} t_queue;
+
+
+void init_queue(t_queue *s, int n);
+void free_queue(t_queue *s);
+int queue_empty(t_queue s);
+void enqueue(t_queue *s, int e);
+int dequeue(t_queue *s);
+void print_queue(t_queue s);
+
+#endif

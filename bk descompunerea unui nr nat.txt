@@ -1,0 +1,29 @@
+Backtracking descompunerea unui nr natural
+#include<stdio.h>
+#include<conio.h>
+int a[10], n;
+void tipareste(int nr)
+{
+ int i;
+ printf("%d= %d",n,a[1]);
+ for(i=2; i<=nr; i++)  printf(" + %d",a[i]);
+ putchar('\n');
+}
+int valid(int i, int s)
+{
+ if(s+a[i]<=n) return 1;
+ return 0;
+}
+void bkr(int i, int s)
+{
+ int j;
+ for(j=1; j<=n-s; j++) { a[i]=j;
+			 if(valid(i,s)==1) if(s+a[i]==n) tipareste(i);
+					   else bkr(i+1,s+a[i]); }
+}
+void main(void)
+{
+ printf("dati numarul: ");
+ scanf("%d",&n);
+ bkr(1,0);
+}

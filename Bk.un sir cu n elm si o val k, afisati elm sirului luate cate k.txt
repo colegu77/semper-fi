@@ -1,0 +1,36 @@
+Backtracking un sir cu n elem si o val k, afisati elem sirului luate cate k
+
+#include<stdio.h>
+#include<conio.h>
+int a[50],b[50],n,k,i;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=k;i++) printf("%d ",b[a[i]]);
+ putchar('\n');
+}
+int valid(int i)
+{
+ int j;
+ for(j=1;j<i;j++)
+    if(a[i]=a[j]) return 0;
+ return 1;
+}
+void bkr(int i)
+{
+ int j;
+ for(j=1;j<=n;j++) { a[i]=j;
+		     if(valid(i)==1) tipareste();
+		     else bkr(i+1); }
+}
+void main(void)
+{
+ clrscr();
+ printf("dati dimensiune sirului: ");
+ scanf("%d",&n);
+ printf("nr de elem luate din sir: ");
+ scanf("%d",&k);
+ for(i=1;i<=n;i++) { printf("a[%d]= ",i);
+		     scanf("%d",b+i); }
+ bkr(1);
+}

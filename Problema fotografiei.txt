@@ -1,0 +1,33 @@
+Problema fotografiei
+#include<stdio.h>
+#include<conio.h>
+#include<cwindows.h>
+#include<cstdlib.h>
+#include<time.h>
+int a[20][20],n;
+void estomp(int i, int j)
+{ a[i][j]=0;
+  if(i>1) if(a[i-1][j]==1) estomp(i-1,j);
+  if(j<n) if(a[i][j+1]==1) estomp(i,j+1);
+  if(i<n) if(a[i+1][j]==1) estomp(i+1,j);
+  if(j>1) if(a[i][j-1]==1) estomp(i,j-1);
+}
+
+void main()
+{ int i,j,nr;
+  printf("n=...");
+  scanf("%d",&n);
+  //generam aleator matricea foto;
+  randomize();
+  for(i=1;i<=n;i++)
+	  for(j=1;j<=n;j++)
+		  a[i][j]=rand()%2;
+
+  for(i=1;i<=n;i++)
+	  for(j=1;j<=n;j++)
+		  if(a[i][j]==1) { estomp(i,j);
+		                   nr++;
+		  }
+  
+getch();
+}

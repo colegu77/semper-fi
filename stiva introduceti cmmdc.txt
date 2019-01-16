@@ -1,0 +1,58 @@
+Stiva //Intr-o stiva introduceti cmmdc-ul a m perechi
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct stiva { int info;
+	       stiva* urm; };
+typedef stiva* nod;
+nod v;
+int n;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(stiva));
+	  v->info=n;
+	  v->urm=0; }
+ else { c=(nod)malloc(sizeof(stiva));
+	c->info=n;
+	c->urm=v;
+	v=c; }
+}
+void pop()
+{
+ nod c;
+ if(!v) printf("Stiva este vida!");
+ else { c=v;
+	printf("Am extras elem: %d\n",c->info);
+	v=v->urm;
+	free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ if(!c) printf("Stiva este goala!\n");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+int cmmdc(int a, int b)
+{
+ while(a!=b) if(a>b) a=a-b;
+	     else b=b-a;
+ return a;
+}
+void main(void)
+{
+ int a, b, m, i;
+ clrscr();
+ printf("dati nr de perechi: ");
+ scanf("%d",&m);
+ do { for(i=1; i<=m; i++) { printf("perechea %d: \n",i);
+			    printf("a= ");
+			    scanf("%d",&a);
+			    printf("b= ");
+			    scanf("%d",&b);
+			    push(cmmdc(a,b)); }
+      tipareste();
+     }while(n);
+}

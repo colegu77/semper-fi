@@ -1,0 +1,99 @@
+Lista sir
+#ifndef __LISTSIR
+#define __LISTSIR
+#endif
+
+#include <stdio.h>
+#include "list.h"
+
+
+void citeste(elementtype* x) {
+	scanf("%d", x);
+}
+void afiseaza(elementtype x) {
+	printf("%d", x);
+}
+
+int end(list l) {
+	if (l.last == maxlength-1) {
+		/* eroare, nu se mai pot aloca elemente in lista,
+		   spatiul alocat s-a epuizat
+		*/
+		fprintf(stderr, "s-a ajuns la capatul spatiului alocat listei");
+		return -1;
+	}
+	return l.last + 1;
+}
+
+int locate(elementtype x, list l) {
+	int i;
+	for (i=0; i<=l.last; i++)
+		if (x==l.elements[i])
+			return i;
+	return -1;  /* nu s-a gasit elementul x in lista l */
+}
+
+elementtype* retrieve(int p, list l) {
+/* returneaza referinta la elementul de pe pozitia p */
+	if (p<0 || p>l.last)
+		return 0;
+	return &l.elements[p];
+}
+elementtype* next(int p, list l) {
+	if (p<0 || p>l.last-1)
+		return 0;
+	return &l.elements[p+1];
+}
+
+elementtype* previous(int p, list l) {
+	if (p<1 || p>l.last)
+		return 0;
+	return &l.elements[p-1];
+}
+
+// trebuie sa transmitem lista prin referinta deoarece dorim
+// sa efectuam modificari pe lista,
+// la transmiterea prin valoare, modificarile realizeaza
+void makenull(list* l) {
+	l->last = -1;
+}
+
+elementtype* first(list l) {
+	if (l.last>=0) return l.elements;
+	return 0;
+}
+int insert(elementtype x, int p, list* l) {
+	int ll,i;
+	if ((p==0) && (l->last == -1)) { // lista vida, inserare pe prima pozitie
+		l->elements[0] = x;
+		l->last = 0;
+		return 1;  
+	}
+	if (p==l->last+1) { // inserare pe ultima pozitie
+		l->elements[p] = x;
+		l->last++;
+		return 1;
+	}	
+	
+	if (p<0 || p>l->last) return -1;  // eroare, p in afara listei
+	ll = l->last+1;
+	for (i=ll-1; i>=p; i--)
+		l->elements[i+1] = l->elements[i];
+	l->elements[p] = x;
+	l->last = ll;
+	return 1; // inserare cu success
+}
+int delete(int p, list* l) {
+	int ll, i;
+	if (p<0 || p>l->last) return -1; // eroare, p in afara listei
+	for (i=p; i<l->last; i++)
+		l->elements[i] = l->elements[i+1];
+	l->last--;
+	return 1; // stergere cu success
+}
+void printlist(list l) {
+	int i;
+	for (i=0; i<=l.last; i++)
+		printf("%d ", l.elements[i]);
+	printf("\n");
+}

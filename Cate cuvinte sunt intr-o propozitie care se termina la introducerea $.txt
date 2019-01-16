@@ -1,0 +1,14 @@
+Cate cuvinte sunt intr-o propozitie care se termina la introducerea $
+
+#include<stdio.h>
+main()
+{char a[10],c; int i=-1,nr=0,j;
+ do {scanf("%c",&c);
+     if(c!='$') {i++;
+                                                a[i]=c;
+                                                }
+ }while(c!='$');
+ for(j=0;j<=i;j++)
+            if((a[j]==' ')||(a[j]==',')) nr++;
+ printf("sunt %d cuvinte",nr);
+} 

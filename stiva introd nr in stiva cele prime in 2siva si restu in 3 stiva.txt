@@ -1,0 +1,99 @@
+Stiva //Se introduc nr intro stiva, cele prime intr-o a 2 stiva, restu in a 3 stiva
+//din prima stiva se vor elim elem dupa introducerea in celalalte 2 sive
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<math.h>
+struct stiva { int info;
+	       stiva* urm; };
+typedef stiva* nod;
+nod v,v1,v2;
+int n;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(stiva));
+	  v->info=n;
+	  v->urm=0; }
+ else { c=(nod)malloc(sizeof(stiva));
+	c->info=n;
+	c->urm=v;
+	v=c; }
+}
+void push1(int n)
+{
+ nod c;
+ if(!v1) { v1=(nod)malloc(sizeof(stiva));
+	   v1->info=n;
+	   v1->urm=0; }
+ else { c=(nod)malloc(sizeof(stiva));
+	c->info=n;
+	c->urm=v1;
+	v1=c; }
+}
+void push2(int n)
+{
+ nod c2;
+ if(!v2) { v2=(nod)malloc(sizeof(stiva));
+	   v2->info=n;
+	   v2->urm=0; }
+ else { c2=(nod)malloc(sizeof(stiva));
+	c2->info=n;
+	c2->urm=v2;
+	v2=c2; }
+}
+void pop()
+{
+ nod c;
+ if(!v) printf("Stiva este goala!");
+ else { c=v;
+	printf("Am extras elem: %d\n");
+	v=v->urm;
+	free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ printf("Traversam stiva: ");
+ if(!v) printf("Stiva este goala!");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+void tipareste1()
+{
+ nod c=v;
+ printf("Traversam stiva: ");
+ if(!v1) printf("Stiva este goala!");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+void tipareste2()
+{
+ nod c=v;
+ printf("Traversam stiva: ");
+ if(!v2) printf("Stiva este goala!");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+int prim(int n)
+{
+ int y=2;
+ while(y<=sqrt(n)) if(n%y==0)  return 0;
+		   else y++;
+ return 1;
+}
+void main(void)
+{
+ do { printf("Introduceti elem: ");
+      scanf("%d",&n);
+      if(n!=-1) push(n);
+      tipareste(); } while(n);
+ do { if(prim(v->info)==1) push1(v->info);
+      else push2(v->info);
+      pop(); } while(v->info);
+ tipareste1();
+ tipareste2();
+}

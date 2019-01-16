@@ -1,0 +1,29 @@
+Backtracking combinari
+
+#include<stdio.h>
+#include<conio.h>
+int m,n,a[20];
+void tipareste(void)
+{
+ int i;
+ for(i=0;i<n;i++) printf("%d",a[i]+1);
+ putchar('\n');
+}
+void combinari(int k)
+{
+ int i;
+ for(i=0;i<m;i++) { a[k]=i;
+		    if((k==0)||(a[k]>a[k-1]))
+		    if(k==n-1) tipareste();
+		    else combinari(k+1); }
+}
+void main(void)
+{
+ clrscr();
+ printf("introdu pe m: ");
+ scanf("%d",&m);
+ printf("introdu pe n: ");
+ scanf("%d",&n);
+ combinari(0);
+ getch();
+}

@@ -1,0 +1,17 @@
+Transmitere prin adresa
+
+#include<stdio.h>
+
+void schimbare(int &x,int &y)
+{
+int a;
+a=x;
+x=y;
+y=a;
+}
+void main(void)
+{
+	int x=5 ,y=7;
+	schimbare(x,y);
+	printf("%d%d\n",y,x);
+}

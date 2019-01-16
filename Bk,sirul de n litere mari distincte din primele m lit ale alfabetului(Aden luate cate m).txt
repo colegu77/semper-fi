@@ -1,0 +1,32 @@
+Backtracking Tipariti sirul de n litere mari distincte din primele m litere ale alfabetului (A de n luate cate m)
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+int a[10],nr=0,n;
+void tipareste()
+{
+ int i;
+ printf("Solutia numarul: %d\n",nr++);
+ for(i=0;i<n;i++) printf("Regina de pe linia %d pe coloana %d\n",(i+1),a[i]+1);
+ putchar('\n');
+}
+void reg(int i)
+{
+ int k,j,l;
+ if(i==n) { tipareste();
+	    putchar('\n');
+	    getch(); }
+ else for(l=0;l<n;l++) { a[i]=l;
+			 for(k=j=0;j<i;j++)
+			    if((a[i]==a[j])||(abs(a[i]-a[j])==(i-j))) k=1;
+			 if(!k) reg(i+1); }
+}
+void main(void)
+{
+ int j;
+ printf("Introduceti dimeniunea tabelei: \n");
+ scanf("%d",&n);
+ for(j=0;j<=n;j++) a[j]=0;
+ reg(0);
+}

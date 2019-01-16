@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <limits.h>
+#include "cut.h"
+
+
+
+int max(int a, int b)
+{	if (a>b) return a;
+	else return b;
+}
+
+
+
+int bottom_up_cut_rod(int p[], int n)
+
+{  int q,i,j, r[100];
+	
+r[0]=0;	
+	
+for (i=1; i<=n; i++)
+		{q=INT_MIN;
+		 for (j=1; j<=i; j++)
+		 {q=max(q, p[i]+r[j-i]);}
+		 r[i]=q;
+		}
+
+return r[n];
+}
+
+#include <stdio.h>
+#include <limits.h>
+#include "cut.h"
+#include "citeste.h"
+
+
+void main()
+{ int a[100], maxim ,n;
+
+printf("Lungimea barei este:\n"); scanf("%d",&n);
+
+printf("Preturile sunt \n:"); 
+citeste_preturi(a,n);
+
+maxim= bottom_up_cut_rod(a,n);
+printf("%d",maxim);
+
+
+
+}

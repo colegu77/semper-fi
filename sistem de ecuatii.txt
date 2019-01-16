@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+
+
+/*!!!!ASTA E O REZOLVARE PENTRU ECUATIILE PUSE IN IF-URI...DACA VA DA ALTE ECUATII DOAR TREBUIE SA LE SCHIMBATI 
+	CU CELE DIN IF-URI...DACA SUNT MAI PUTINE SAU MAI MULTE ECUATI STERGETI SAU ADAUGATI FOR-URI SI IF-URI IN FUNCTIE DE 
+	NUMARUL ECUATIILOR IAR IN PRINTF STERGETI SAU ADAUGATI SOLUTI (NU UITATI SA STERGET SAU DECLARATI NOILE VARIABILE..
+	int t,p,..daca e nevoie)...FOR-URILE TREBUIE SA MEARGA MEREU INTRE n SI m IAR IF-URILE CONTIN ECUATIILE!!!!*/
+
+// SA STERGETI COMENTARIUL! :))
+	
+
+void soluti(int n,int m)
+
+{
+	int x,y,z,ok=0;
+	for(x=n;x<=m;x++)
+		for(y=n;y<=m;y++)
+			for(z=n;z<=m;z++)
+				if((-x+2*y)==1)
+					if((x+y+z)==2)
+						if((x-y-z)==0)
+						{
+							printf("solutia este: x=%d, y=%d, z=%d.\n",x,y,z);
+							ok=1;
+						}
+	if(ok==0) printf("Nu s-au gasit solutii in intervalul dat!\n");
+}
+
+void main()
+{
+	int n,m;
+	printf("introduceti intervalul in care se vor cauta solutiile:\n");
+	printf("n=");
+	scanf("%d",&n);
+
+	printf("m=");
+	scanf("%d",&m);
+
+	soluti(n,m);
+}

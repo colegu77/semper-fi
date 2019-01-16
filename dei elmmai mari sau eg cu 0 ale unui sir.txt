@@ -1,0 +1,22 @@
+Divide et impera elem>=0 ale unui sir
+#include<stdio.h>
+#include<conio.h>
+int a[10],n,i;
+int nr(int st, int dr)
+{
+ int m;
+ if(st==dr)
+   if(a[st]>=0) return 1;
+   else return 0;
+  else { m=(st+dr)/2;
+	 return nr(st,m) + nr(m+1,dr); }
+}
+void main(void)
+{
+ clrscr();
+ printf("dati dimensiunea: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++) { printf("a[%d]= ",i);
+		    scanf("%d",a+i); }
+ printf("nr de elem pozitive: %d",nr(0,n-1));
+}

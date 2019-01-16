@@ -1,0 +1,207 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+typedef struct nod
+{
+	int key,color,d;
+	struct nod *next,*prev;
+}tip_nod;
+
+typedef struct 
+{
+	tip_nod *head;
+}tip_head;
+
+tip_nod* init_nod(int k)
+{
+	tip_nod *elem;
+	elem=(tip_nod*)malloc(sizeof(tip_nod));
+	elem->key=k;
+	elem->next=elem->prev=NULL;
+	return elem;
+}
+
+void init_list(tip_head L[],int n)
+{
+	int i;
+	for(i=1;i<=n;i++)
+	{
+		L[i].head=(tip_nod*)malloc(sizeof(tip_nod));
+		L[i].head->key=i;
+		L[i].head->next=L[i].head->prev=NULL;
+	}
+	return;
+}
+
+void insert_nod(tip_head L[],tip_nod *x,int k)
+{
+	int b=1;
+	tip_nod *elem,*aux;
+	if(L[k].head->next==NULL)
+	{
+		L[k].head->next=x;
+		x->prev=L[k].head;
+	}
+	else
+	{
+		elem=L[k].head;
+		while(elem->next!=NULL)
+		{
+			if(elem->key==x->key) b=0;
+			elem=elem->next;
+		}
+		if(b)
+		{
+			elem->next=x;
+			x->prev=elem;
+		}
+	}
+	
+	aux=(tip_nod*)malloc(sizeof(tip_nod));
+	aux->next=aux->prev=NULL;
+	aux->key=k;
+	
+	if(L[x->key].head->next==NULL)
+	{
+		L[x->key].head->next=aux;
+		aux->prev=L[x->key].head;
+	}
+	else
+	{
+		b=1;
+		elem=L[x->key].head;
+		while(elem->next!=NULL)
+		{
+			if(elem->key==aux->key) b=0;
+			elem=elem->next;
+		}
+		if(b)
+		{
+			elem->next=aux;
+			aux->prev=elem;
+		}
+	}
+	return;
+}
+
+void verifica_arbore(tip_head L[],int n)
+{
+	int i,ok=1;
+	for(i=1;i<=n;i++)
+	{	
+		if(L[i].head->color==0) ok=0;
+	}
+	if(ok) printf("graful poate fi un arbore deoarece pot fi parcurse toate nodurile dintr-un nod sursa.\n");
+	else printf("graful nu poate fi un arbore deoarece nu pot fi parcurse toate nodurile dintr-un nod sursa.\n");
+	return;
+}
+
+void marcheaza(tip_head L[], int n, int key)
+{
+	int i;
+	tip_nod *nod;
+	for (i=1;i<=n;i++)
+	{
+		nod=L[i].head;
+		while (nod!=NULL)
+		{
+			if (key==nod->key)
+				nod->color=1;
+			nod=nod->next;
+		}
+	}
+}
+void parcurgere_latime(tip_head L[], int n, int s)
+{
+	int i,q;
+	tip_nod *u, *ns, *nv, *h;
+	tip_nod* Q[100];
+
+	for (i=1; i<=n; i++)
+	{
+		
+		u=L[i].head;
+		while (u!=NULL)
+		{
+			u->color=0; 
+			u->d=INT_MAX;
+			u->prev=NULL;
+			u=u->next;
+		}
+	}
+	ns=L[s].head;
+	ns->color=1;
+	ns->d=0;
+	ns->prev=NULL;
+
+	q=-1;
+	printf("%d ", ns->key);
+	marcheaza(L, n, ns->key);
+	q++;
+	Q[q]=ns;
+	while (q>-1)
+	{
+		u=Q[0];
+		for (i=1;i<=q;i++) 
+			Q[i-1]=Q[i];
+		q--;
+			
+		nv=L[u->key].head->next;
+		while(nv!=NULL) 
+		{
+			if (nv->color==0)
+			{
+				nv->color=1; 
+				printf("%d ",nv->key);
+				nv->d = u->d+1;
+				nv->prev=u;
+		
+				h=L[nv->key].head; 
+				h->prev=u;
+				h->d = u->d+1; 
+										
+				marcheaza(L, n, nv->key);
+
+				q++;			
+				Q[q]=nv;
+					
+			}
+			nv=nv->next;
+		}
+		u->color=2;
+	}
+}
+
+
+
+void main()
+{
+	int i,n,k;
+	tip_head L[100];
+	tip_nod *x;
+	printf("introduceti numarul de noduri:");
+	scanf("%d",&n);
+	
+	init_list(L,n);
+	printf("introduceti vecinii fiecarui nod pana la tastarea cifrei 0:");
+	for(i=1;i<=n;i++)
+	{
+		printf("\nvecinii lui %d sunt:",i);
+		scanf("%d",&k);
+		while(k!=0)
+		{
+			x=init_nod(k);
+			insert_nod(L,x,i);
+			scanf("%d",&k);
+		}
+	}
+	
+	for(i=1;i<=n;i++)
+	{
+		printf("Parcurgere incepand cu nodul %d:",i);
+		parcurgere_latime(L,n,i);
+		printf("\n");
+	}
+	verifica_arbore(L,n);
+}

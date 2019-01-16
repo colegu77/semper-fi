@@ -1,0 +1,31 @@
+Suma a doua siruri intr-un alt sir
+
+
+#include<stdio.h>
+#include<conio.h>
+
+void main(void)
+{
+	int m,n,i,max, a[20],b[20],c[40];
+	printf("Dati lungimea primului sir: ");
+	scanf("%d",&m);
+	printf("Dati elementele primului sir: \n");
+	for(i=0;i<m;i++) { printf("a[%d]=",i); scanf("%d",a+i);}
+	printf("Dati lungimea celui de al doilea sir: ");
+	scanf("%d",&n);
+	printf("Dati elementele celui de al doilea sir: \n");
+	for(i=0;i<n;i++) { printf("b[%d]=",i); scanf("%d",b+i);}
+
+	if(m>n) max=m; else max=n;
+
+	for(i=0;i<max;i++) c[i]=a[i]+b[i];
+
+	printf("Elemente sirului suma sunt: ");
+	for(i=0;i<max;i++) 
+	
+		if (c[i]>10) c[i]%=10, c[i-1]++;
+	
+	for(i=0;i<max;i++)	
+		printf("%d",c[i]);
+	putchar('\n');
+}

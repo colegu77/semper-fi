@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <limits.h>
+#include "cut.h"
+
+
+
+int max(int a, int b)
+{	if (a>b) return a;
+	else return b;
+}
+
+
+
+int taiere(int p[], int n)
+
+{  int q,i;
+	
+if (n==0) return 0;
+
+q=INT_MIN;
+
+for (i=1; i<=n; i++)
+	{  q=max(q, p[i]+taiere(p, n-i));}
+
+return q;
+}
+
+#include <stdio.h>
+#include <limits.h>
+#include "cut.h"
+#include "citeste.h"
+
+
+void main()
+{ int a[100], maxim ,n;
+
+printf("Lungimea barei este:\n"); scanf("%d",&n);
+
+printf("Preturile sunt \n:"); 
+citeste_preturi(a,n);
+
+maxim= taiere(a,n);
+printf("%d",maxim);
+
+
+
+}

@@ -1,0 +1,30 @@
+polinom. produs a 2 polinoame
+
+#include <stdio.h>
+main()
+{
+	int m,n,a[20],b[20],p[40],i,j;
+ printf("Dati gradul primului polinom:"); 
+ scanf("%d",&m);
+ printf("Dati gradul celui de-al doilea polinom:"); 
+ scanf("%d",&n);
+ printf("Dati coeficientii:\n");
+ for(i=m;i>=0;i--)
+	{printf("a[%d]=",i);
+ scanf("%d",&a[i]);}
+ for(j=n;j>=0;j--)
+	{printf("b[%d]=",j);
+ scanf("%d",&b[j]);}
+ for(i=0;i<=(m+n);i++)
+	p[i]=0;
+ for(i=0;i<=m;i++)
+	for(j=0;j<=n;j++)
+		{
+		p[i+j]=p[i+j]+a[i]*b[j];
+		}
+ printf("Polinomul produs este: P(x)=");
+ for(i=(m+n);i>=0;i--)
+	if(p[i]>=0) 
+		printf("+%dx^%d%",p[i],i);	
+	else printf("%dx^%d%",p[i],i);
+}

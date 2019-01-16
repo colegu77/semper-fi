@@ -1,0 +1,129 @@
+Arbori
+
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct celltype 
+{
+	int value;
+	struct celltype *left, *right;
+} tree_element;
+
+int inserare(int val, tree_element **ppvarf)
+{
+	if (*ppvarf)
+	{
+		if (val <= (*ppvarf)->value)
+			return inserare(val, &((*ppvarf)->left));
+		else 
+			return inserare(val, &((*ppvarf)->right));
+	}
+	*ppvarf = (tree_element*)malloc(sizeof(tree_element));
+	if (*ppvarf == NULL)
+	{
+		printf("eroare la alocare!\n");
+		return -1;
+	}
+	(*ppvarf)->value = val;
+	(*ppvarf)->left = (*ppvarf)->right = NULL;
+	return 0;
+}
+
+int stergere(int val, tree_element **ppvarf)
+{
+	tree_element *q;
+	tree_element **pp;
+
+	if (*ppvarf == NULL)
+	{
+		printf("nu s-a gasit elementul %d in arbore\n", val);
+		return 0;
+	}
+	if (val < (*ppvarf)->value)
+		return stergere(val, &((*ppvarf)->left));
+	else if (val > (*ppvarf)->value)
+		return stergere(val, &((*ppvarf)->right));
+	
+	pp = &((*ppvarf)->left);
+	while (*pp)
+		pp = &((*pp)->right);
+	*pp = (*ppvarf)->right;
+
+	q = *ppvarf;
+	*ppvarf = (*ppvarf)->left;
+	free(q);
+	return 0;
+}
+
+int traversareSRD(tree_element *pvarf)
+{
+	if (pvarf)
+	{
+		traversareSRD(pvarf->left);
+		printf("%d ", pvarf->value);
+		traversareSRD(pvarf->right);
+	}
+	return 0;
+}
+
+int traversareSDR(tree_element *pvarf)
+{
+	if (pvarf)
+	{
+		traversareSDR(pvarf->left);
+		traversareSDR(pvarf->right);
+		printf("%d ", pvarf->value);
+	}
+	return 0;
+}
+int traversareRSD(tree_element *pvarf)
+{
+	if (pvarf)
+	{
+		printf("%d ", pvarf->value);
+		traversareRSD(pvarf->left);
+		traversareRSD(pvarf->right);
+	}
+	return 0;
+}
+
+
+int main()
+{
+	tree_element *pvarf = NULL;
+	int ret_val = 0, optiune, val;
+
+	while (ret_val >= 0)
+	{
+		printf("\n1. inserare element in arbore\n");
+		printf("2. traversare SRD\n");
+		printf("3. traversare SDR\n");
+		printf("4. traversare RSD\n");
+		printf("5. stergere element\n");
+		printf("9. iesire\n");
+
+		printf("introduceti optiunea dvs:"); scanf("%d", &optiune);
+		switch(optiune)
+		{
+			case 1:
+				printf("introduceti elementul de inserat: "); scanf("%d", &val);
+				ret_val = inserare(val, &pvarf);
+				break;
+			case 2:
+				ret_val = traversareSRD(pvarf);
+				break;
+			case 3:
+				ret_val = traversareSDR(pvarf);
+				break;
+			case 4:
+				ret_val = traversareRSD(pvarf);
+				break;
+			case 5:
+				printf("introduceti elementul de sters: "); scanf("%d", &val);
+				ret_val = stergere(val, &pvarf);
+				break;
+			case 9:
+				return 0;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+Primele N numere prime
+
+#include<stdio.h>
+int prim(int x)
+{int j,prim=1;
+ if(x==1) prim=0;
+ for(j=2;j<=x/2;j++)
+	if(x%j==0)	prim=0;
+ return prim;
+}
+main()
+{int n,i=2,nr=1;
+printf("n=");scanf("%d",&n);
+while(nr<=n) {if(prim(i)==1) {printf("%d ",i);
+                             nr++;}
+             i=i++;}
+}

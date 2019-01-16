@@ -1,0 +1,55 @@
+Se citeste mat de adiacenta.graful este hamiltonian
+#include<stdio.h>
+#include<conio.h>
+int stiva[100],n,m,k,nr_solutii,a[20][20];
+int verifica()
+{
+	int i;
+	if(!a[stiva[k-1]][stiva[k]]) return 0;
+	else
+		for(i=1;i<=k;i++)
+			if(stiva[i]==stiva[k]) return 0;
+			if(k==n)
+				if(!a[stiva[1]][stiva[k]]) return 0;
+
+				return 1;
+}
+void tipareste_solutie()
+{
+	int i;
+	for(i=1;i<=n;i++) printf("%d",stiva[i]);
+		k=0;
+	nr_solutii++;
+}
+void cauta()
+{
+	k=1;
+	while (k>0)
+		if(stiva[k]<n)
+		{
+			stiva[k]++;
+			if(verifica())
+				if(k==n) tipareste_solutie();
+				else
+				{
+					k++;
+					stiva[k]=0;
+				}
+		}
+		else k--;
+}
+void main()
+{
+	int i,j;
+	printf("Introduceti numarul de noduri: "); scanf("%d",&n);
+	printf("Introduceti matricea adiacenta:\n");
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+		{
+			printf("a[%d][%d]= ",i,j);
+			scanf("%d",&a[i][j]);
+		}
+		cauta();
+		if(nr_solutii=0) printf("Nu exista solutie!\n");
+		getch();
+}

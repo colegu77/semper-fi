@@ -1,0 +1,118 @@
+List pointer
+#define __LISTPOINTER
+
+#include "list.h"
+
+// returneaza pointer la ultimul element din lista
+list* end(list head) {
+	list* p = &head;
+	while(p->next) p = p->next;
+	return p;
+}
+
+void makenull(list* l) {
+	l->next = 0;
+}
+
+// insereaza elementul x pe pozitia poz in lista
+int insert(elementtype x, int poz, list* head) {
+	list *p, *q;
+	int i = 0;
+	
+	if (poz<0) return -1;
+	
+	p = head;
+	while((i<poz) && p) {
+		p = p->next;
+		i++;
+	}
+	if (p==0) return -1; // s-a trecut de capatul listei 
+	
+	q = (list*)malloc(sizeof(list)); // alocare memorie pentru o celula
+	q->element = x;
+	q->next = p->next;
+	p->next = q;
+	return 1;
+}
+
+int locate(elementtype x, list head) {
+	list* p;
+	int i;
+	for(i=0, p=head.next; p; i++, p = p->next) {
+		if (p->element == x)
+			return i;
+	}
+	return -1; // elementul x nu a fost gasit in lista
+}
+
+elementtype* retrieve(int poz, list head) {
+	list* p;
+	int i;
+	
+	if (poz < 0) return 0;
+	for(i=0, p=head.next; (i<poz) && (p->next); i++, p = p->next);
+	if (i<poz) return 0;// s-a indicat o pozitie in afara listei
+	return &(p->element);
+}
+
+// sterge elementul de pe pozitia poz in lista
+// se foloseste tehnica cu pointer la pointer
+// care nu necesita memorarea adresei elementului anterior, deoarece aceasta
+// e memorata in pointerul la pointer
+int delete(int poz, list* head) {
+	list **p, *q;
+	int i = 0;
+	
+	if (poz<0) return -1; // eroare, pozitie in afara listei
+
+	p = &(head->next);	
+	while ((i<poz) && (*p)) {
+		p = &((*p)->next);
+		i++;
+	}
+	if (i<poz) return -1; // eroare, pozitie in afara listei
+	
+	q = *p;
+	*p = q->next;
+	free(q); // trebuie eliberata memoria pt elementul sters din lista
+	         // altfel, acesta ramane referinta agatata	
+}
+
+elementtype* next(int poz, list head) {
+	list* p;
+	int i;
+	
+	if (poz<0) return 0;
+	for (i=0, p=head.next; (i<poz+1) && (p->next); i++, p = p->next);
+	if (i<poz+1) return 0; // pozitie in afara listei sau sfarsit de lista
+	
+	return &(p->element);
+}
+
+elementtype* previous(int poz, list head) {
+	list* p;
+	int i;
+	
+	if (poz<=0) return 0;
+	for (i=0, p=head.next; (i<poz-1) && (p->next); i++, p = p->next);
+	if (i<poz-1) return 0;
+	return &(p->element);
+}
+
+elementtype* first(list head) {
+	if (head.next==0) return 0; // lista vida
+	return &(head.next->element);
+}
+
+void printlist(list head) {
+	list* p;
+	for(p=head.next; p; p = p->next)
+		printf("%d ", p->element);
+}
+
+void citeste(elementtype* x) {
+	scanf("%d", x);
+}
+void afiseaza(elementtype x) {
+	printf("%d", x);
+}

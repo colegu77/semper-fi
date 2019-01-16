@@ -1,0 +1,99 @@
+Liste + stergere
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct celltype
+{
+	int valoare;
+	struct celltype *pnext;
+} list_element;
+
+
+int afisare(list_element *pvarf)
+{
+	list_element *p;
+	p=pvarf;
+	while (p)
+	{
+		printf("%d ", p->valoare);
+		p = p->pnext;
+	}
+	printf("\n");
+	return 0;
+}
+
+int insert_first(list_element **ppvarf, int val)
+{
+	list_element *p_nou;
+	p_nou = (list_element*)malloc(sizeof(list_element));
+	if (p_nou == NULL)
+	{
+		fprintf(stderr, "Eroare la alocare\n");
+		return -1;
+	}
+	p_nou->valoare = val;
+	p_nou->pnext = *ppvarf;
+	*ppvarf = p_nou;
+	return 0;
+}
+
+int stergere(int pozitie, list_element **ppvarf)
+{	
+	list_element **p = ppvarf; 
+	list_element *q; 
+	int i = 0;
+	while(*p && i<pozitie)
+	{
+		i++;
+		p = &((*p)->pnext);
+	}
+	if(*p)
+	{
+		q=*p;
+		*p = (*p)->pnext;
+		free(q);
+		printf("Elementul a fost sters cu succes! \n");
+	}
+	else
+	{
+		printf("elementul de pe pozitia %d nu exista in lista \n", pozitie);
+	}
+	return 0;
+}
+
+
+int main()
+{
+	list_element *pvarf = NULL;
+
+	int selectie, val;
+	int ret_val = 1;
+	while(ret_val >= 0)
+	{
+		printf("1. Introducere la inceputul listei\n");
+		printf("2. Sterge element din lista\n");
+		printf("5. Afisare lista\n");
+		printf("9. Iesire din program\n");
+		printf("Selectati optiunea dvs:"); scanf("%d", &selectie);
+
+		switch(selectie)
+		{
+			case 1:
+				printf("introduceti valoarea de inserat: "); scanf("%d", &val);
+				ret_val = insert_first(&pvarf, val);
+				break;
+            case 2: 
+				printf("INTRODUCETI POZITIA ELEMENTULUI CARE SE STERGE: "); scanf("%d", &val);
+				ret_val = stergere(val, &pvarf);
+				break;
+			case 5: 
+				ret_val = afisare(pvarf);
+				break;
+		
+			case 9:
+				return 0;
+		}
+	}
+	printf("in program a intervenit o eroare!\n");
+	return -1;
+}

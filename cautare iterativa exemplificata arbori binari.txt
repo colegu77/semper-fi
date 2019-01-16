@@ -1,0 +1,9 @@
+caut 17
+17<=15 NU -> dreapta
+17<=18 DA -> stanga gasit
+
+caut 9
+9<=15 DA ->stg
+9<=6 NU ->dr
+9<=7 NU ->dr
+9<=13 DA ->stg gasit

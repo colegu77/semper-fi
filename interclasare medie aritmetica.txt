@@ -1,0 +1,18 @@
+Interclasare medie aritmetica la fiecare 2 nr
+
+#include <stdio.h>
+main()
+{int i,j=-1,n; float a[50],b[100];
+ printf("n="); scanf("%d",&n);
+ for(i=0;i<n;i++)
+	{printf("a[%d]=",i); scanf("%f",&a[i]);}
+ for(i=0;i<n-1;i++)
+	 {j++;
+	  b[j]=a[i];
+	  j++;
+	  b[j]=(a[i]+a[i+1])/2;}
+ j++;
+ b[j]=a[n-1];
+ for(i=0;i<=j;i++)
+	printf("%.2f ",b[i]);
+}

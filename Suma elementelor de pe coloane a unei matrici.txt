@@ -1,0 +1,30 @@
+Suma elementelor de pe coloane a unei matrici
+
+#include<stdio.h>
+#include<conio.h>
+
+void main(void)
+{
+int a[10][10],i,j,n,m,suma;
+printf("n=");scanf("%d",&n);
+printf("m=");scanf("%d",&m);
+for(i=1;i<=n;i++)
+{for(j=1;j<=m;j++)
+{
+printf("a[%d][%d]=",i,j);
+scanf("%d",&a[i][j]);
+}
+}
+
+for(i=1;i<=n;i++)
+     {printf("linia %d este",i);
+for(j=1;j<=m;j++)
+printf("%d ",a[i][j]);
+printf("\n");
+}
+suma=0;
+for(i=1;i<m;i++)
+for (j=1;j<n;j++)
+suma+=a[i][0];
+printf("suma este %d\n",suma);
+}

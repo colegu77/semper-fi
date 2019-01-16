@@ -1,0 +1,14 @@
+Recursivitate suma cifrelor unui numar recursiv
+ #include<stdio.h>
+int suma(int n)
+{
+ if (n==0) return 0;
+ else return (n%10)+suma(n/10);
+}
+void main(void)
+{
+ int n;
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("%d",suma(n));
+}

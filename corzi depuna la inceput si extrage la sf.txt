@@ -1,0 +1,49 @@
+Depune (la inceput) si extrage (la sfarsit) elemente dintr-o coada
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#define SIZE 50
+int queue[SIZE];
+int ind_d=0;
+
+void push(int i)
+{ int j;
+  if (ind_d<SIZE)
+  { for(j=ind_d;j>0;j--) queue[j]=queue[j-1];
+    queue[0]=i;
+    ind_d++;
+    printf("Am depus elementul %d\n",i);
+    printf("Traversarea cozii:");
+    for(j=ind_d-1;j>=0;j--) printf("%d ",queue[j]);
+    putchar('\n');
+  }
+  else
+  { printf("Coada este plina!\n");
+    exit(1);
+  }
+}
+int pop(void)
+{ if(ind_d>0)
+  { ind_d--;
+    return(queue[ind_d]);
+  }
+  else
+  { printf("coada vida");
+    exit(1);
+  }
+}
+
+void main(void)
+{ int val,k;
+  do
+  { printf("Introduceti un nr intreg pt depunere (-1 pt iesire si 0 pt extragere):");
+    scanf("%d",&val);
+    if(val!=0&&val!=-1) push(val);
+    else if(!val)
+	 { printf("Am extras elementul %d\n",pop());
+	   printf("Traversarea cozii:");
+	   for(k=ind_d-1;k>=0;k--) printf("%d ",queue[k]);
+	   putchar('\n');
+	 }
+  } while(val!=-1);
+}

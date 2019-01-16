@@ -1,0 +1,37 @@
+Impl stiva  tablou unidimensional (extragere)
+#include<stdio.h>
+#include<stdlib.h>
+#define STCKSIZE 50
+void push(int i);		//prototipul functiei de depunere în stiva
+int pop(void);		//prototipul functiei de extragere din stiva
+int *p1, *tos, stack[STCKSIZE];
+				//variabile globale; în tabloul stack simulam stiva
+void main(void)
+{ int value;
+  p1=stack;
+  tos=p1;
+  do 
+  {  printf("Introduceti un nr pozitiv pentru depunere, -1 pt iesire si 0 pt  extragere: ");
+      scanf("%d",&value);
+      if(value) push(value);
+      else printf("Am extras elementul: %d\n",pop());
+   }
+   while (value!=-1);
+}
+void push(int i)
+{ p1++;
+   if(p1==(tos+STCKSIZE)) 
+     {printf("Stiva plina!");
+      exit(1);
+     }
+    *p1=i;		//depunem în stiva elementul i
+}
+
+int pop(void)
+{ if(p1==tos) 
+    { printf("Stiva vida!\n");
+       exit(1);
+    }
+   p1--;
+  return(*(p1+1));	//returnam elementul curent (înainte de 				//decrementarea pointerului p1) 
+}

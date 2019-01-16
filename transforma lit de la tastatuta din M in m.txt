@@ -1,0 +1,18 @@
+Citind un sir de caractere de la tastatura, transforma
+ toate literele mici in litere mari, pe cele mari lasandu-le neschimbate. 
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+void main(void)
+{
+	char s[256];
+	int i;
+	printf("Introduceti sirul: ");
+	gets(s);
+	for(i=1; i<= strlen(s);i++)
+		if(_islower(s[i-1]))
+			s[i-1]=_toupper(s[i-1]);
+		printf("Noul sir este: %s/n",s);
+}

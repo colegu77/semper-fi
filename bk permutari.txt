@@ -1,0 +1,33 @@
+Backtracking permutari
+
+#include<stdio.h>
+#include<conio.h>
+int a[50],n;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=n;i++) printf("%d",a[i]);
+ putchar('\n');
+}
+int valid(int k)
+{
+ int i;
+ for(i=1;i<k;i++)
+    if(a[i]==a[k]) return(0);
+ return 1;
+}
+void permutari(int i)
+{
+ int j;
+ for(j=1;j<=n;j++) { a[i]=j;
+		     if(valid(i)==1)
+		       if(i==n) tipareste();
+		       else permutari(i+1); }
+}
+void main(void)
+{
+ printf("dati nr: ");
+ scanf("%d",&n);
+ permutari(1);
+ getch();
+}

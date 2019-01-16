@@ -1,0 +1,5 @@
+1.backtracking (descriere,conditii,algoritm,pseudocod)-3p; 
+2. sortare cu interclasare fisiere (3 benzi si 4 benzi, principii)-1p; 
+3. sortari cu insert (direct, binar,santinele)-1p; 
+4.definitii de la grafuri/arbori (nu le mai tin minte pe toate, 12 in total: arbori binari de toate felurile, graf partial, lant eulerian, grad exterior,etc)-3p;
+5. Principiul algoritmului lui Prim. -1p;

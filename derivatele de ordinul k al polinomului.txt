@@ -1,0 +1,39 @@
+Afiseaza derivatele de ordinul k al polinomului
+
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int n, a[20],i,k,der=1;
+	printf("Dati gradul polinomului: "); scanf("%d",&n);
+	printf("Dati coeficientii polinomului: ");
+for (i=0;i<=n;i++) 
+{
+	printf("a[%d]=",i);
+	scanf("%d",a+i);
+}
+printf("Dati ordinul derivatei: ");
+scanf("%d",&k);
+
+do
+{
+i=0;
+do
+{
+	a[i]=a[i]*(n-i);
+	i++;
+}
+while(i<n);
+n--;
+printf("Derivata de ordinul %d este: \n",der);
+for (i=0;i<=n;i++) 
+
+	printf("a[%d]=%d ",i,a[i]);
+
+
+der++;
+putchar('\n');
+}
+while(der<=k);
+}

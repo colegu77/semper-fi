@@ -1,0 +1,13 @@
+Monede si banknote
+
+#include<stdio.h>
+main()
+{int s,i,k,a[7]={1,5,10,50,100,500,1000};
+ printf("s=");scanf("%d",&s);
+ for(i=6;i>=0;i--)
+ {k=s/a[i];
+  if(k!=0) printf("diviziunea %d cu %d aparitii\n",a[i],k);
+  s=s%a[i];
+  if(s==0) break;
+ }
+}

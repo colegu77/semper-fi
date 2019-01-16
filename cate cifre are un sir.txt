@@ -1,0 +1,18 @@
+Cate cifre contine un sir
+
+#include <stdio.h>
+#include <ctype.h>
+
+void  main (void)
+{ 
+	char sir[80], nr_cifre=0,*p;
+	printf("introduceti sirul:");
+	gets(sir);
+	p=sir;
+	for(;*p;p++)
+{
+	if (!isdigit(*p)) continue;
+	nr_cifre++;
+}
+printf("numarul de cifre din sir este %d\n",nr_cifre);
+}

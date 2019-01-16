@@ -1,0 +1,26 @@
+Suma elemente deasupra diagonalei matrice
+
+#include <stdio.h>;   
+#include <conio.h>;
+int a[10][10],i,j,m,n,s;
+void main()
+{
+clrscr();
+printf("dati nr de linii ");
+scanf("%d",&n);
+for (i=1;i<=n;i++)
+ for (j=1;j<=n;j++)
+ {
+ printf("dati a[%d][%d]=",i,j);
+ scanf("%d",&
+ a[i][j]);
+ }
+ s=0;
+for (i=1;i<=n-1;i++)
+ for (j=i+1;j<=n;j++)
+ {
+ s=s+a[i][j];
+ }
+ printf("\n suma elementelor de deasupra diag principale= %d",s);
+getch();
+}

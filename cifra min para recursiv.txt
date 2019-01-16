@@ -1,0 +1,24 @@
+Cifra minima para recursiv
+
+#include<stdio.h>
+#include<conio.h>
+int min(int a, int b)
+{
+ if (a<b) return a;
+ else return b;
+}
+int cif_pmin(int n)
+{
+ if(n<10) if(n%2==0) return n;
+	  else return 1;
+ else if((n%10)%2==0) return min(n%10, cif_pmin(n/10));
+      else cif_pmin(n/10);
+}
+void main(void)
+{
+ int n;
+ clrscr();
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("cifra minima para din %d este %d ",n,cif_pmin(n));
+}

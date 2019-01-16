@@ -1,0 +1,34 @@
+Backtracking Aranjamente
+ 
+ #include<stdio.h>
+#include<conio.h>
+int a[50],k,n;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=k;i++) printf("%d",a[i]);
+ putchar('\n');
+}
+int valid(int x)
+{
+ int i;
+ for(i=1;i<x;i++)
+    if(a[x]==a[i]) return(0);
+ return 1;
+}
+void aranjamente(int i)
+{
+ int j;
+ for(j=1; j<=n; j++) { a[i]=j;
+		       if(valid(i)==1) if(i==k) tipareste();
+				       else aranjamente(i+1);}
+}
+void main(void)
+{
+ clrscr();
+ printf("dati nr de aranjamente: ");
+ scanf("%d",&n);
+ printf("dati numarul cate sa fie luate: ");
+ scanf("%d",&k);
+ aranjamente(1);
+}

@@ -1,0 +1,37 @@
+Se citesc doua siruri de numere intregi, direct ordonate crescator.
+Sa se scrie programul pentru intercalasarea celor doua siruri, astfel incat 
+sa se obtina un al treilea sir direct ordonat crescator. 
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int a[20], b[20], c[40], m, n, i, j, k;
+	printf("Introd lungimea primului sir: ");
+	scanf("%d",&n);
+	printf("Introd lungimea celui de-al doilea sir: ");
+	scanf("%d",&m);
+
+	printf("Introduceti elementele primului sir: \n");
+	for (i=0; i<n; i++)
+	{
+		printf("a[%d]=",i);
+		scanf("%d",&a[i]);
+	}
+	printf("Introduceti elementele celui de-al doilea sir: \n");
+	for (j=0;j<m;j++)
+	{
+		printf("b[%d]=",j);
+		scanf("%d",&b[j]);
+	}
+	a[n]=b[m-1]+1;
+	b[m]=a[n-1]+1;
+	i=0; j=0;
+	for(k=0;k<n+m;k++)
+		if(a[i]<=b[j]) c[k]=a[i], i++;
+		else c[k]=b[j], j++;
+		printf("Elementele sirului interclasat sunt: \n");
+		for(k=0; k<m+n;k++) printf("%d",c[k]);
+	putchar('\n');
+	getch();
+}

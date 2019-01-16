@@ -1,0 +1,32 @@
+Backtracking tipariti toate sirurile de n note muzicale din gama DO
+
+#include<stdio.h>
+#include<conio.h>
+char b[10];
+int a[10],n;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=n;i++) printf("%s",b[a[i]]);
+ putchar('\n');
+}
+void bkr(int i)
+{
+ int j;
+ for(i=1;i<8;i++) { a[i]=j;
+		    if(i==n) tipareste();
+		    else bkr(i+1); }
+}
+void main(void)
+{
+ printf("dati nr de note: ");
+ scanf("%d",&n);
+ b[1]='DO';
+ b[2]='Re';
+ b[3]='Mi';
+ b[4]='Fa';
+ b[5]='So';
+ b[6]='La';
+ b[7]='Si';
+ bkr(1);
+}

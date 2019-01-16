@@ -1,0 +1,21 @@
+Divide et impera litere mici din sir
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<ctype.h>
+char a[10];
+char litere(int st, int dr)
+{
+ int m;
+ if(st==dr)
+    if(isalpha(a[st])!=0) return a[st];
+    else return ' ';
+ else { m=(st+dr)/2;
+	return litere(st,m) + litere(m+1,dr); }
+}
+void main(void)
+{
+ clrscr();
+ gets(a);
+ printf("literele mici din sir sunt: %s",litere(0,strlen(a)-1));
+}

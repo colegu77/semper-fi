@@ -1,0 +1,36 @@
+Sortare prin insertie diminuarea incrementului
+#include<stdio.h>
+#include<conio.h>
+void shell_sort(int a[],int n)
+{
+	int i,j,elem,h;
+	for(h=1;h<=n/9;h=3*h+1);
+	for(;h>0;h/=3)
+		for(i=h+1;i<=n;i+=h)
+		{
+			elem=a[i];
+			j=i;
+			while(j>h&&a[j-h]>elem)
+			{
+				a[j]=a[j-h];
+				j-=h;
+			}
+			a[j]=elem;
+		}
+
+}
+void main(void)
+{
+	int n,a[100],i;
+	printf("Introduceti dimensiunea sirului: "); scanf("%d",&n);
+	printf("Introduceti elementele sirului:\n");
+	for(i=1;i<=n;i++)
+	{
+		printf("a[%d]= ",i); scanf("%d",a+i);
+	}
+	shell_sort(a,n);
+	printf("Sirul sortat este: ");
+	for(i=1;i<=n;i++)
+		printf("%d",a[i]);
+	getch();
+}

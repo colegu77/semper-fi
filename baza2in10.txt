@@ -1,0 +1,21 @@
+Converteste din baza 2 in baza 10
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void main(void)
+{
+	int n10=0,inmultitor=1,i;
+	char n2[30];
+	printf("Introduceti un numar in baza 2: "); gets(n2); //gets se foloseste pentru a citi un sir de caractere.E acelas lucru cu scanf("%s",n16)
+	for(i=strlen(n2)-1;i>=0;i--)
+	{
+		if((n2[i]>='0')&&(n2[i]<='1')) n10+=(n2[i]-'0')*inmultitor;
+		else
+		{
+			printf("Acest numar nu este in baza 2.Folositi numai 0 si 1");
+			exit(1);
+		}
+		inmultitor*=2;
+	}
+	printf("Numarul in baza 10 este: %d\n",n10);
+}

@@ -1,0 +1,32 @@
+Converteste un numar din baza p in baza q
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int np, p ,q, putere=1, n10=0, uc,nq=0,rest;
+	printf("Dati baza p: ");
+	scanf("%d",&p);
+	printf("Dati baza q: ");
+	scanf("%d",&q);
+	printf("Dati numarul in baza p: ");
+	scanf("%d",&np);
+
+while(np)
+{
+uc=np-(np/10)*10;
+n10=n10+uc*putere;
+putere=putere*p;
+np=(np/10);
+}
+putere=1;
+while(n10)
+{
+rest=n10-(n10/q)*q;
+nq=nq+rest*putere;
+putere=putere*10;
+n10=(n10/q);
+}
+printf("Numarul in baza q este: %d\n",nq);
+	   getch();
+}

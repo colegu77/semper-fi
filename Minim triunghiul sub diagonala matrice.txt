@@ -1,0 +1,22 @@
+Minim triunghiul sub diagonala matrice
+
+#include <stdio.h> 
+#include <conio.h> 
+int a[10][10],i,j,m,min;
+void main()
+{
+clrscr();
+printf("dati m"); scanf("%d",&m);
+for (i=0;i<m;i++)
+  for (j=0;j<m;j++)
+  {
+  printf("\n dati a[%d][%d]=",i,j);
+  scanf("%d",&a[i][j]);
+  }
+  min=a[m-1][1];
+for (i=m/2+1;i<m;i++)
+ for (j=m-i-1;j<i;j++)
+ if (a[i][j]<min) min=a[i][j];
+ printf("minimul este %d ",min);
+ getch();
+ }

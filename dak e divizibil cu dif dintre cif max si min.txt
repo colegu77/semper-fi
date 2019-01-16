@@ -1,0 +1,30 @@
+Verifica daca numarul e divizibil cu diferenta dintre cifra maxima si cea minima
+
+
+#include<stdio.h>
+#include<conio.h>
+void main(void)
+{
+	int n, s, max=0, min=9, ultcifra, dif;
+	printf("Dati n: ");
+	scanf("%d",&n);
+s=n;
+do
+{
+	ultcifra=s%10;
+	s/=10;
+	if(ultcifra>max) max=ultcifra;
+	if(ultcifra<min) min=ultcifra;
+}
+while(s);
+
+dif=max-min;
+
+printf("Diferenta dintre maximul %d si minimul %d este: %d\n",max,min,dif);
+
+if((n%dif)==0)
+printf("Numarul este divizibil cu diferenta si este egala cu %d\n",n/dif);
+else
+printf("Numarul nu este divizibil cu diferenta!\n");
+getch();
+}

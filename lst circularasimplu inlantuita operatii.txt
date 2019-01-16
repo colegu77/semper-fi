@@ -1,0 +1,114 @@
+Operatii pe o lista circulara simplu inlantuita
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+typedef struct LISTA { int cheie;
+		       struct LISTA *urm; } lista;
+lista *p, *q, *r, *ultim, *x;
+void creaza()
+{
+ ultim=NULL;
+ p=(lista*)malloc(sizeof(lista));
+ scanf("%d",&p->cheie);
+ ultim=p;
+ p->urm=p;
+}
+void inser_sf()
+{
+ p=(lista*)malloc(sizeof(lista));
+ printf("Dati elem: ");
+ scanf("%d",&p->cheie);
+ p->urm=ultim->urm;
+ ultim->urm=p;
+ ultim=p;
+}
+void inser_inaiN()
+{
+ int key;
+ printf("Introduceti valoarea inainte de care inseram: ");
+ scanf("%d",&key);
+ r=ultim;
+ x=ultim;
+ for(p=ultim->urm;p!=ultim&&p->cheie!=key;r=p,p=p->urm);
+ if(p->cheie==key) { q=(lista*)malloc(sizeof(lista));
+		     printf("Dati valoarea: ");
+		     scanf("%d",&q->cheie);
+		     r->urm=q;
+		     q->urm=p;
+		     printf("Nodul a fost inserat!\n");
+		     printf("Introduceti %d (pt a nu pierde ultimul elem)=> ",x->cheie);
+		     inser_sf(); }
+ else printf("Valoarea nu a fost gasita in lista!");
+}
+void inser_dupaN()
+{
+ int key;
+ x=ultim;
+ printf("Introduceti valoarea dupa care doriti inserarea: ");
+ scanf("%d",&key);
+ for(p=ultim->urm;p!=ultim&&p->cheie!=key;p=p->urm);
+ if(p->cheie==key) { q=(lista*)malloc(sizeof(lista));
+		     printf("Dati elem: ");
+		     scanf("%d",&q->cheie);
+		     q->urm=p->urm;
+		     p->urm=q;
+		     printf("Nodul a fost inserat!\n");
+		     printf("Introduceti %d ( pt a nu pierde ultimul elem)=> ",x->cheie);
+		     inser_sf(); }
+ else printf("Valoarea nu a fost gasita in lista\n");
+}
+void cauta()
+{
+ int key;
+ printf("Introduceti valoarea cauta: ");
+ scanf("%d",&key);
+ for(p=ultim->urm;p!=ultim&&p->cheie!=key;p=p->urm);
+ if(p->cheie==key) printf("Valoarea a fost gasita!\n");
+ else printf("Valoarea nu a fost gasita!\n");
+}
+void stergeN()
+{
+ int key;
+ printf("Introduceti cheia care va fi stearsa: ");
+ scanf("%d",&key);
+ for(p=ultim->urm;p!=ultim&&p->cheie!=key;p=p->urm);
+ if(p->cheie==key)  if(ultim->urm==ultim) { ultim=NULL;
+					     printf("Val gasita si nod sters!\n"); }
+		     else { if(p==ultim) ultim=r;
+			    r->urm=p->urm;
+			    free(p);
+			    printf("Val gasita si nod sters!\n"); }
+ else printf("Valoarea nu a fost gasita!\n");
+}
+void sterge()
+{
+ while(ultim->urm!=ultim)
+      { p=ultim->urm;
+	ultim->urm=ultim->urm->urm;
+	free(p); }
+ free(ultim);
+}
+void scrie()
+{
+ p=ultim->urm;
+ while(p!=ultim) { printf("%d ",p->cheie);
+		   p=p->urm; }
+ printf("\n\n");
+}
+void main()
+{
+ int i,n;
+ clrscr();
+ printf("n= ");
+ scanf("%d",&n);
+ creaza();
+ for(i=1;i<n;i++) inser_sf();
+ //inser_inaiN();
+ inser_dupaN();
+ scrie();
+ cauta();
+ stergeN();
+ scrie();
+ sterge();
+}

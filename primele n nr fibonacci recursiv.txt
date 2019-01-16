@@ -1,0 +1,64 @@
+Sa se genereze primele n numere din sirul fibonacci cu recurivitate 
+#include<stdio.h>
+#include<conio.h>
+void main (void)
+{
+	int i,n;
+	int fib(int);
+	printf("Cate numere fibonacci doriti sa generati?: "); scanf("%d",&n);
+	for(i=0;i<n;i++)
+		printf("Fibonacci[%d]=%d\n",i,fib(i));
+	getch();
+}
+int fib(int n)
+{
+	if((n==0)||(n==1)) return(1);
+	else return(fib(n-1)+fib(n-2));
+}
+
+Problema calului 2
+#include<stdio.h>
+#include<conio.h>
+int a[8]={2,1,-1,-2,-2,-2,1,2}, b[8]={1,2,2,1,-1,-2,-2,-1};
+int t[10][10],m,n;
+void afiseaza(void)
+{
+	int p,r;
+	for(p=0;p<m;p++)
+	{
+		for(r=0;r<n;r++) printf("3%d",t[p][r]);
+		putchar('\n');
+	}
+	getch();
+}
+
+void cal(int i, int j, int k)	
+{ int i1,j1,d;
+  for(d=0;d<8;d++)	
+    { i1=i+a[d];		
+      j1=j+b[d];		
+      if((i1<m)&&(j1<n)&&(i1>=0)&&(j1>=0)&&(!t[i1][j1]))
+        { t[i1][j1]=k;		
+   if(k<m*n) cal(i1,j1,k+1);	
+	     else			
+	     { afiseaza();
+		putchar('\n');		
+	        t[i1][j1]=0;	
+	     }
+       }
+    }
+  t[i][j]=0;		
+} 
+
+
+void main(void)
+{
+	int i,j;
+	printf("Introduceti numarul de linii: "); scanf("%d",&m);
+	printf("Introduceti numarul de coloane: "); scanf("%d",&n);
+	for(i=0;i<n;i++)
+		for(j=0;j<n;j++) t[i][j]=0;
+		t[0][0]=1;
+		cal(0,0,2);
+}
+	

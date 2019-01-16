@@ -1,0 +1,40 @@
+Genereaza sirul primelor n nr prime
+
+
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+
+int daca_prim(int n)
+{
+int  d=2;
+
+
+	do
+	{
+		if((!(n%d))&&(n!=2))
+		{
+			return(0);
+			d=n;
+		}
+		d++;
+	}
+
+	while (d<=(sqrt(n)+1));
+
+}
+void main()
+{
+	int n, i;
+	printf("Introduceti val lui n: ");
+	scanf("%d",&n);
+	printf("Primele %d numere prime sunt: ",n);
+for(i=0;i<=n;i++)
+{
+	if (daca_prim(i))
+		printf("%d ",i);
+
+	
+}
+	putchar('\n');
+}

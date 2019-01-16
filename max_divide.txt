@@ -1,0 +1,23 @@
+#include<stdio.h>
+int a[10],n;
+
+int max(int i, int j)
+{int x,y;
+if(i==j) return x[i];
+else
+{a=max(i,(i+j)/2);
+ b=max((i+j)/2+1,j);
+ if(a>b) return (a);
+ else return (b);
+}
+}
+
+void main (void0
+{int i;
+printf("n="); scanf("%d",&n);
+for(i=0;i<n;i++)
+{printf("a[%d]=",i);
+ scanf("%d",&a[i]);
+}
+printf("maximul este %d\n".max(0,n-1));
+}

@@ -1,0 +1,16 @@
+De cate ori apare un caracter citit intr-un sir de caractere
+
+#include<stdio.h>
+#include<string.h>
+void main(void)
+{
+	char s[256],c;
+	int i,j=0;
+	printf("Introduceti sirul:");
+	gets(s);
+	printf("Introduceti caracterul cautat:");
+	c=getchar();
+	for(i=1;i<=strlen(s);i++)
+		if(s[i-1]==c) j++;
+	printf("Caracterul %c a fost gasit de %d ori \n",c,j);
+}

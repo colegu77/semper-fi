@@ -1,0 +1,38 @@
+Backtracking permutari stiva
+#include<stdio.h>
+
+int stiva[10],n,k;
+
+void tipareste()
+{	
+	int i;
+	for(i=1;i<=n;i++) printf("%d",stiva[i]);
+	putchar('\n');
+}
+
+int valid()
+{
+	int i;
+	for(i=1;i<k;i++) if(stiva[i]==stiva[k]) return (0);
+	return (1);
+}
+
+void permutari()
+{
+	k=1;
+	while(k>0) 
+		if(stiva[k]<n) {stiva[k]++;
+						if(valid()==1)
+							if(k==n) tipareste();
+							else {k++;
+							      stiva[k]=0;}
+						}
+						else k--;
+}
+
+void main(void)
+{
+	printf("n= ");
+	scanf("%d",&n);
+	permutari();
+}

@@ -1,0 +1,6 @@
+1. Principiile metodei Divide et Impera (conditii, etape de rezolvare, pseudocod). 3p
+2. Principiile sortarii prin interclasare (merge sort) si principiile sortarii prin metoda ansamblelor (heap sort - ambele: prin retrogradari repetate si prin metoda movilelor prin inserari repetate). 1.5p
+3. Principiile sortarii prin compartimentare (bin sort) si ale sortarii prin numarare (count sort). 1.5p
+4. Definiti urmatoarele notiuni: subgraf al unui graf, graf simplu conex, componenta conexa a unui graf, graf regulat,
+lant Hemiltonian, arbore muticai, arbore binar de cautare, arbore binar complet. (8x0.25) 2p
+5. Principiul algoritmului lui Ruskal. 1p

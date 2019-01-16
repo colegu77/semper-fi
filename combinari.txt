@@ -1,0 +1,28 @@
+
+#include<stdio.h>
+#include<conio.h>
+int m,n,a[20];
+
+void tipareste()
+{int i;
+for(i=0;i<n;i++) printf("%d",a[i]+1);
+putchar('\n');
+}
+
+void comb(int k)
+{int i;
+for(i=0;i<n;i++)
+{a[k]=i;
+if((k==0)||(a[k]>a[k-1]))
+if(k==n-1) tipareste();
+else comb(k+1);
+}
+}
+
+void main (void)
+{
+printf("m="); scanf("%d",&m);
+printf("n="); scanf("%d",&n);
+comb(0);
+getch();
+}

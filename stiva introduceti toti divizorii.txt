@@ -1,0 +1,52 @@
+Stiva //introduce in stiva toti divizori
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct stiva { int info;
+	       stiva* urm; };
+typedef stiva* nod;
+nod v;
+int n;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(stiva));
+	  v->info=n;
+	  v->urm =0; }
+ else { c=(nod)malloc(sizeof(stiva));
+	c->info=n;
+	c->urm=v;
+	v=c; }
+}
+void pop(void)
+{
+ nod c;
+ if(!v) printf("Stiva este vida\n");
+ else { c=v;
+	printf("Am extras elem: %d\n",c->info);
+	v=v->urm;
+	free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ printf("Travesrsam stiva: ");
+ if(!c) printf("Stiva este goala!\n");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+void main(void)
+{
+ int i;
+ clrscr();
+ do { printf("Introduceti elem (-1 pentru extragere,0 pt iesire): ");
+      scanf("%d",&n);
+      if(n)
+	if(n!=(-1)) { for (i=1;i<=n;i++)
+			  if(n%i==0) push(i);
+		      tipareste(); }
+	else { pop();
+	       tipareste(); }
+      }while(n);
+}

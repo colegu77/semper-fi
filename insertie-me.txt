@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include "cit_afis.h"
+#include "sort.h"
+
+
+main () 
+{ int a[10], n;
+
+
+printf("n="); scanf("%d",&n);
+
+citeste_sir(a,n);
+
+sorteaza_sir(a,n);
+
+afiseaza_sir(a,n);
+
+return 0;
+}
+
+#include <stdio.h>
+#include "sort.h"
+
+
+int sorteaza_sir(int a[], int n)
+{ int i,j,key;
+
+for (j=1; j<n; j++)
+		{i=j-1;
+		key=a[j];
+			 while ((key<a[i])&&(i>=0))
+					{ a[i+1]=a[i];
+					  a[i]=key;
+						i--; }
+
+	
+		}
+return 0;
+  
+}

@@ -1,0 +1,64 @@
+Stiva //Introduceti in stiva rasturnatele nr citite
+//Extrageti pana la jumate din stiva elem introduse
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct stiva { int info;
+		stiva* urm; };
+typedef stiva* nod;
+nod v;
+int n;
+void push(int n)
+{
+ nod c;
+ if(!v) { v=(nod)malloc(sizeof(stiva));
+	  v->info=n;
+	  v->urm=0; }
+ else { c=(nod)malloc(sizeof(stiva));
+	c->info=n;
+	c->urm=v;
+	v=c; }
+}
+void pop()
+{
+ nod c;
+ if(!v) printf("Stiva este vida \n");
+ else { c=v;
+	printf("Am extras elem: %d\n",c->info);
+	v=v->urm;
+	free(c); }
+}
+void tipareste()
+{
+ nod c=v;
+ printf("Traversam stiva: ") ;
+ if(!c) printf("Stiva este goala!\n");
+ while(c) { printf("%d ",c->info);
+	    c=c->urm; }
+ printf("\n\n");
+}
+int rast(int n)
+{
+ int r=0;
+ while(n!=0) { r=r*10+n%10;
+	       n=n/10; }
+ return r;
+}
+void main(void)
+{
+ int nr=0;
+ clrscr();
+ do { printf("Introduceti elem:  (0 pt iesire) ");
+      scanf(" %d",&n);
+      if(n) if(n!=(-1)) { push(rast(n));
+			    nr++; }
+
+      } while (n);
+ tipareste();
+ printf("Dati -1 pt a elimina jumate din stiva sau 0 pt a iesi: ");
+ scanf(" %d",&n);
+ nr=nr/2;
+ if(n==-1) while (nr!=0) { pop();
+			   nr--; }
+ tipareste();
+}

@@ -1,0 +1,29 @@
+Backtracking Numerele de n cifre formate doar din cifre pare
+#include<stdio.h>
+#include<conio.h>
+int a[50],n;
+void tipareste()
+{
+ int i;
+ for(i=1;i<=n;i++) printf("%d",a[i]);
+ putchar('\n');
+}
+int valid(int x)
+{
+ return (x==1)&&(a[x]>0)||(x>1);
+}
+void bkr(int i)
+{
+ int j;
+ for(j=0;j<=4;j++) { a[i]=2*j;
+		     if (valid(i)==1)
+			if(i==n) tipareste();
+			else bkr(i+1); }
+}
+void main(void)
+{
+ clrscr();
+ printf("dati nr de cifre: ");
+ scanf("%d",&n);
+ bkr(1);
+}

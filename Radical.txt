@@ -1,0 +1,25 @@
+Radical
+
+#include <stdio.h>
+#include <math.h>
+
+double f(double x)
+{
+double eps = 0.00001, x1, x2;
+x1=0;
+x2=1;
+while (fabs(x2-x1)>eps)
+{
+	x1=x2;
+	x2 = (x1+x/x1)/2;
+}
+return x1;
+}
+
+int main()
+{
+	double x;
+	printf("x="); scanf("%lf", &x);
+	printf("Radical din x este: %.2lf\n", f(x));
+	return 0;
+}

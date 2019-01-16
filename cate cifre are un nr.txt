@@ -1,0 +1,17 @@
+Cate cifre contine un numar n dat de la tastatura
+
+#include<stdio.h>
+void main(void)
+{
+	int i,n,nrcifre=0,a[10],uc;
+	printf("Introduceti valoarea lui n:");
+    scanf("%i", &n);
+	for(i=0;i<=9;i++) a[i]=0;
+	while(n!=0)
+	{uc=n%10;
+	 a[uc]=1;
+	 n/=10;
+	}
+	for(i=0;i<=9;i++) nrcifre+=a[i];
+	printf("Numarul contine %d cifre\n",nrcifre);
+}

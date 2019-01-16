@@ -1,0 +1,16 @@
+Primul nr perfect dintr-un sir
+
+#include <stdio.h>
+int sumadiv(int x)
+{int s=0,i;
+ for(i=1;i<x;i++)
+	if(x%i==0)s=s+i;
+ return s;
+}
+main()
+{int i=1,ok=0;
+ while(ok==0)
+		if(sumadiv(i)==i)  {printf("%d",i);
+							ok=1;}
+		else i++;
+}

@@ -1,0 +1,97 @@
+Toate operatiile pe o lista liniara simplu inlantuita
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+typedef struct LISTA { int cheie;
+		       struct LISTA *urm; } lista;
+lista *prim, *p, *q, *r;
+void creaza()
+{
+ prim=NULL;
+ p=(lista*)malloc(sizeof(lista));
+ scanf("%d",&p->cheie);
+ p->urm=NULL;
+ prim=p;
+}
+void inser_cap_lista()
+{
+ p=(lista*)malloc(sizeof(lista));
+ printf("Dati elem: ");
+ scanf("%d",&p->cheie);
+ p->urm=prim;
+ prim=p;
+}
+void inser_sf_lista()
+{
+ for(p=prim;p->urm;p=p->urm);
+ q=(lista*)malloc(sizeof(lista));
+ printf("Dati elem: ");
+ scanf("%d",&q->cheie);
+ p->urm=q;
+ q->urm=NULL;
+}
+void inser_dupaN()
+{
+ int key;
+ printf("Cheia dupa care se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;p=p->urm);
+ if(p!=NULL) { q=(lista*)malloc(sizeof(lista));
+	       printf("Dati elem: ");
+	       scanf("%d",&q->cheie);
+	       q->urm=p->urm;
+	       p->urm=q; }
+ else printf("Nu exista cheia specificata!\n");
+}
+void inser_inaN()
+{
+ int key;
+ printf("Cheia inaintea careia se insereaza: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;r=p,p=p->urm);
+ if(p!=NULL) { q=(lista*)malloc(sizeof(lista));
+	       printf("Dati elem: ");
+	       scanf("%d",&q->cheie);
+	       q->urm=p;
+	       r->urm=q; }
+ else printf("Nu exista cheia cautata \n");
+}
+void stergeN()
+{
+ int key;
+ printf("Nodul ce trebuie sters: ");
+ scanf("%d",&key);
+ for(p=prim;p!=NULL&&p->cheie!=key;r=p,p=p->urm);
+ if(p) if(prim!=p) { r->urm=p->urm;
+		       free(p); }
+       else { prim=p->urm;
+		free(p); }
+ else printf("Nu exista cheia specificata!\n");
+}
+void sterge()
+{
+ while(prim)
+      { p=prim;
+	prim=prim->urm;
+	free(p); }
+}
+void scrie()
+{
+ for(p=prim;p;p=p->urm) printf("%d ",p->cheie);
+ printf("\n\n");
+}
+void main()
+{
+ int n,i;
+ clrscr();
+ printf("n= ");
+ scanf("%d",&n);
+ creaza();
+ for(i=1;i<n;i++) //inser_cap_lista();
+		  inser_sf_lista();
+ //inser_dupaN();
+ inser_inaN();
+ stergeN();
+ scrie();
+ sterge();
+}

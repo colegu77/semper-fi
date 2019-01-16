@@ -1,0 +1,244 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+typedef struct nod
+{
+	int key;
+	struct nod *next,*prev;
+}t_nod;
+
+typedef struct 
+{
+	t_nod *head;
+}t_lista;
+
+void makenull(t_lista *T)
+{
+	T->head=(t_nod*)malloc(sizeof(t_nod));
+	T->head->next=NULL;
+	T->head->prev=NULL;
+}
+
+t_nod* initializez_nod(int k)
+{
+	t_nod *n;
+	n=(t_nod*)malloc(sizeof(t_nod));
+	n->key=k;
+	n->next=NULL;
+	n->prev=NULL;
+	return n;
+}
+
+void insert(t_lista *T,t_nod *x)
+{
+	t_nod *e;
+	if(T->head==NULL) T->head=x;
+	else
+	{
+		e=T->head;
+		T->head=x;
+		T->head->next=e;
+		e->prev=T->head;
+	}
+}
+
+t_nod* cauta(t_lista *L, int k)
+{
+	
+	t_nod *e;
+	e=L->head;
+	while(e && (e->key!=k))
+		e=e->next;
+	return e;
+}
+
+
+void sterge(t_lista L[],int k,int r)
+{
+	int j=1;
+	t_nod *y,*x;
+	x=cauta(&L[r],k);
+	if(x==NULL) 
+	{
+		printf("elementul nu se afla in lista!\n");
+		return;
+	}
+	else
+	{
+		if(L[r].head->key==x->key)
+		{
+			L[r].head=NULL;
+			printf("elementul a fost sters!");
+		}
+		else 
+		{
+			y=L[r].head;
+			while(y->key!=x->key)
+			{
+				y=y->next;
+			}
+			if(y->next==NULL)
+			{
+				y->prev->next=NULL;
+			}
+			else
+			{
+				y->prev->next=y->next;
+				y->next->prev=y->prev;
+			}
+			printf("elementul a fost sters!");
+		}
+	}
+}
+void print_list_hash(t_lista L[],int m)
+{
+	t_nod *v;
+	int i;
+	for(i=0;i<m;i++)
+	{
+		printf("\nelementele listei %d:",i);
+		if(L[i].head->next!=NULL)
+		{
+			v=L[i].head;
+			while(v->next!=NULL)
+			{
+				printf("%d ",v->key);
+				v=v->next;
+			}
+		}
+	}
+}
+void insert_vect(t_lista T[],t_nod *x)
+{
+	int v;
+	if(T[x->key].head->key!=x->key) T[x->key].head=x;
+	else
+	{
+		v=x->key;
+		v++;
+		while(T[v].head!=NULL && v!=x->key)
+		{
+			v++;
+			if(v==10000) v=1;
+		}
+		T[v].head=x;
+	}
+	return;
+}
+t_nod* cauta_list(t_lista L[],int k)
+{
+	int i;
+	t_nod *x;
+	x=(t_nod*)malloc(sizeof(t_nod));
+	x->key=-1;
+	x->next=x->prev=NULL;
+	if(L[k].head->key==k || L[k].head==NULL) return L[k].head; 
+	else 
+	{
+		i=k+1;
+		while(L[i].head->key!=k && i!=k)
+		{	
+			if(i==10000) i=0;
+			i++;
+		}
+		if(L[i].head->key==k) return L[i].head;
+		else return x;
+	}
+}
+
+void sterge_list(t_lista *M,int k)
+{
+	int i;
+	if(M[k].head->key==k) M[k].head=NULL;
+	else
+	{
+		i=k+1;
+		while(i!=k && M[i].head->key!=k)
+		{
+			if(i==10000) i=0;
+			i++;
+		}
+		M[i].head->key=-1;
+	}
+}
+
+void print_list_vect(t_lista M[])
+{
+	int i=0;
+	while(i!=10000)
+	{
+		if(M[i].head->key>=0) printf("%d ",M[i].head->key);
+		i++;
+	}
+	return;
+}
+
+void main()
+{
+	int i,m,k,r;
+	char select;
+	t_lista L[100];
+	t_nod *x,*p;
+	
+	printf("m=:");
+	scanf("%d",&m);
+	
+	for(i=0;i<=m-1;i++)
+		makenull(&L[i]);
+	
+	printf("introduceti elementele listei pana la tastarea cifrei 0:");
+	scanf("%d",&k);
+	
+	while(k!=0)
+	{
+		x=initializez_nod(k);
+		r=k%m;
+		insert(&L[r],x);
+		scanf("%d",&k);
+	}
+
+	printf("1 pentru cautare in lista\n");
+	printf("2 pentru inserare in lista\n");
+	printf("3 pentru stergere din lista\n");
+	printf("4 pentru afisarea listei\n");
+	printf("x pentru iesire din program\n");
+
+	while (select != 'x')
+	{
+		printf("\n");
+		printf("introduceti optiunea dvs:"); 
+		scanf("%c",&select);
+		
+		switch (select)
+		{
+			case '1':
+				printf("introduceti elementul cautat:");
+				scanf("%d",&k);
+				r=k%m;
+				p=cauta(&L[r],k);
+				if(p) printf("elementul se afla in lista %d\n",r);
+				else printf("elementul nu se afla in lista!");
+				break;
+			case '2':
+				printf("introduceti elementul dorit:");
+				scanf("%d",&k);
+				x=initializez_nod(k);
+				r=k%m;
+				insert(&L[r],x);
+				break;
+			case '3':
+				printf("introduceti elementul ce va fi sters:");
+				scanf("%d",&k);
+				r=k%m;
+				sterge(L,k,r);
+				break;
+			case '4':
+				printf("elementele listei sunt:\n");
+				print_list_hash(L,m);
+				break;
+		}
+	}
+}
+	
+		

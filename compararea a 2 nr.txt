@@ -1,0 +1,13 @@
+Compararea a doua numere
+
+
+#include <stdio.h>
+
+void main(void)
+{ int a,b;
+printf("introduceti primul numar:");
+scanf("%d",&a);
+printf("introduceti al doilea numar:");
+scanf("%d",&b);
+printf("maximul dintre cele doua numere este %d:", a>b?a:b);
+}

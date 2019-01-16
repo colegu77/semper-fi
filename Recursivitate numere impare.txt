@@ -1,0 +1,17 @@
+Recursivitate numere impare
+#include<stdio.h>
+#include<conio.h>
+int nr_imp(int n)
+{
+ if (n==0) return 0;
+ else if (n%2!=0) return 1 + nr_imp(n/10);
+      else return nr_imp(n/10);
+}
+void main(void)
+{
+ clrscr();
+ int n;
+ printf("dati nr: ");
+ scanf("%d",&n);
+ printf("%d",nr_imp(n));
+}

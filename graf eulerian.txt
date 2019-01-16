@@ -1,0 +1,47 @@
+Graf Eulerian
+#include<stdio.h>
+#include<conio.h>
+int a[10][10],viz[10],n,m;
+
+	void df_r(int nod)
+	{
+		int k;
+		printf("%d",nod);
+		viz[nod]=1;
+		for(k=1;k<=n;k++)
+			if(a[nod][k]&&!viz[k]) df_r(k);
+}
+void main()
+{
+	int x,y,in,nr_n_viz=0,par=0,grad,i,j;
+	printf("Introduceti numarul de noduri:"); scanf("%d",&n);
+	printf("Introduceti numarul de muchii:"); scanf("%d",&m);
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++) a[i][j]=0;
+			for(i=1;i<=m;i++)
+			{
+				printf("De la nodul:"); scanf("%d",&x);
+				printf("La nodul"); scanf("%d",&y);
+				a[x][y]=a[y][x]=1;
+			}
+			printf("Introduceti nodul de la care se pornete:");
+			scanf("%d",&in);
+			df_r(in);
+			for(i=1;i<=n;i++)
+				nr_n_viz+=viz[i];
+			if(nr_n_viz!=n)
+				printf("\nGraful nu este conex!\n");
+			else
+			{
+				printf("\nGraful este conex!\n");
+				for(i=1;i<=n;i++)
+				{
+					grad=0;
+					for(int j=1;j<=n;j++) grad+=a[i][j];
+					if(grad%2!=0) par=1;
+				}
+				if(par) printf("Exista noduri cu grade impare!\n");
+					else printf("Avem un graf eulerian!\n");
+			}
+			getch();
+}
